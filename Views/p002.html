@@ -1,0 +1,898 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+    <title>工程經費概算輔助系統</title>
+    <link rel="stylesheet" type="text/css" href="CSS/BMS.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/first.css" />
+<script type="text/javascript">
+<!--
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+//-->
+</script>    <link href="css/menu.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=big5" /><style type="text/css"></style>
+<script src="Scripts/AC_RunActiveContent.js" type="text/javascript"></script>
+<script src="Scripts/switchmenu.js" type="text/javascript"></script>
+
+<link href="css/tree.css" rel="stylesheet" type="text/css" />
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style><style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style></head>
+<body style="font-family:新細明體;" >
+<table width="1500" border="0" cellpadding="0" cellspacing="0" class="top_table1">
+  <tr>
+    <td width="1235"><table width="100%" cellpadding="1" cellspacing="0">
+      <tr>
+        <td width="24" bgcolor="#FFFFFF" class="list3">&nbsp;</td>
+        <td colspan="3" bgcolor="#FFFFFF" class="list3"><strong>項次</strong></td>
+        <td width="385" bgcolor="#FFFFFF" class="list3">項目說明</td>
+        <td width="54" bgcolor="#FFFFFF" class="list3">單位</td>
+        <td width="82" bgcolor="#FFFFFF" class="list3">比率</td>
+        <td width="92" bgcolor="#FFFFFF" class="list3">數量</td>
+        <td width="95" bgcolor="#FFFFFF" class="list3">單價</td>
+        <td width="96" bgcolor="#FFFFFF" class="list3">複價</td>
+        <td width="184" bgcolor="#FFFFFF" class="list3">備註</td>
+        <td width="75" bgcolor="#FFFFFF" class="list7">審核</td>
+        <td width="58" bgcolor="#FFFFFF" class="list7">比率</td>
+        <td width="57" bgcolor="#FFFFFF" class="list7">數量</td>
+        <td width="93" bgcolor="#FFFFFF" class="list7">單價</td>
+        <td width="99" bgcolor="#FFFFFF" class="list7">複價</td>
+      </tr>
+      <tr>
+        <td bgcolor="#FFFFFF" class="td_font"><label></label>            <input type="radio" name="radio1" id="radio" value="radio1" />          </td>
+        <td width="23" bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td width="25" bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td width="23" bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">發包工作費</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font"><div align="right"></div></td>
+        <td bgcolor="#FFFFFF" class="td_font"><div align="right"></div></td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font"><div align="center"></div></td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        </tr>
+      <tr>
+        <td bgcolor="#FFFFFF" class="td_font"><label></label>            <input type="radio" name="radio2" id="radio2" value="radio2" />          </td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">直接工程費</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font"><div align="right"></div></td>
+        <td bgcolor="#FFFFFF" class="td_font"><div align="right"></div></td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font"><div align="center"></div></td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="td_font"><input name="radio3" type="radio" id="radio3" value="radio3" /></td>
+        <td bgcolor="#FFFFFF" class="td_01">壹</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td class="td_font">圖書館整修工程</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right"></div></td>
+        <td class="list2"><div align="right"></div></td>
+        <td class="list2"><div align="right"></div></td>
+        <td class="list2"><div align="right"></div></td>
+        <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list2"><div align="center"></div></td>
+        <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
+        </tr>
+      
+      <tr>
+        <td class="td_font"><input name="radio4" type="radio" id="radio4" value="radio4" />        </td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_04">一</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">損壞及拆除部份</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="right"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="center"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">            <input type="radio" name="radio5" id="radio28" value="radio5" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">1</td>
+        <td class="list2">原有隔間.門扇.拆除運棄原有隔間.門扇.拆除運棄</td>
+        <td class="list2"><div align="center">間</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">1.00</div></td>
+        <td class="list2"><div align="right">4500.00 </div></td>
+        <td class="list2"><div align="right">4,500.00 </div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"><img src="images/right.png" width="16" height="17" /></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main"> <a href="javascript:go_flow();"></a>            <input type="radio" name="radio6" id="radio26" value="radio6" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">2</td>
+        <td class="list2">原有天花板.燈具.拆除運棄</td>
+        <td class="list2"><div align="center">M2</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">120.00</div></td>
+        <td class="list2"><div align="right">90.00 </div></td>
+        <td class="list2"><div align="right">10,800.00 </div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"><img src="images/right.png" width="16" height="17" /></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">            <input type="radio" name="radio7" id="radio25" value="radio7" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">3</td>
+        <td class="list2">原有窗扇.門.拆除運棄</td>
+        <td class="list2"><div align="center">樘</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">15.00</div></td>
+        <td class="list2"><div align="right">800.00 </div></td>
+        <td class="list2"><div align="right">12,000.00 </div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"><img src="images/revise.png" width="16" height="17" /></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">            <input type="radio" name="radio8" id="radio24" value="radio8" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">4</td>
+        <td class="list2">原有地坪磁磚拆除運棄</td>
+        <td class="list2"><div align="center">M2</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">120.00</div></td>
+        <td class="list2"><div align="right">550.00 </div></td>
+        <td class="list2"><div align="right">66,000.00 </div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"><img src="images/right.png" width="16" height="17" /></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">            <input type="radio" name="radio9" id="radio23" value="radio9" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">5</td>
+        <td class="list2">原木座書櫃.家具拆除運棄</td>
+        <td class="list2"><div align="center">組</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">5.00</div></td>
+        <td class="list2"><div align="right">450.00 </div></td>
+        <td class="list2"><div align="right">2,250.00 </div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"><img src="images/right.png" width="16" height="17" /></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="list">小計</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">　
+          <div align="right"></div></td>
+        <td class="list"><div align="right"></div></td>
+        <td class="list"><div align="right">95,550.00</div></td>
+        <td class="list">&nbsp;</td>
+        <td class="list"><div align="center"></div></td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font"><div align="center"></div></td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        </tr>
+      
+      <tr>
+        <td class="td_font">          <input name="radio10" type="radio" id="radio5" value="radio10" />        </td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_04">二</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">管線配管工程</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="center"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">          <input type="radio" name="radio11" id="radio27" value="radio11" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td height="23" class="td_02">1</td>
+        <td height="23" class="list2">電視訊號線配管配線及安裝</td>
+        <td height="23" class="list2"><div align="center">組</div></td>
+        <td height="23" class="list2">&nbsp;</td>
+        <td height="23" class="list2"><div align="right">3.00</div></td>
+        <td height="23" class="list2"><div align="right">1,200.00</div></td>
+        <td height="23" class="list2"><div align="right">3,600.00 </div></td>
+        <td height="23" class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td height="23" class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">          <input type="radio" name="radio12" id="radio21" value="radio12" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">2</td>
+        <td class="list2">電話線配管配線及安裝</td>
+        <td class="list2"><div align="center">組</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">3.00</div></td>
+        <td class="list2"><div align="right">1,200.00 </div></td>
+        <td class="list2"><div align="right">3,600.00 </div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">          <input type="radio" name="radio13" id="radio20" value="radio13" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">3</td>
+        <td class="list2">插座配管配線及安裝</td>
+        <td class="list2"><div align="center">組</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">20.00</div></td>
+        <td class="list2"><div align="right">1,200.00 </div></td>
+        <td class="list2"><div align="right">24,000.00 </div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">          <input type="radio" name="radio14" id="radio19" value="radio14" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">4</td>
+        <td class="list2">空調專用插座迴路</td>
+        <td class="list2"><div align="center">組</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">8.00</div></td>
+        <td class="list2"><div align="right">2,500.00 </div></td>
+        <td class="list2"><div align="right">20,000 </div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">          <input type="radio" name="radio15" id="radio18" value="radio15" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">5</td>
+        <td class="list2">音響線配管配線及安裝</td>
+        <td class="list2"><div align="center">組</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">2.00</div></td>
+        <td class="list2"><div align="right">1,200.00 </div></td>
+        <td class="list2"><div align="right">2,400.00 </div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="list">小計</td>
+        <td class="list">　
+          <div align="center"></div></td>
+        <td class="list">&nbsp;</td>
+        <td class="list"><div align="right"></div></td>
+        <td class="list"><div align="right"></div></td>
+        <td class="list"><div align="right">53,600.00</div></td>
+        <td class="list">&nbsp;</td>
+        <td class="list"><div align="center"></div></td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font"><div align="right"></div></td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font"><div align="center"></div></td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        </tr>
+      
+      <tr>
+        <td class="td_font">          <input type="radio" name="radio16" id="radio6" value="radio16" />        </td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_04">三</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">門窗與外牆隔柵工程</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="right"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="center"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">          <input type="radio" name="radio17" id="radio32" value="radio17" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">1</td>
+        <td class="list2">5+3MM/TH鋁窗</td>
+        <td class="list2"><div align="center">才</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">400.00</div></td>
+        <td class="list2"><div align="right">960.00</div></td>
+        <td class="list2"><div align="right">384,000.00</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">          <input type="radio" name="radio18" id="radio31" value="radio18" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">2</td>
+        <td class="list2">泥做修補</td>
+        <td class="list2"><div align="center">尺</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">80.00</div></td>
+        <td class="list2"><div align="right">550.00</div></td>
+        <td class="list2"><div align="right">44,000.00</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">            <input type="radio" name="radio19" id="radio30" value="radio19" />          </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">3</td>
+        <td class="list2">外牆金屬隔柵</td>
+        <td class="list2"><div align="center">M2</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">90.00</div></td>
+        <td class="list2"><div align="right">6,500.00</div></td>
+        <td class="list2"><div align="right">585,000.00</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">            <input type="radio" name="radio20" id="radio29" value="radio20" />          </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">4</td>
+        <td class="list2">工料損耗</td>
+        <td class="list2"><div align="center">式</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">1.00</div></td>
+        <td class="list2"><div align="right">3,000.00</div></td>
+        <td class="list2"><div align="right">3,000.00</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="list">小計</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">　
+          <div align="right"></div></td>
+        <td class="list">&nbsp;</td>
+        <td class="list"><div align="right">1,016,000.00</div></td>
+        <td class="list">&nbsp;</td>
+        <td class="list"><div align="center"></div></td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font"><div align="right"></div></td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font"><div align="center"></div></td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        </tr>
+      
+      <tr>
+        <td class="td_font">            <input type="radio" name="radio21" id="radio7" value="radio21" />        </td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td class="td_04">四</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">泥做工程</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="center"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">            <input type="radio" name="radio22" id="radio36" value="radio22" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">1</td>
+        <td class="list2">1:3水泥砂漿粉光</td>
+        <td class="list2"><div align="center">M2</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">120.00</div></td>
+        <td class="list2"><div align="right">450.00</div></td>
+        <td class="list2"><div align="right">54,000.00</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">            <input type="radio" name="radio23" id="radio35" value="radio23" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">2</td>
+        <td class="list2">自平水泥粉光</td>
+        <td class="list2"><div align="center">M2</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">120.00</div></td>
+        <td class="list2"><div align="right">850.00</div></td>
+        <td class="list2"><div align="right">102,000.00</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">            <input type="radio" name="radio24" id="radio34" value="radio24" />        </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">3</td>
+        <td class="list2">環氧樹酯地坪(雙層塗裝)</td>
+        <td class="list2"><div align="center">M2</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">120.00</div></td>
+        <td class="list2"><div align="right">920.00</div></td>
+        <td class="list2"><div align="right">110,400.00</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="list">小計</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list"><div align="right"></div></td>
+        <td class="list">&nbsp;</td>
+        <td class="list"><div align="right">266,400.00</div></td>
+        <td class="list">&nbsp;</td>
+        <td class="list"><div align="center"></div></td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        </tr>
+      <tr >
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font"><div align="right"></div></td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font"><div align="center"></div></td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        <td class="td_font">&nbsp;</td>
+        </tr>
+      
+      <tr>
+        <td class="td_font">            <input type="radio" name="radio25" id="radio8" value="radio25" />          </td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_04">五</td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td class="td_04">照明及電源設施</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="center"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">            <input type="radio" name="radio26" id="radio40" value="radio26" />          </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">1</td>
+        <td class="list2">T528W*1電子式日光燈</td>
+        <td class="list2"><div align="center">組</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">35.00</div></td>
+        <td class="list2"><div align="right">1,200.00</div></td>
+        <td class="list2"><div align="right">42,000.00</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">            <input type="radio" name="radio27" id="radio39" value="radio27" />          </td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="td_02">2</td>
+        <td class="list2">崁燈(含配線及安裝)</td>
+        <td class="list2"><div align="center">組</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="right">15.00</div></td>
+        <td class="list2"><div align="right">1,200.00</div></td>
+        <td class="list2"><div align="right">18,000.00</div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2"><div align="center"></div></td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        <td class="list2">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td class="font_main">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td class="list">小計</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list"><div align="right"></div></td>
+        <td class="list"><div align="right">60,000.00</div></td>
+        <td class="list">&nbsp;</td>
+        <td class="list"><div align="center"></div></td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        <td class="list">&nbsp;</td>
+        </tr>
+      
+      <tr>
+        <td class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5">合計</td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5"><div align="right">149,1550.00</div></td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5"><div align="center"></div></td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="list2">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_01">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font"><div align="center"></div></td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="list2"><div align="center">
+            <input type="radio" name="radio28" id="radio9" value="radio28" />
+        </div></td>
+        <td bgcolor="#FFFFFF" class="td_01">貳</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">間接工程費</td>
+        <td bgcolor="#FFFFFF" class="td_font"><div align="center"></div></td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font"><div align="center"></div></td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="td_font"><div align="center">
+            <input type="radio" name="radio29" id="radio10" value="radio29" />
+        </div></td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_04">一</td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td class="td_04">環保清潔費</td>
+        <td class="td_04"><div align="center"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="right">4,500.00 </div></td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_04"><div align="center"></div></td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="td_font"><div align="center">
+            <input type="radio" name="radio30" id="radio11" value="radio30" />
+        </div></td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_04">二</td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td class="td_04">保險費</td>
+        <td class="td_04"><div align="center"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="right">10,800.00 </div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="center"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="td_font"><div align="center">
+            <input type="radio" name="radio31" id="radio12" value="radio31" />
+        </div></td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_04">三</td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td class="td_04">包商工程管理費.利潤及工程雜項費用</td>
+        <td class="td_04"><div align="center"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="right">12,000.00 </div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="center"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="td_font"><div align="center">
+            <input type="radio" name="radio32" id="radio13" value="radio32" />
+        </div></td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_04">四</td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td class="td_04">勞工衛生及管理費</td>
+        <td class="td_04"><div align="center"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="right">66,000.00 </div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="center"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="td_font"><div align="center">
+            <input type="radio" name="radio33" id="radio14" value="radio33" />
+        </div></td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="td_04">五</td>
+        <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
+        <td class="td_04">工程品管費</td>
+        <td class="td_04"><div align="center"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="right">2,250.00 </div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04"><div align="center"></div></td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        <td class="td_04">&nbsp;</td>
+        </tr>
+      <tr>
+        <td class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        <td bgcolor="#FFFFFF" class="list5">&nbsp;</td>
+        <td class="list5">合計</td>
+        <td class="list5">&nbsp;</td>
+        <td class="list5">&nbsp;</td>
+        <td class="list5">&nbsp;</td>
+        <td class="list5">&nbsp;</td>
+        <td class="list5"><div align="right">38,780.00</div></td>
+        <td class="list5">&nbsp;</td>
+        <td class="list5"><div align="center"></div></td>
+        <td class="list5">&nbsp;</td>
+        <td class="list5">&nbsp;</td>
+        <td class="list5">&nbsp;</td>
+        <td class="list5">&nbsp;</td>
+        </tr>
+      
+      
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>
+
