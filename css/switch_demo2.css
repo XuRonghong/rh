@@ -1,0 +1,61 @@
+/*
+https://proto.io/freebies/onoff/
+
+滑動開關切換按鈕﹍CSS 語法產生器
+
+Wayne Fu Wayne Fu CSS 2525 A+ 色
+
+最簡單的切換選項效果，是使用 Input 元素的 radio 型態，也就是單選(非複選)的效果，長得像這樣：
+性別： 男生　 女生
+之前接到一個需求，希望切換效果做得有質感，像是蘋果系統的切換按鈕，例如下面的範例：
+
+原以為這樣的效果，需要用 JS 才能做出來，沒想到純 CSS 就能有很棒的效果，請見本篇的介紹。
+紅字的地方，"開啟"、"關閉" 就是原本預設會顯示 "ON"、"OFF" 之處，可改為自訂字串。
+如果要修改整個開關的寬度，那麼直接改藍字這裡，版面效果會不如預期。最好直接從官網的項目 "Sizing" 這裡，
+直接調整寬度(width) 的值，再複製產生的 CSS 即可。
+ */
+.onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "開啟";
+    padding-left: 10px;
+    background-color: #34A7C1; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "關閉";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
