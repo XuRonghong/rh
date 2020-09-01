@@ -32,13 +32,15 @@ define('Controllers', 'Controllers');
 
 
 $Request = $_REQUEST;
-include_once(__DIR__.'/'.Controllers.'/'. $Request['r']. '.php');
+if( isset($Request['r']) && !is_null($Request['r']) && $Request['r']!='' ) {
+    include_once(__DIR__.'/'.Controllers.'/'. $Request['r']. '.php');
 
-if( isset($Request['f']) && !is_null($Request['f']) && $Request['f']!='' ) {
-    $Request['f']();
-} else {
-    index();
-}
+    if( isset($Request['f']) && !is_null($Request['f']) && $Request['f']!='' ) {
+        $Request['f']();
+    } else {
+        index();
+    }
+} 
 
 $Request = null;
 $db = null;

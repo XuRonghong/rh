@@ -13,6 +13,205 @@ function view($str)
     return _DIR_.'/'.Views.'/'.$str.'.php';
 }
 
+
+
+//=========== 檔案處理函數 =============//
+
+//圖片縮放裁切
+//type=resize 強迫尺寸:指定寬,高
+//type=equal 等比例縮放:指定寬度 高度等比例,指定高度 寬度等比例
+//type=limit 限制範圍:指定寬 超過
+//type=cut 裁切自動調整縮放:指定寬,高
+function imageResize($imgsrc,$imgdst=null,$new_w=400,$new_h=null,$type='equal',$img_quility=70){
+    $ext=strtolower(pathinfo($imgsrc, PATHINFO_EXTENSION));
+    $imgdst=($imgdst==null)?$imgsrc:$imgdst;
+    switch($ext){
+        case 'gif':
+            $imgsrc=imagecreatefromgif($imgsrc);
+            break;
+        case 'jpg':
+            $imgsrc=imagecreatefromjpeg($imgsrc);
+            break;
+        case 'jpeg':
+            $imgsrc=imagecreatefromjpeg($imgsrc);
+            break;
+        case 'png':
+            $imgsrc=imagecreatefrompng($imgsrc);
+            break;
+    }
+    
+    //取得原圖的寬度與高度
+    $src_w = imagesx($imgsrc); 
+    $src_h = imagesy($imgsrc); 
+
+    // 設定圖片偏移初值
+    $crop_x = 0;
+    $crop_y = 0;
+    
+    //設定新圖的寬度與高度		
+    if($type=='equal'){
+        if($new_w!='')
+            $new_h = round($src_h*$new_w/$src_w);
+        else
+            $new_w = round($src_w*$new_h/$src_h);
+    }else if($type=='limit'){
+        if($new_w!='' && $new_h==''){
+            if($new_w>=$src_w){
+                $new_w = $src_w;
+                $new_h = $src_h;
+            }else{
+                $new_h = round($src_h*$new_w/$src_w);
+            }
+        }else if($new_h!='' && $new_w==''){
+            if($new_h>=$src_h){
+                $new_w = $src_w;
+                $new_h = $src_h;
+            }else{
+                $new_w = round($src_w*$new_h/$src_h);
+            }
+        }else if($new_w!='' && $new_h!=''){
+            $src_rate = $src_w/$src_h;
+            $new_rate = $new_w/$new_h;
+            if($new_rate>$src_rate){
+                if($new_h>=$src_h){
+                    $new_w = $src_w;
+                    $new_h = $src_h;
+                }else{
+                    $new_w = round($src_w*$new_h/$src_h);
+                }
+            }else{
+                if($new_w>=$src_w){
+                    $new_w = $src_w;
+                    $new_h = $src_h;
+                }else{
+                    $new_h = round($src_h*$new_w/$src_w);
+                }
+            }
+        }
+    }else if($type=='cut' && $new_w!='' && $new_h!=''){
+        //將圖片裁切成指定大小
+        //較長的部分保持不變,較短的部分,依指定圖片比例縮放
+        $src_rate = $src_w/$src_h;
+        $new_rate = $new_w/$new_h; 		
+        $temp_w = $src_w;
+        $temp_h = $src_h;
+        if($new_rate>$src_rate)
+            $src_h = round($new_h*$src_w/$new_w);
+        else
+            $src_w = round($new_w*$src_h/$new_h);	
+        $crop_x = round(($temp_w-$src_w)/2);				
+        $crop_y = round(($temp_h-$src_h)/2);
+    }
+    
+    //建立圖片
+    $newimg = imagecreatetruecolor($new_w, $new_h);
+    if($ext=='gif' or $ext=='jpg' or $ext=='jpeg'){
+        imagefill($newimg,0,0,imagecolorallocate($newimg, 255, 255, 255));
+    }else{
+        imagefill($newimg,0,0,imagecolorallocatealpha($newimg, 255, 255, 255, 255));
+        imageAlphaBlending($newimg, false);
+        imageSaveAlpha($newimg, true);
+    }		
+    imagecopyresampled($newimg,$imgsrc,0,0,$crop_x,$crop_y,$new_w,$new_h,$src_w,$src_h);
+    switch($ext){
+        case 'gif':
+            imagegif($newimg,$imgdst); 
+            break;
+        case 'jpg':
+            imagejpeg($newimg,$imgdst,$img_quility); 
+            break;
+        case 'jpeg':
+            imagejpeg($newimg,$imgdst,$img_quility); 
+            break;
+        case 'png':
+            imagepng($newimg,$imgdst);
+            break;
+    } 
+    imagedestroy($newimg);
+}
+
+//檔案上傳處理(檔案,檔案路徑,檔案類型,檔案限制大小)
+//return 1=>成功, 2=>檔案太大,格式錯誤,上傳失敗
+function fileUpload($upfiles,$dir,$type,$filesize=2048){
+    if(!is_array($upfiles['error'])){
+        $error=$upfiles['error'];
+        if(($upfiles["size"]/1024)>=$filesize){
+                $arr[]=array('state'=>2,'name'=>$upfiles["name"],'msg'=>'檔案太大');
+            }else if($error==UPLOAD_ERR_OK){
+                $ext=strtolower(pathinfo($upfiles["name"], PATHINFO_EXTENSION));
+                if(in_array($ext,$type)||($type=='*')){
+                    $upfilesname=randMix(9,1,2).".".$ext;
+                    move_uploaded_file($upfiles["tmp_name"],$dir.$upfilesname);		
+                    $arr[]=array('state'=>1,'name'=>$upfiles["name"],'path'=>$upfilesname,'msg'=>'上傳成功');		
+                }else{
+                    $arr[]=array('state'=>2,'name'=>$upfiles["name"],'msg'=>'格式錯誤');
+                }
+            }else{
+                $arr[]=array('state'=>2,'name'=>$upfiles["name"],'msg'=>'上傳失敗');
+            }
+    }else{
+        foreach($upfiles["error"] as $key=>$error){		
+            if(($upfiles["size"][$key]/1024)>=$filesize){
+                $err=true;
+                $arr[]=array('state'=>2,'name'=>$upfiles["name"][$key],'msg'=>'檔案太大');
+            }else if($error==UPLOAD_ERR_OK){
+                $ext=strtolower(pathinfo($upfiles["name"][$key], PATHINFO_EXTENSION));
+                if(in_array($ext,$type)||($type=='*')){
+                    $upfilesname=randMix(9,1,2).".".$ext;
+                    move_uploaded_file($upfiles["tmp_name"][$key],$dir.$upfilesname);		
+                    $arr[]=array('state'=>1,'name'=>$upfiles["name"][$key],'path'=>$upfilesname);
+                    //echo $upfiles["name"][$key]."上傳成功<br>";
+                    //echo $upfiles["type"][$key]."<br>";
+                    //echo $upfiles["size"][$key]."<br>";		
+                }else{
+                    $arr[]=array('state'=>2,'name'=>$upfiles["name"][$key],'msg'=>'格式錯誤');
+                }
+            }else{
+                $arr[]=array('state'=>2,'name'=>$upfiles["name"][$key],'msg'=>'上傳失敗');
+            }
+        }
+    }
+    return $arr;
+}
+
+//檔案上傳處理(檔案欄位,目錄,大圖尺寸,小圖尺寸,裁切,限制檔案大小單位位元)
+function imgUpload($upfiles,$dir,$bigsize=null,$smallsize=null,$type='equal',$filesize=2048){
+    if(is_array($upfiles["error"])){			
+        foreach($upfiles["error"] as $key=>$error){
+            if(($upfiles["size"][$key]/1024)>=$filesize){
+                $arr[]=array('state'=>2,'name'=>$upfiles["name"],'msg'=>'檔案太大');
+            }else if($error==UPLOAD_ERR_OK){
+                $ext=strtolower(pathinfo($upfiles["name"][$key], PATHINFO_EXTENSION));
+                if($ext=='jpg' || $ext=='gif' || $ext=='png' || $ext=='jpeg'){
+                    $upfilesname=randMix(9,1,2).".".$ext;
+                    move_uploaded_file($upfiles["tmp_name"][$key],$dir.$upfilesname);	
+                    $arr[]=array('state'=>1,'name'=>$upfiles["name"][$key],'path'=>$upfilesname,'msg'=>'上傳成功');
+                    //echo $upfiles["name"][$key]."上傳成功<br>";
+                    //echo $upfiles["type"][$key]."<br>";
+                    //echo $upfiles["size"][$key]."<br>";						
+                    //將圖片縮放為指定大小
+                    if($bigsize!=null){
+                        if(is_array($bigsize))					
+                            imageResize($dir.$upfilesname,'',$bigsize[0],$bigsize[1],$type);
+                        else
+                            imageResize($dir.$upfilesname,'',$bigsize,'',$type);
+                    }
+                    //將圖片裁切為指定大小
+                    if($smallsize!=null){
+                        $smallname=str_ireplace(".$ext","",$upfilesname).'s.'.$ext;
+                        imageResize($dir.$upfilesname,$dir.$smallname,$smallsize[0],$smallsize[1],1);	
+                    }			
+                }else{
+                    $arr[]=array('state'=>2,'name'=>$upfiles["name"][$key],'msg'=>'格式錯誤');
+                }
+            }else{
+                $arr[]=array('state'=>2,'name'=>$upfiles["name"][$key],'msg'=>'上傳失敗');
+            }
+        }
+        return $arr;
+    }
+}
+
 function read_file($filename = "test")
 {
     $arr = array();
