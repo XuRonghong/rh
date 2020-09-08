@@ -1,5 +1,21 @@
 <?php
 
+
+function cc()
+{
+    try{
+
+        die();
+
+    } catch( Exception $e) {
+        $mess = array('statue' => 0, 'message' => $e->getMessage(), 'code' => $e->getCode() );
+        write_file('logs/file.txt', json_encode($mess, JSON_UNESCAPED_UNICODE));
+        return $mess;
+    }
+    return array('statue' => 1, 'message' => $e->getMessage(), 'code' => $e->getCode() );
+}
+
+
 function csrf_token()
 {    
     if (empty($_SESSION['token'])) {
@@ -341,20 +357,6 @@ function object_get($object, $key, $default = null)
     
     // 最後取得的 property 即結果
     return $object;
-}
-
-function cc()
-{
-    try{
-
-        die();
-
-    } catch( Exception $e) {
-        $mess = array('statue' => 0, 'message' => $e->getMessage(), 'code' => $e->getCode() );
-        write_file('logs/file.txt', json_encode($mess, JSON_UNESCAPED_UNICODE));
-        return $mess;
-    }
-    return array('statue' => 1, 'message' => $e->getMessage(), 'code' => $e->getCode() );
 }
 
 

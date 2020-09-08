@@ -8,9 +8,29 @@ try {
 
     array_except($posts, '_token');
 
-    $rs = dataInsert('class', $posts);
+    if($posts['router']=='get') {
 
-    $rtn = array('statue' => $rs, 'message' => 'db insert success', 'code' => 200);
+    }
+    else if($posts['router']=='create') {
+    
+        $rs = dataInsert('class', $posts);
+    
+        $rtn = array('statue' => $rs, 'message' => 'db insert success', 'code' => 200);
+    }
+    else if($posts['router']=='update') {
+    
+        $id = $posts['id'];
+        $rs = dataUpdate('material', $posts, ' WHERE id=:id', ['id'=> $id]);
+    
+        $rtn = array('statue' => $rs, 'message' => 'db update success', 'code' => 200);
+    }
+    else if($posts['router']=='delete') {
+    
+        $id = $posts['id'];
+        $rs = dataDelete('material', $posts, ' WHERE id=:id', ['id'=> $id]);
+    
+        $rtn = array('statue' => $rs, 'message' => 'db delete success', 'code' => 200);
+    }
 
     echo json_encode($rtn, JSON_UNESCAPED_UNICODE);
     

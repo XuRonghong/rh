@@ -51,8 +51,19 @@ $Request = $_REQUEST;
 //         index();
 //     }
 // } 
+
+// print_r(apache_request_headers()); // 印出所有 Header
+if( isset(apache_request_headers()['X-CSRF-TOKEN'])) {    
+    $_token = apache_request_headers()['X-CSRF-TOKEN'];
+    if($_SESSION['token']!== $_token) {
+        $rtn = array('statue' => 0, 'message' => 'token no find or error!!', 'code' => 204);
+        echo json_encode($rtn, JSON_UNESCAPED_UNICODE);
+        exit;
+    }
+}
+
 if( isset($Request['_token'])) {    
-    if($_SESSION['token']!==$_POST['_token']) {
+    if($_SESSION['token']!==$Request['_token']) {
         $rtn = array('statue' => 0, 'message' => 'token no find or error!!', 'code' => 204);
         echo json_encode($rtn, JSON_UNESCAPED_UNICODE);
         exit;

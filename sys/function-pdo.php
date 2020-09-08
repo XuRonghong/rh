@@ -234,6 +234,24 @@
 		return $rs->rowCount();
 	}
 
+	//
+	function dataDelete($tablename,$where,$data=[],$trace=null) {
+		global $db;
+		if(empty($tablename)) return false;
+		if(empty($where)) return false;
+		if(empty($data)) return false;
+		$params = [];
+		$params = array_merge($params,$data);
+		$sql = "DELETE * FROM `$tablename` WHERE $where";
+		if($trace){ 
+			echo $sql;
+			print_r($$params);
+		};
+		$rs=$db->prepare($sql);
+		$rs->execute($params);
+		return $rs->rowCount();
+	}
+
 	// 取得where字串,指定名稱
 	function getSqlWhereOnly($arr,$name,$operator='AND',$case='='){
 		$str='';

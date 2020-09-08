@@ -1,4 +1,27 @@
 
+
+    function api(u, r, t, k, v)
+    {
+        if(r=='get' || r=='GET') type='GET';
+        else type='POST';
+        $.ajax({
+            headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
+            url: u,
+            type: type,
+            data: { "_token": "<?php echo csrf_token() ?>", 'router': r, 'table': t, 'key': k, 'value': v },
+            cache: false,
+            resetForm: true,
+            success: function(rtndata) {
+                rtndata = JSON.parse(rtndata);
+                if (rtndata.status > 0) {
+
+                } else {
+                    console.log(JSON.stringify(rtndata));
+                }
+            }
+        });
+    }
+    
     // none, bounce, rotateplane, stretch, orbit,
     // roundBounce, win8, win8_linear or ios
     function run_waitMe(selector='body', effect='roundBounce')
@@ -48,7 +71,7 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
-    }
+    }    
 
     function ajax(url='', data={}, method='POST', redirect=1)
     {

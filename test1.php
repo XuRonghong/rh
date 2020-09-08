@@ -22,6 +22,15 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
     <link href="css/tree.css" rel="stylesheet" type="text/css" />
     <link href="css/first.css" rel="stylesheet" type="text/css" />
 
+    <style type="text/css">
+    .feat-btn {
+        text-align: center;
+        font-size: large;
+    }
+    .btn-title {
+        cursor: pointer;
+    }
+    </style>
 
 </head>
 
@@ -151,8 +160,8 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                                                 </td>
                                             </tr>
                                         </table>
-                                        
-                                        <?php require_once dirname(__FILE__).'/p002.php'; ?>
+
+                                        <?php require_once dirname(__FILE__) . '/p002.php'; ?>
                                         <!-- <iframe src="p002.php" name="list1" width="100%" height="352" id="list1" scrolling="Yes" frameborder="no" border="0 framespacing=" 0"></iframe> -->
 
                                     </td>
@@ -183,7 +192,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                             </table>
                             <!-- InstanceEndEditable -->
                             <!-- InstanceBeginEditable name="EditRegion2" -->
-                            <?php require_once dirname(__FILE__).'/edit002.php'; ?>
+                            <?php require_once dirname(__FILE__) . '/edit001.php'; ?>
                             <!-- InstanceEndEditable -->
                         </td>
                     </tr>
@@ -201,80 +210,178 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="Scripts/switchmenu.js" type="text/javascript"></script>
     <script src="Scripts/script.js" type="text/javascript"></script>
-  <script>
-    $(document).ready(function() {
-      // $('.btn').toggleClass("click");
-      // $('.sidebar').toggleClass("show");
+    <script>
+        $(document).ready(function() {
+            // $('.btn').toggleClass("click");
+            // $('.sidebar').toggleClass("show");
 
-      // $('.feat').css("display", "none");
-      $('.feat').hide();
-    })
+            // $('.feat').css("display", "none");
+            $('.feat').show();
+            $('.feat-btn').text(' - ')
+        })
 
-    // $('.btn').click(function() {
-    //   $(this).toggleClass("click");
-    //   $('.sidebar').toggleClass("show");
-    // });
+        // $('.btn').click(function() {
+        //   $(this).toggleClass("click");
+        //   $('.sidebar').toggleClass("show");
+        // });
 
-    $('.feat-btn').click(function() {
-      $(this).text(' - ')
+        $('.feat-btn').click(function() {
+            $(this).text(' - ')
 
-      var sn = $(this).data('sn');
-      var el = $('.feat-show' + sn);
+            var sn = $(this).data('sn');
+            var el = $('.feat-show' + sn);
 
-      /* ul元件顯示或隱藏 */
-      if (el.css("display") == 'none') {
-        // el.css("display", "block");
-        el.show();
-        $(this).text(' - ')
-      } else {
-        // el.css("display", "none");
-        el.hide();
-        $(this).text(' + ')
-      }
-      // $('.first' + sn).toggleClass("rotate");
-    });
+            /* ul元件顯示或隱藏 */
+            if (el.css("display") == 'none') {
+                // el.css("display", "block");
+                el.show();
+                el.find('.feat-btn').text(' - ')
+                $(this).text(' - ')
+            } else {
+                // el.css("display", "none");
+                el.hide();
+                el.find('.feat-btn').text(' + ')
+                $(this).text(' + ')
 
-      $('.btn-title').click(function(){
-          var id = $(this).data('id');
-          console.log(id);
+            }
+            // $('.first' + sn).toggleClass("rotate");
+        });
 
-          $('#textfield3').val('id:' + id);
-      });
+        $('.btn-title').click(function() {
+            $('#router').val('update')
+            $('.form1_title').text('編輯項次')
+            $(".button3").attr('disabled', false)
 
-    // $('nav ul li').click(function() {
-    //   $(this).addClass("active").siblings().removeClass("active");
-    // });
-                 
-        $("#button1").click(function () {
-            current_modal = $('#form_edit1');
-            //
-            var data = {"_token": "<?php echo csrf_token() ?>"};
-            data.parent_id = current_modal.find("#select3").val();    //編號首項
-            // data.a2 = current_modal.find("#select2").val();    //編號中項
-            // data.a3 = current_modal.find("#select3").val();    //編號細項
-            data.title = current_modal.find("#textfield10").val();  //審核
-            data.class = current_modal.find("#textfield7").val();  //項目說明
-            // data.a4 = current_modal.find("#textfield11").val();  //單位
-            // data.a5 = current_modal.find("#textfield26").val();  //建案單價
-            // data.textfield = current_modal.find("#textfield").val();    //項目別名
-            // data.textfield3 = current_modal.find("#textfield3").val();  //填報。比率
-            // data.textfield6 = current_modal.find("#textfield6").val();  //填報。數量
-            // data.textfield4 = current_modal.find("#textfield4").val();  //填報。單價
-            // data.textfield8 = current_modal.find("#textfield8").val();  //填報。備註
-            // data.textfield5 = current_modal.find("#textfield5").val();  //審核。比率
-            // data.textfield6 = current_modal.find("#textfield6").val();  //審核。數量
-            // data.textfield9 = current_modal.find("#textfield9").val();  //審核。單價
-            // data.textfield12 = current_modal.find("#textfield12").val();  //審核。差異金額~
-            // data.textfield13 = current_modal.find("#textfield13").val();  //審核。差異金額                
+            var id = $(this).data('id');
+
+            $('.class_tree').parent('tr').hide();
             //
             $.ajax({
-                url: 'ajax/api_edit002.php',
+                headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
+                url: 'ajax/api_crud.php',
+                type: "POST",
+                data: {'router': 'get', 'table': 'class', 'key': 'id', 'value': id },
+                cache: false,
+                resetForm: true,
+                success: function(rtndata) {
+                    rtndata = JSON.parse(rtndata);
+                    if (rtndata.status > 0) {
+                        var datas = rtndata.data;
+                        for (key in datas) {
+                            $('#textfield7').val(datas[key].title);
+
+                            $('#textfield3').val(datas[key].ratio);
+                            $('#textfield6').val(datas[key].quantity);
+                            $('#textfield4').val(datas[key].price);
+                            $('#textfield8').val(datas[key].remark);
+                        }
+                    } else {
+                        console.log(JSON.stringify(rtndata));
+                    }
+                }
+            });
+        });
+        
+        $(".button3").click(function() {
+            $('.class_tree').parent('tr').show();
+
+            $('#router').val('create')
+            $('.form1_title').text('新增項次')
+            $(".button3").attr('disabled', false)
+            $(this).attr('disabled', true);
+            
+            current_modal = $('#form_edit1');
+            current_modal.find('input[type=text]').val('')
+
+            var id = $(this).data('id');
+            $.ajax({
+                headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
+                url: 'ajax/get_class_tree.php',
+                type: 'GET',
+                data: {'router': 'get', 'table': 'class', 'key': 'id', 'value': id },
+                cache: false,
+                resetForm: true,
+                success: function(rtndata) {
+                    rtndata = JSON.parse(rtndata);
+                    if (rtndata.status > 0) {
+                        $('.class_tree').text(rtndata.data);
+                    } else {
+                        console.log(JSON.stringify(rtndata));
+                    }
+                }
+            });
+        });
+
+        // $('nav ul li').click(function() {
+        //   $(this).addClass("active").siblings().removeClass("active");
+        // });
+
+        $("#btn-search1").click(function() {
+            current_modal = $('#form_edit1');
+            //
+            var data = {
+                "_token": "<?php echo csrf_token() ?>"
+            };
+            data.router = 'get';
+            data.table = 'materials';
+            data.key = 'no';
+            data.value = current_modal.find("#material_no").val(); //料號編碼
+            data.title = 'hello world';
+            //
+            $.ajax({
+                url: 'ajax/api_crud.php',
                 type: "POST",
                 data: data,
                 cache: false,
                 resetForm: true,
-                success: function (rtndata) {
+                success: function(rtndata) {
+                    rtndata = JSON.parse(rtndata);
+                    if (rtndata.status > 0) {
+
+                        var datas = rtndata.data;
+                        for (key in datas) {
+                            console.log(datas[key].no);
+                        }
+
+                    } else {
+                        console.log(JSON.stringify(rtndata));
+
+                        // setTimeout(function () {
+                        //     location.href = data.redirectUrl
+                        // }, 500)
+                        // toastr.error(data.message, "{{trans('web_alert.notice')}}").css("width","360px")
+                        // Swal.fire("{{trans('web_alert.error')}}", JSON.stringify(data.errors), "error");
+                    }
+                }
+            });
+        });
+
+        $("#button1").click(function() {
+            current_modal = $('#form_edit1');
+            //
+            var data = { "_token": "<?php echo csrf_token() ?>" };
+            data.router = current_modal.find("#router").val();
+            // data.parent_id = current_modal.find("#select3").val(); //編號首項
+            // data.a2 = current_modal.find("#select2").val();    //編號中項
+            // data.a3 = current_modal.find("#select3").val();    //編號細項
+            data.title = current_modal.find("#textfield10").val(); //審核
+            data.class = current_modal.find("#textfield7").val(); //項目說明
+            // data.a4 = current_modal.find("#textfield11").val();  //單位
+            // data.a5 = current_modal.find("#textfield26").val();  //建案單價
+            //
+            console.log(data);
+
+            $.ajax({
+                headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
+                url: 'ajax/api_edit002.php',
+                type: 'POST',
+                data: data,
+                cache: false,
+                resetForm: true,
+                success: function(rtndata) {
                     console.log(rtndata);
+
+                    $('#table1').reload();
 
                     // setTimeout(function () {
                     //     location.href = data.redirectUrl
@@ -284,7 +391,6 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 }
             });
         });
-
     </script>
 
 </body>

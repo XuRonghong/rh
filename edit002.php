@@ -13,6 +13,7 @@
                         </table>
                     </td>
                 </tr>
+                <?php /*
                 <tr>
                     <td class="list2"><strong>項次</strong></td>
                     <td class="list2">編號首項</td>
@@ -88,13 +89,14 @@
                     <td class="list2">審核</td>
                     <td class="list2"><input name="textfield10" type="text" id="textfield10" size="14" /></td>
                 </tr>
+                <?php */ ?>
                 <tr>
                     <td class="list4">&nbsp;</td>
                     <td class="list4">料號編碼</td>
                     <td colspan="3" class="list4"><label></label>
                         <form action="index02_2.htm" method="post" name="form1" target="" id="form2">
-                            <input type="text" name="textfield2" id="textfield2" />
-                            <a href="index02_2.htm"><img src="images/search.png" width="62" height="22" border="0" align="middle" /></a>
+                            <input type="text" name="material_no" id="material_no" />
+                            <a href="#" id="btn-search1"><img src="images/search.png" width="62" height="22" border="0" align="middle" /></a>
                         </form>
                     </td>
                     <td class="list4">項目說明</td>
