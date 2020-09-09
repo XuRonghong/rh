@@ -24,7 +24,7 @@
                 <tr>
                     <!-- <td class="list2"><strong>填報</strong></td> -->
                     <td class="list2">項目說明</td>
-                    <td class="list2"><input name="textfield7" type="text" id="title" value="" size="47" /></td>
+                    <td class="list2"><input name="textfield7" type="text" id="title" value="" size="27" /></td>
                     <td class="list2">比率</td>
                     <td class="list2"><label><input name="textfield3" type="text" id="ratio" /></label></td>
                     <td class="list2">備註</td>
@@ -50,7 +50,7 @@
                     <td class="list2">建案單價</td>
                     <td class="list2"><input name="textfield26" type="text" id="textfield26" /></td>
                     <td class="list2">項目別名</td>
-                    <td class="list2"><input name="textfield" type="text" id="textfield" size="57" /></td>
+                    <td class="list2"><input name="textfield" type="text" id="textfield" size="27" /></td>
                 </tr>
                 <tr>
                     <td colspan="9" bgcolor="#FFFFFF"><label></label>

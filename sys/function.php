@@ -5,6 +5,18 @@ function cc()
 {
     try{
 
+		// FuncController::addActionLog('create', $author_id, $value, $model->id, $model->getTable() );
+
+        // $log_login = new LogAction();
+        // $log_login->user_id = $user_id;
+        // $log_login->user_type = Admin::query()->find($user_id)->type;
+        // $log_login->table_id = $table_id;
+        // $log_login->table_name = $table_name;
+        // $log_login->action = $action;
+        // $log_login->value = $value;
+        // $log_login->ip = Request::ip();
+        // $log_login->save();
+		
         die();
 
     } catch( Exception $e) {
@@ -13,6 +25,25 @@ function cc()
         return $mess;
     }
     return array('statue' => 1, 'message' => $e->getMessage(), 'code' => $e->getCode() );
+}
+
+
+//log紀錄(帳號,狀態,是否顯示)   ex: logInsert(ADMIN_LOG,$_SESSION[ADMIN_SESSION.'_id'],$msg);
+function logInsert($tablename,$id,$edit,$trace=null){
+	global $db;
+	//記錄所有傳入參數值
+	$_request = $_REQUEST;
+	array_except($_request, ['_token']);
+	$_request = json_encode($_request, JSON_UNESCAPED_UNICODE);
+
+	$page=(isset($_SERVER['HTTPS'])?'https://':'http://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	$sql = "INSERT INTO $tablename (`user`, `edit`, `page`, `value`, `ip1`, `ip2`,`created_at`)".
+			"VALUES (?,?,?,?,'".$_SERVER['REMOTE_ADDR']."','". getClientIP()."',NOW())";  
+	$params=array($id,$edit,$page, $_request);
+	$rs=$db->prepare($sql);
+	$rs->execute($params);
+	if($trace) echo $sql;
+	return $rs->rowCount();
 }
 
 

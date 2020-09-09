@@ -258,7 +258,6 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             $('.feat-btn').text(' - ')
 
             tr_bg_color = $('.btn-title').parent('tr').find('td').css('background-color');
-            console.log(tr_bg_color)
         })
 
         // $('.btn').click(function() {
@@ -288,11 +287,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             // $('.first' + sn).toggleClass("rotate");
         });
 
+        //修改
         $('.btn-title').click(function() {
             var id = $(this).data('id');
-
-            $('.btn-title').parent('tr').find('td:not(.list1)').css('background-color', tr_bg_color)
-            $(this).parent('tr').find('td:not(.list1)').css('background-color', '#eeeeee')
 
             $('#router').val('update')
             $('#id').val(id)
@@ -329,6 +326,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             });
         });
         
+        //新增
         $(".button3").click(function() {
             var id = $(this).data('id');
 
@@ -346,7 +344,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             $.ajax({
                 headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
                 url: 'ajax/get_class_tree.php',
-                type: 'GET',
+                type: 'POST',
                 data: {'router': 'get', 'table': 'class', 'key': 'id', 'value': id },
                 cache: false,
                 resetForm: true,
@@ -361,8 +359,17 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 }
             });
         });
+
+        $('.feat').click(function() {
+            $('.btn-title').parent('tr').find('td:not(.list1)').css('background-color', tr_bg_color)
+            $(this).find('td:not(.list1)').css('background-color', '#dddddd')
+        });
         
+        //刪除
         $(".button4").click(function() {
+            // $('.btn-title').parent('tr').find('td:not(.list1)').css('background-color', tr_bg_color)
+            // $(this).parent('td').parent('tr').find('td:not(.list1)').css('background-color', '#dddddd')
+
             var msg = "您真的確定要刪除嗎？"; 
             if (confirm(msg)!=true){ 
                 return false; 
@@ -371,7 +378,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             $.ajax({
                 headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
                 url: 'ajax/api_edit001.php',
-                type: 'GET',
+                type: 'POST',
                 data: {'router': 'delete', 'table': 'class', 'key': 'id', 'value': id },
                 cache: false,
                 resetForm: false,

@@ -158,18 +158,6 @@
 		return $arr;
 	}
 
-	//log紀錄(帳號,狀態,是否顯示)
-	function logInsert($tablename,$id,$edit,$trace=null){
-		global $db;
-		$page=(isset($_SERVER['HTTPS'])?'https://':'http://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-		$sql="INSERT INTO $tablename (`id`, `edit`, `page`, `ip1`, `ip2`,`create_datetime`)VALUES (?,?,?,'".$_SERVER['REMOTE_ADDR']."','". getClientIP()."',NOW())";  
-		$params=array($id,$edit,$page);
-		$rs=$db->prepare($sql);
-		$rs->execute($params);
-		if($trace) echo $sql;
-		return $rs->rowCount();
-	}
-
 	//資料新增(資料陣列,資料表名稱,是否顯示)
 	function dataInsert($tablename, $data, $trace=null){
 		global $db;

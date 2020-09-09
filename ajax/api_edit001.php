@@ -34,6 +34,7 @@ $tablename = $posts['table'];
         $rs = dataInsert($tablename, $posts);
     
         $rtn = array('status' => $rs, 'message' => 'db insert success', 'code' => 200);
+        logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功新增". ($rs>0? 1: 0). "筆資料");
 
     }
     else if($posts['router']=='update') {
@@ -46,6 +47,7 @@ $tablename = $posts['table'];
         $rs = dataUpdate($tablename, $datas, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);
 
         $rtn = array('status' => $rs, 'message' => 'db update success', 'code' => 200);
+        logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功更新". $rs. "筆資料");
 
     }
     else if($posts['router']=='delete') {
@@ -55,13 +57,11 @@ $tablename = $posts['table'];
         $datas = [];
         $datas['open'] = '0';
         $datas['updated_at'] = date('Y-m-d H:i:s');
-
         $rs = dataUpdate($tablename, $datas, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);
-
         // $rs = dataDelete($tablename, " WHERE `{$posts['key']}`=:{$posts['key']} ", $params, 1);
     
         $rtn = array('status' => $rs, 'message' => 'db delete success', 'code' => 200);
-
+        logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功刪除". $rs. "筆資料");
     }
     
     echo json_encode($rtn, JSON_UNESCAPED_UNICODE);
