@@ -15,18 +15,17 @@ $tablename = $posts['table'];
         $params = array($posts['key'] => $posts['value']);
         $row = getSingleRow("SELECT * FROM {$tablename} where `{$posts['key']}`=:{$posts['key']} ", $params);
         
-        if(isset($row) && $row['parent_id'] > 0){
-
-            // $posts['key'] = 'parent_id';
+        if($row && $row['parent_id'] > 0){
+ 
             $params = array($posts['key'] => $row['parent_id']);
             $row2 = getSingleRow("SELECT * FROM {$tablename} where `{$posts['key']}`=:{$posts['key']} ", $params);
     
-            if(isset($row2) && $row2['parent_id'] > 0){
+            if($row2 && $row2['parent_id'] > 0){
 
                 $params = array($posts['key'] => $row2['parent_id']);
                 $row3 = getSingleRow("SELECT * FROM {$tablename} where `{$posts['key']}`=:{$posts['key']} ", $params);
         
-                if(isset($row3) && $row3['parent_id'] > 0){
+                if($row3 && $row3['parent_id'] > 0){
 
                     $params = array($posts['key'] => $row3['parent_id']);
                     $row4 = getSingleRow("SELECT * FROM {$tablename} where `{$posts['key']}`=:{$posts['key']} ", $params);
@@ -34,21 +33,26 @@ $tablename = $posts['table'];
             }
         }
 
+        $floor=1;
         $class_tree = '';
-        if(isset($row4) && !is_null($row4['title'])) {
+        if($row4 && !is_null($row4['title'])) {
             $class_tree .= $row4['title']. ' > ';
+            $floor++;
         }
-        if(isset($row3) && !is_null($row3['title'])) {
+        if($row3 && !is_null($row3['title'])) {
             $class_tree .= $row3['title']. ' > ';
+            $floor++;
         }
-        if(isset($row2) && !is_null($row2['title'])) {
+        if($row2 && !is_null($row2['title'])) {
             $class_tree .= $row2['title']. ' > ';
+            $floor++;
         }
-        if(isset($row) && !is_null($row['title'])) {
+        if($row && !is_null($row['title'])) {
             $class_tree .= $row['title']. ' > ';
+            $floor++;
         }
 
-        $rtn = array('status' => 1, 'message' => 'db query success', 'data' => $class_tree);
+        $rtn = array('status' => 1, 'message' => 'db query success', 'data' => $class_tree, 'floor' => $floor);
 
     }
     

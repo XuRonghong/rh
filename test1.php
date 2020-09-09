@@ -2,7 +2,8 @@
 include_once dirname(__FILE__) . '/config.php';
 
 $tablename = 'class';
-$rs = $db->prepare("SELECT * FROM {$tablename} where class=1");
+$queryStr = " and open=1 ";
+$rs = $db->prepare("SELECT * FROM {$tablename} where class=1 ".$queryStr);
 $rs->execute();
 $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
 
@@ -29,6 +30,34 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
     }
     .btn-title {
         cursor: pointer;
+    }
+    .td_01 {
+        width: 30px;
+        text-align: left;
+    }
+    .button4 {
+        box-shadow:inset 0px 39px 0px -24px #e67a73;
+        background-color:#e4685d;
+        border-radius:4px;
+        border:1px solid #ffffff;
+        /* display:inline-block; */
+        cursor:pointer;
+        color:#ffffff;
+        font-family:Arial;
+        font-size:12px;
+        padding:4px 12px;
+        text-decoration:none;
+        text-shadow:0px 1px 0px #b23e35;
+        
+        float: right;
+        right: 1px;
+    }
+    .button4:hover {
+        background-color:#eb675e;
+    }
+    .button4:active {
+        position:relative;
+        top:1px;
     }
     </style>
 
@@ -142,31 +171,39 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                         </td>
                         <td width="1118" valign="top" class="top_colr">
                             <!-- InstanceBeginEditable name="EditRegion1" -->
-                            <table width="100%" height="348" align="center" cellpadding="0" cellspacing="1" class="main_sbar">
-                                <tr>
-                                    <td align="center">
-                                        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top_table1">
-                                            <tr>
-                                                <td width="100%">
-                                                    <table width="100%" align="center" cellpadding="1" cellspacing="0" class="top_tab">
-                                                        <tr>
-                                                            <td width="3%">&nbsp;</td>
-                                                            <td width="90%"><strong>預算填報</strong></td>
-                                                            <td width="7%">
-                                                                <div align="right"><strong><img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" />&nbsp;<img src="images/trash-empty16x16.png" width="16" height="16" border="0" />&nbsp;</span></div>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
+                            <div style="width:100%; height:528px; overflow: auto;">
+                                <table style="width:100%; height:348;" align="center" cellpadding="0" cellspacing="1" class="main_sbar">
+                                    <tr>
+                                        <td align="center">
+                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top_table1">
+                                                <tr>
+                                                    <td width="100%">
+                                                        <table width="100%" align="center" cellpadding="1" cellspacing="0" class="top_tab">
+                                                            <tr>
+                                                                <td width="3%">&nbsp;</td>
+                                                                <td width="90%"><strong>預算填報</strong></td>
+                                                                <td width="7%">
+                                                                    <div align="right">
+                                                                        <strong>
+                                                                            <img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" />&nbsp;
+                                                                            <img src="images/trash-empty16x16.png" width="16" height="16" border="0" />&nbsp;
+                                                                        </strong>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
 
-                                        <?php require_once dirname(__FILE__) . '/p002.php'; ?>
-                                        <!-- <iframe src="p002.php" name="list1" width="100%" height="352" id="list1" scrolling="Yes" frameborder="no" border="0 framespacing=" 0"></iframe> -->
+                                            <?php require_once dirname(__FILE__) . '/p002.php'; ?>
+                                            <!-- <iframe src="p002.php" name="list1" width="100%" height="352" id="list1" scrolling="Yes" frameborder="no" border="0 framespacing=" 0"></iframe> -->
 
-                                    </td>
-                                </tr>
-                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="bottom_table">
                                 <tr>
                                     <td>
@@ -193,7 +230,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                             <!-- InstanceEndEditable -->
                             <!-- InstanceBeginEditable name="EditRegion2" -->
                             <?php require_once dirname(__FILE__) . '/edit001.php'; ?>
-                            <!-- InstanceEndEditable -->
+                            <!-- InstanceEndEditable -->                            
                         </td>
                     </tr>
                 </table>
@@ -211,6 +248,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
     <script src="Scripts/switchmenu.js" type="text/javascript"></script>
     <script src="Scripts/script.js" type="text/javascript"></script>
     <script>
+        var tr_bg_color = '';
         $(document).ready(function() {
             // $('.btn').toggleClass("click");
             // $('.sidebar').toggleClass("show");
@@ -218,6 +256,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             // $('.feat').css("display", "none");
             $('.feat').show();
             $('.feat-btn').text(' - ')
+
+            tr_bg_color = $('.btn-title').parent('tr').find('td').css('background-color');
+            console.log(tr_bg_color)
         })
 
         // $('.btn').click(function() {
@@ -248,11 +289,15 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         });
 
         $('.btn-title').click(function() {
+            var id = $(this).data('id');
+
+            $('.btn-title').parent('tr').find('td:not(.list1)').css('background-color', tr_bg_color)
+            $(this).parent('tr').find('td:not(.list1)').css('background-color', '#eeeeee')
+
             $('#router').val('update')
+            $('#id').val(id)
             $('.form1_title').text('編輯項次')
             $(".button3").attr('disabled', false)
-
-            var id = $(this).data('id');
 
             $('.class_tree').parent('tr').hide();
             //
@@ -268,12 +313,14 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     if (rtndata.status > 0) {
                         var datas = rtndata.data;
                         for (key in datas) {
-                            $('#textfield7').val(datas[key].title);
+                            $('#title').val(datas[key].title);
+                            $('#unit').val(datas[key].unit);
+                            $('#ratio').val(datas[key].ratio);
+                            $('#quantity').val(datas[key].quantity);
+                            $('#price').val(datas[key].price);
+                            $('#remark').val(datas[key].remark);
 
-                            $('#textfield3').val(datas[key].ratio);
-                            $('#textfield6').val(datas[key].quantity);
-                            $('#textfield4').val(datas[key].price);
-                            $('#textfield8').val(datas[key].remark);
+                            $('#floor').val(datas[key].class);
                         }
                     } else {
                         console.log(JSON.stringify(rtndata));
@@ -283,17 +330,19 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         });
         
         $(".button3").click(function() {
-            $('.class_tree').parent('tr').show();
+            var id = $(this).data('id');
 
             $('#router').val('create')
+            $('#id').val(id)
             $('.form1_title').text('新增項次')
             $(".button3").attr('disabled', false)
             $(this).attr('disabled', true);
+
+            $('.class_tree').parent('tr').show();
             
             current_modal = $('#form_edit1');
             current_modal.find('input[type=text]').val('')
-
-            var id = $(this).data('id');
+            //
             $.ajax({
                 headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
                 url: 'ajax/get_class_tree.php',
@@ -305,6 +354,33 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     rtndata = JSON.parse(rtndata);
                     if (rtndata.status > 0) {
                         $('.class_tree').text(rtndata.data);
+                        $('#floor').val( rtndata.floor);
+                    } else {
+                        console.log(JSON.stringify(rtndata));
+                    }
+                }
+            });
+        });
+        
+        $(".button4").click(function() {
+            var msg = "您真的確定要刪除嗎？"; 
+            if (confirm(msg)!=true){ 
+                return false; 
+            } 
+            var id = $(this).data('id');
+            $.ajax({
+                headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
+                url: 'ajax/api_edit001.php',
+                type: 'GET',
+                data: {'router': 'delete', 'table': 'class', 'key': 'id', 'value': id },
+                cache: false,
+                resetForm: false,
+                success: function(rtndata) {
+                    rtndata = JSON.parse(rtndata);
+                    if (rtndata.status > 0) {
+                        // alert(rtndata.message)
+
+                        window.location.reload();
                     } else {
                         console.log(JSON.stringify(rtndata));
                     }
@@ -361,19 +437,20 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             //
             var data = { "_token": "<?php echo csrf_token() ?>" };
             data.router = current_modal.find("#router").val();
-            // data.parent_id = current_modal.find("#select3").val(); //編號首項
-            // data.a2 = current_modal.find("#select2").val();    //編號中項
-            // data.a3 = current_modal.find("#select3").val();    //編號細項
-            data.title = current_modal.find("#textfield10").val(); //審核
-            data.class = current_modal.find("#textfield7").val(); //項目說明
-            // data.a4 = current_modal.find("#textfield11").val();  //單位
-            // data.a5 = current_modal.find("#textfield26").val();  //建案單價
+            data.table = 'class';
+            data.key = 'id';
+            data.value = current_modal.find('#id').val()
+            data.class = current_modal.find('#floor').val(); 
+            data.title = current_modal.find("#title").val(); 
+            data.unit = current_modal.find("#unit").val(); 
+            data.quantity = current_modal.find("#quantity").val(); //項目說明
+            data.price = current_modal.find("#price").val(); //項目說明
             //
             console.log(data);
 
             $.ajax({
                 headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
-                url: 'ajax/api_edit002.php',
+                url: 'ajax/api_edit001.php',
                 type: 'POST',
                 data: data,
                 cache: false,
@@ -381,7 +458,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 success: function(rtndata) {
                     console.log(rtndata);
 
-                    $('#table1').reload();
+                    window.location.reload();
 
                     // setTimeout(function () {
                     //     location.href = data.redirectUrl

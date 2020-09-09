@@ -44,24 +44,26 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         <table width="100%" cellpadding="1" cellspacing="0" id="table1">
           <tr>
             <td width="24" bgcolor="#FFFFFF" class="list3">&nbsp;</td>
-            <td colspan="3" bgcolor="#FFFFFF" class="list3"><strong>項次</strong></td>
-            <td width="385" bgcolor="#FFFFFF" class="list3">項目說明</td>
-            <td width="20" bgcolor="#FFFFFF" class="list3">新增</td>
-            <td width="44" bgcolor="#FFFFFF" class="list3">單位</td>
-            <td width="72" bgcolor="#FFFFFF" class="list3">比率</td>
-            <td width="92" bgcolor="#FFFFFF" class="list3">數量</td>
+            <td width="64" colspan="3" bgcolor="#FFFFFF" class="list3"><strong>項次</strong></td>
+            <td width="305" bgcolor="#FFFFFF" class="list3">項目說明</td>
+            <td width="64" bgcolor="#FFFFFF" class="list3">單位</td>
+            <td width="52" bgcolor="#FFFFFF" class="list3">比率</td>
+            <td width="72" bgcolor="#FFFFFF" class="list3">數量</td>
             <td width="95" bgcolor="#FFFFFF" class="list3">單價</td>
             <td width="96" bgcolor="#FFFFFF" class="list3">複價</td>
             <td width="184" bgcolor="#FFFFFF" class="list3">備註</td>
             <td width="75" bgcolor="#FFFFFF" class="list7">審核</td>
-            <td width="58" bgcolor="#FFFFFF" class="list7">比率</td>
+            <!-- <td width="58" bgcolor="#FFFFFF" class="list7">比率</td>
             <td width="57" bgcolor="#FFFFFF" class="list7">數量</td>
-            <td width="93" bgcolor="#FFFFFF" class="list7">單價</td>
-            <td width="99" bgcolor="#FFFFFF" class="list7">複價</td>
+            <td width="93" bgcolor="#FFFFFF" class="list7">單價</td>-->
+            <td width="99" bgcolor="#FFFFFF" class="list7">複價</td> 
+            <td width="105" bgcolor="#FFFFFF" class="list3">              
+              <input type="button" name="button3" class="button3" value="新增" data-id="0" />
+            </td>
           </tr>
           <?php
           foreach ($rows as $key => $row) {
-            $subs = sql_get($db, "SELECT * FROM {$tablename} where parent_id=? and class=2", array($row['id']));
+            $subs = sql_get($db, "SELECT * FROM {$tablename} where parent_id=? and class=2 ".$queryStr , array($row['id']));
           ?>
             <?php if (empty($subs)) { ?>
               <tr>
@@ -73,9 +75,6 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 <td class="td_font btn-title" data-id="<?php echo $row['id'];?>">
                   <?php echo $row['title']; ?>
                 </td>
-                <td class="list2">                   
-                  <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $row['id'];?>" />
-                </td>
                 <td class="list2">&nbsp;</td>
                 <td class="list2">
                   <div align="right"></div>
@@ -93,10 +92,14 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 <td bgcolor="#FFFFFF" class="list2">
                   <div align="center"></div>
                 </td>
+                <!-- <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
                 <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
-                <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
-                <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
-                <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
+                <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>-->
+                <td bgcolor="#FFFFFF" class="list2">&nbsp;</td> 
+                <td class="list2">                   
+                  <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $row['id'];?>" />
+                  <input type="button" name="button4" class="button4" value="刪除" data-id="<?php echo $row['id'];?>" />
+                </td>
               </tr>
             <?php } else { ?>
               <tr class=" first<?php echo $key;?>">
@@ -108,9 +111,6 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 <td class="td_font btn-title" data-id="<?php echo $row['id'];?>">
                   <?php echo $row['title']; ?>
                 </td>
-                <td class="list2">                   
-                  <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $row['id'];?>" />
-                </td>
                 <td class="list2">&nbsp;</td>
                 <td class="list2">
                   <div align="right"></div>
@@ -128,14 +128,18 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 <td bgcolor="#FFFFFF" class="list2">
                   <div align="center"></div>
                 </td>
+                <!-- <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
                 <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
-                <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
-                <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
-                <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
+                <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>-->
+                <td bgcolor="#FFFFFF" class="list2">&nbsp;</td> 
+                <td class="list2">                   
+                  <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $row['id'];?>" />
+                  <input type="button" name="button4" class="button4" value="刪除" data-id="<?php echo $row['id'];?>" />
+                </td>
               </tr>
               <?php
               foreach ($subs as $key2 => $sub) {
-                $sql = "SELECT * FROM {$tablename} where parent_id=? and class=3";
+                $sql = "SELECT * FROM {$tablename} where parent_id=? and class=3 ".$queryStr;
                 $exec = array($sub['id']);
                 $subs2 = sql_get($db, $sql, $exec);
                 
@@ -150,9 +154,6 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     <td class="td_04 btn-title" data-id="<?php echo $sub['id'];?>">
                       <?php echo $sub['title']; ?>
                     </td>
-                    <td class="td_04">                   
-                      <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub['id'];?>" />
-                    </td>
                     <td class="td_04">&nbsp;</td>
                     <td class="td_04">&nbsp;</td>
                     <td class="td_04">&nbsp;</td>
@@ -164,10 +165,14 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     <td class="td_04">
                       <div align="center"></div>
                     </td>
+                    <!-- <td class="td_04">&nbsp;</td>
                     <td class="td_04">&nbsp;</td>
-                    <td class="td_04">&nbsp;</td>
-                    <td class="td_04">&nbsp;</td>
-                    <td class="td_04">&nbsp;</td>
+                    <td class="td_04">&nbsp;</td>-->
+                    <td class="td_04">&nbsp;</td> 
+                    <td class="td_04">                   
+                      <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub['id'];?>" />
+                      <input type="button" name="button4" class="button4" value="刪除" data-id="<?php echo $sub['id'];?>" />
+                    </td>
                   </tr>
                 <?php } else { ?>
                   <tr  class="feat feat-show<?php echo $key;?>">
@@ -179,9 +184,6 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     <td class="td_04 btn-title" data-id="<?php echo $sub['id'];?>">
                       <?php echo $sub['title']; ?>
                     </td>
-                    <td class="td_04">                   
-                      <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub['id'];?>" />
-                    </td>
                     <td class="td_04">&nbsp;</td>
                     <td class="td_04">&nbsp;</td>
                     <td class="td_04">&nbsp;</td>
@@ -193,14 +195,18 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     <td class="td_04">
                       <div align="center"></div>
                     </td>
+                    <!-- <td class="td_04">&nbsp;</td>
                     <td class="td_04">&nbsp;</td>
-                    <td class="td_04">&nbsp;</td>
-                    <td class="td_04">&nbsp;</td>
-                    <td class="td_04">&nbsp;</td>
+                    <td class="td_04">&nbsp;</td>-->
+                    <td class="td_04">&nbsp;</td> 
+                    <td class="td_04">                   
+                      <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub['id'];?>" />
+                      <input type="button" name="button4" class="button4" value="刪除" data-id="<?php echo $sub['id'];?>" />
+                    </td>
                   </tr>
                   <?php
                   foreach ($subs2 as $key3 => $sub2) {
-                    $sql = "SELECT * FROM {$tablename} where parent_id=? and class=4";
+                    $sql = "SELECT * FROM {$tablename} where parent_id=? and class=4 ".$queryStr;
                     $exec = array($sub2['id']);
                     $subs3 = sql_get($db, $sql, $exec);
                     ?>
@@ -210,13 +216,10 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                         <td class="feat-btn" data-sn="<?php echo $key.$key2.$key3;?>"> </td>
                         <td class="font_main">&nbsp;</td>
                         <td class="font_main">&nbsp;</td>
-                        <td class="td_02"><?php echo $str_no[3][$key3]; ?></td>
+                        <td class="td_01"><?php echo $str_no[3][$key3]; ?></td>
                         <td class="list2 btn-title" data-id="<?php echo $sub2['id'];?>">
                           <?php echo $sub2['title']; ?>
                         </td>
-                          <td class="td_04">                   
-                            <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub2['id'];?>" />
-                          </td>
                         <td class="td_04">&nbsp;</td>
                         <td class="td_04">&nbsp;</td>
                         <td class="td_04">&nbsp;</td>
@@ -228,10 +231,14 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                         <td class="td_04">
                           <div align="center"></div>
                         </td>
+                        <!-- <td class="td_04">&nbsp;</td>
                         <td class="td_04">&nbsp;</td>
-                        <td class="td_04">&nbsp;</td>
-                        <td class="td_04">&nbsp;</td>
-                        <td class="td_04">&nbsp;</td>
+                        <td class="td_04">&nbsp;</td>-->
+                        <td class="td_04">&nbsp;</td> 
+                          <td class="list2">                   
+                            <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub2['id'];?>" />
+                            <input type="button" name="button4" class="button4" value="刪除" data-id="<?php echo $sub2['id'];?>" />
+                          </td>
                       </tr>
                       <?php } else { ?>
                         <tr  class="feat feat-show<?php echo $key.$key2;?> feat-show<?php echo $key;?>">
@@ -240,11 +247,8 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                           <td class="font_main">&nbsp;</td>
                           <td class="font_main">&nbsp;</td>
                           <td class="td_01"><?php echo $str_no[3][$key3]; ?></td>
-                          <td class="list1 btn-title" data-id="<?php echo $sub2['id'];?>">
+                          <td class="list2 btn-title" data-id="<?php echo $sub2['id'];?>">
                             <?php echo $sub2['title']; ?>
-                          </td>
-                          <td class="list2">                   
-                            <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub2['id'];?>" />
                           </td>
                           <td class="td_04">&nbsp;</td>
                           <td class="td_04">&nbsp;</td>
@@ -257,10 +261,14 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                           <td class="td_04">
                             <div align="center"></div>
                           </td>
+                          <!-- <td class="td_04">&nbsp;</td>
                           <td class="td_04">&nbsp;</td>
-                          <td class="td_04">&nbsp;</td>
-                          <td class="td_04">&nbsp;</td>
-                          <td class="td_04">&nbsp;</td>
+                          <td class="td_04">&nbsp;</td>-->
+                          <td class="td_04">&nbsp;</td> 
+                          <td class="list2">                   
+                            <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub2['id'];?>" />
+                            <input type="button" name="button4" class="button4" value="刪除" data-id="<?php echo $sub2['id'];?>" />
+                          </td>
                         </tr>
                         <?php
                         foreach ($subs3 as $key4 => $sub3) {           
@@ -278,12 +286,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                             <td class="font_main">&nbsp;</td>
                             <td class="font_main">&nbsp;</td>
                             <td class="td_02"><?php echo $str_no[4][$key4]; ?></td>
-                            <td class="list2 btn-title" data-id="<?php echo $sub3['id'];?>">
+                            <td class="list1 btn-title" data-id="<?php echo $sub3['id'];?>">
                               <?php echo $sub3['title']; ?> 
-                            </td>          
-                            <td class="list2">                   
-                              <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub3['id'];?>" />
-                            </td>
+                            </td>   
                             <td class="list2">
                               <div align="center"><?php echo $budget['unit']?></div>
                             </td>
@@ -301,10 +306,14 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                             <td class="list2">
                               <div align="center"><img src="images/right.png" width="16" height="17" /></div>
                             </td>
+                            <!-- <td class="list2">&nbsp;</td>
                             <td class="list2">&nbsp;</td>
-                            <td class="list2">&nbsp;</td>
-                            <td class="list2">&nbsp;</td>
-                            <td class="list2">&nbsp;</td>
+                            <td class="list2">&nbsp;</td>-->   
+                            <td class="list2">&nbsp;</td>       
+                            <td class="list2">                   
+                              <!-- <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub3['id'];?>" /> -->
+                              <input type="button" name="button4" class="button4" value="刪除" data-id="<?php echo $sub3['id'];?>" />
+                            </td>
                           </tr>
                           <?php
                         }

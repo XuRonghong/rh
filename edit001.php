@@ -13,33 +13,44 @@
                         </table>
                     </td>
                 </tr>
+                <tr>
                     <td class="list2">類別</td>
-                    <td class="list2 class_tree" colspan="5">
-                    </td>
+                    <td class="list2 class_tree"></td>
+                    <td class="list2"><input name="floor" type="text" id="floor" value="" disabled="true" /></td>
+                    <td class="list2"></td>
+                    <td class="list2"></td>
+                    <td class="list2"></td>
+                </tr>
                 <tr>
                     <!-- <td class="list2"><strong>填報</strong></td> -->
-                    <td class="list4">項目說明</td>
-                    <td class="list4" colspan="3"><input name="textfield7" type="text" id="textfield7" value="" size="47" /></td>
-                    <!-- <td class="list2">比率</td>
-                    <td class="list2"><label><input name="textfield3" type="text" id="textfield3" /></label></td> -->
-                    <td class="list4">備註</td>
-                    <td class="list4"><input name="textfield8" type="text" id="textfield8" size="14" /></td>
+                    <td class="list2">項目說明</td>
+                    <td class="list2"><input name="textfield7" type="text" id="title" value="" size="47" /></td>
+                    <td class="list2">比率</td>
+                    <td class="list2"><label><input name="textfield3" type="text" id="ratio" /></label></td>
+                    <td class="list2">備註</td>
+                    <td class="list2"><input name="textfield8" type="text" id="textfield8" size="14" /></td>
                 </tr>
                 <tr>
                     <!-- <td class="list2">備註</td>
-                    <td class="list2"><input name="textfield8" type="text" id="textfield8" size="14" /></td> -->
-                    <!-- <td class="list6"><strong>審核</strong></td>
-                    <td class="list6">比率</td>
-                    <td class="list6"><input name="textfield5" type="text" id="textfield5" /></td>-->
+                    <td class="list2"><input name="textfield8" type="text" id="textfield8" size="14" /></td>
+                    <td class="list6"><strong>審核</strong></td> -->
+                    <td class="list2">單位</td>
+                    <td class="list2"><input name="textfield5" type="text" id="unit" /></td>
                     <td class="list2">數量</td>
-                    <td class="list2"><input name="textfield6" type="text" id="textfield6" /></td>
+                    <td class="list2"><input name="textfield6" type="text" id="quantity" /></td>
                     <td class="list2">單價</td>
-                    <td class="list2"><input name="textfield4" type="text" id="textfield4" /></td>
+                    <td class="list2"><input name="textfield4" type="text" id="price" /></td>
+                </tr>
+                <tr>
                     <td class="list6">差異金額</td>
                     <td class="list6">
                         <input name="textfield12" type="text" id="textfield12" size="7" />％
                         <input name="textfield13" type="text" id="textfield13" size="3" />
                     </td>
+                    <td class="list2">建案單價</td>
+                    <td class="list2"><input name="textfield26" type="text" id="textfield26" /></td>
+                    <td class="list2">項目別名</td>
+                    <td class="list2"><input name="textfield" type="text" id="textfield" size="57" /></td>
                 </tr>
                 <tr>
                     <td colspan="9" bgcolor="#FFFFFF"><label></label>
@@ -50,6 +61,7 @@
                                     <input type="button" name="button2" id="button2" value="取消" />
                                     
                                     <input type="hidden" name="router" id="router" value="create" />
+                                    <input type="hidden" name="id" id="id" value="0" />
                                 </div>
                             </label>
                         </div>

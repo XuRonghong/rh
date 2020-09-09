@@ -28,6 +28,8 @@ $tablename = $posts['table'];
     }
     else if($posts['router']=='create') {
     
+        $posts['parent_id'] = $posts['value'];
+        $datas['created_at'] = date('Y-m-d H:i:s');
         array_except($posts, ['router', 'table', 'key', 'value']);  //不寫入資料庫欄位
         $rs = dataInsert($tablename, $posts);
     
@@ -38,16 +40,25 @@ $tablename = $posts['table'];
     
         $params = array($posts['key'] => $posts['value']);
         $datas = $posts;
+        $datas['updated_at'] = date('Y-m-d H:i:s');
         array_except($datas, ['router', 'table', 'key', 'value']);  //不寫入資料庫欄位
+
         $rs = dataUpdate($tablename, $datas, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);
-    
+
         $rtn = array('status' => $rs, 'message' => 'db update success', 'code' => 200);
 
     }
     else if($posts['router']=='delete') {
     
-        $params = array($posts['key'] => $posts['value']);
-        $rs = dataDelete($tablename, $posts, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);
+        $params = array($posts['key'] => (int)$posts['value']);
+        
+        $datas = [];
+        $datas['open'] = '0';
+        $datas['updated_at'] = date('Y-m-d H:i:s');
+
+        $rs = dataUpdate($tablename, $datas, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);
+
+        // $rs = dataDelete($tablename, " WHERE `{$posts['key']}`=:{$posts['key']} ", $params, 1);
     
         $rtn = array('status' => $rs, 'message' => 'db delete success', 'code' => 200);
 

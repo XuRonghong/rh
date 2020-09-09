@@ -374,7 +374,7 @@ function d($data){
         }else{
             $str = "<table style=\"border-bottom:0px solid #000;\" cellpadding=\"0\" cellspacing=\"0\">";
             foreach ($data as $key => $value) {
-                $str .= "<tr><td style=\"background-color:#008B8B; color:#FFF;border:1px solid #000;\">" . $key . "</td><td style=\"border:1px solid #000;\">" . d($value) . "</td></tr>";
+                $str .= "<tr><td style=\"background-color:#008B8B; color:#FFF;border:1px solid #000;\">" . $key . "</td><td style=\"border:1px solid #000;\">(".gettype($value).")" . d($value) ."</td></tr>";
             }
             $str .= "</table>";
         }

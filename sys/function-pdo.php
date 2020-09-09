@@ -219,8 +219,10 @@
 			if($value==''){
 				$str.="`$key`=default";
 			}else{
-				$str.="`$key`=?";
-				$params[]=$value;	
+				// $str.="`$key`=?";
+				// $params[]=$value;	
+				$str .= "`$key`=:". $key;
+				$params[$key] = $value;	
 			}
 		}
 		$params=array_merge($params,$data2);
@@ -240,12 +242,13 @@
 		if(empty($tablename)) return false;
 		if(empty($where)) return false;
 		if(empty($data)) return false;
-		$params = [];
-		$params = array_merge($params,$data);
-		$sql = "DELETE * FROM `$tablename` WHERE $where";
+		// $params = [];
+		// $params = array_merge($params,$data);
+		$params = $data;
+		$sql = "DELETE FROM `$tablename` $where";
 		if($trace){ 
-			echo $sql;
-			print_r($$params);
+			echo $sql ." \n <br> ";
+			print_r($params);
 		};
 		$rs=$db->prepare($sql);
 		$rs->execute($params);
