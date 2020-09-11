@@ -3,7 +3,7 @@ include_once dirname(__FILE__) . '/config.php';
 
 $tablename = 'class';
 $queryStr = " and open=1 ";
-$rs = $db->prepare("SELECT * FROM {$tablename} where class=1 ".$queryStr);
+$rs = $db->prepare("SELECT * FROM {$tablename} where class=1 " . $queryStr);
 $rs->execute();
 $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
 
@@ -24,41 +24,50 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
     <link href="css/first.css" rel="stylesheet" type="text/css" />
 
     <style type="text/css">
-    .feat-btn {
-        text-align: center;
-        font-size: large;
-    }
-    .btn-title {
-        cursor: pointer;
-    }
-    .td_01 {
-        width: 30px;
-        text-align: left;
-    }
-    .button4 {
-        box-shadow:inset 0px 39px 0px -24px #e67a73;
-        background-color:#e4685d;
-        border-radius:4px;
-        border:1px solid #ffffff;
-        /* display:inline-block; */
-        cursor:pointer;
-        color:#ffffff;
-        font-family:Arial;
-        font-size:12px;
-        padding:4px 12px;
-        text-decoration:none;
-        text-shadow:0px 1px 0px #b23e35;
-        
-        float: right;
-        right: 1px;
-    }
-    .button4:hover {
-        background-color:#eb675e;
-    }
-    .button4:active {
-        position:relative;
-        top:1px;
-    }
+        .feat-btn {
+            text-align: center;
+            font-size: large;
+        }
+
+        .btn-title {
+            cursor: pointer;
+        }
+
+        .td_01 {
+            width: 30px;
+            text-align: left;
+        }
+
+        /* .button3 {
+            z-index: -1;
+        } */
+
+        .button4 {
+            box-shadow: inset 0px 39px 0px -24px #e67a73;
+            background-color: #e4685d;
+            border-radius: 4px;
+            border: 1px solid #ffffff;
+            /* display:inline-block; */
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 12px;
+            padding: 4px 12px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #b23e35;
+
+            float: right;
+            right: 1px;
+        }
+
+        .button4:hover {
+            background-color: #eb675e;
+        }
+
+        .button4:active {
+            position: relative;
+            top: 1px;
+        }
     </style>
 
 </head>
@@ -120,43 +129,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                                 </tr>
                             </table>
                             <!-- begin class menu -->
-                            <div id="navcontainer">
-                                <ul id="navlist" style="list-style-type:none;padding-left:0px">
-                                    <li><a style="background-repeat: no-repeat;background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="index01.htm">專 案 建 立</a>
-                                        <div name="submenu" class="SubMenu" style="display:none" root="yes" pid="11" id="22" align="center">
-                                            <ul id="subnavlist" style="list-style-type:none;padding-left:0px">
-                                                <li><a class="SubMenu" href="#" target="_parent"></a></li>
-                                                <li><a class="SubMenu" href="#" target="_parent"></a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li><a style="background-repeat: no-repeat;background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="index02.htm">工 程 填 報</a>
-                                        <div name="submenu" class="SubMenu" style="display:none" root="yes" pid="33" id="44" align="left">
-                                            <ul id="subnavlist" style="list-style-type:none;padding-left:0px">
-                                                <li><a class="SubMenu" href=" ../index05.htm" target="_top"></a></li>
-                                                <li><a class="SubMenu" href="#" target="_top"></a> </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li><a style="background-repeat: no-repeat;background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="index03.htm">工 程 分 析</a>
-                                        <div name="submenu" class="SubMenu" style="display:none" root="yes" pid="55" id="66" align="left">
-                                            <ul id="subnavlist" style="list-style-type:none;padding-left:0px">
-                                                <li><a class="SubMenu" href="#" target="_top"></a></li>
-                                                <li><a class="SubMenu" href="#" target="_top"></a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li><a style="background-repeat: no-repeat;background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="JavaScript:showOnOff('yes','7','8');">料 號 編 碼</a>
-                                        <div name="submenu" class="SubMenu" style="display:none" root="yes" pid="7" id="8">
-                                            <ul id="subnavlist2" style="list-style-type:none;padding-left:0px">
-                                                <li><a class="SubMenu" href="index05.htm" target="_parent">工 項 範 圍</a></li>
-                                                <li><a class="SubMenu" href="#" target="_parent">工 料 範 圍</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li><a style="background-repeat: no-repeat; background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="index06.htm">系 統 維 護</a></li>
-                                </ul>
-                            </div>
+                            <?php require_once dirname(__FILE__) . '/menu.php'; ?>
                             <p>&nbsp;</p>
                             <p><br />
                             </p>
@@ -167,7 +140,11 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                                         <span class="left_font1">PM 3:37</span></li>
                                 </ul>
                             </div>
-                            <div><a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image7','','images/service_1.png',1)"><img src="images/service.png" name="Image7" width="150" height="53" border="0" id="Image7" /></a></div>
+                            <div>
+                                <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image7','','images/service_1.png',1)">
+                                    <img src="images/service.png" name="Image7" width="150" height="53" border="0" id="Image7" />
+                                </a>
+                            </div>
                         </td>
                         <td width="1118" valign="top" class="top_colr">
                             <!-- InstanceBeginEditable name="EditRegion1" -->
@@ -230,7 +207,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                             <!-- InstanceEndEditable -->
                             <!-- InstanceBeginEditable name="EditRegion2" -->
                             <?php require_once dirname(__FILE__) . '/edit001.php'; ?>
-                            <!-- InstanceEndEditable -->                            
+                            <!-- InstanceEndEditable -->
                         </td>
                     </tr>
                 </table>
@@ -254,11 +231,41 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             // $('.sidebar').toggleClass("show");
 
             // $('.feat').css("display", "none");
-            $('.feat').show();
-            $('.feat-btn').text(' - ')
+            $('.feat').hide();
+            $('.feat-btn').text(' + ')
 
             tr_bg_color = $('.btn-title').parent('tr').find('td').css('background-color');
+
+            
+
+            var params = getSearchParameters();
+            console.log(params.show)
+            var show_id = atob(params.show)
+            console.log(show_id)
+            var c = $(".btn-title[data-id="+show_id+"]").closest('tr').prop('className')
+            cc = c.split(' ')
+            $.each(cc, function(i, item){ 
+                if( item.indexOf("feat-show") != -1 ){
+                     $("[class~='"+item+"']").show()
+                     $("[class~='"+item+"']").find('.feat-btn').text(' - ')
+                }
+            })
         })
+
+        function getSearchParameters() {
+            var prmstr = window.location.search.substr(1);
+            return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+        }
+
+        function transformToAssocArray(prmstr) {
+            var params = {};
+            var prmarr = prmstr.split("&");
+            for (var i = 0; i < prmarr.length; i++) {
+                var tmparr = prmarr[i].split("=");
+                params[tmparr[0]] = tmparr[1];
+            }
+            return params;
+        }
 
         // $('.btn').click(function() {
         //   $(this).toggleClass("click");
@@ -266,6 +273,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         // });
 
         $('.feat-btn').click(function() {
+            var my = $(this);
             $(this).text(' - ')
 
             var sn = $(this).data('sn');
@@ -274,9 +282,12 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             /* ul元件顯示或隱藏 */
             if (el.css("display") == 'none') {
                 // el.css("display", "block");
-                el.show();
-                el.find('.feat-btn').text(' - ')
-                $(this).text(' - ')
+                $.each(el, function(i, item) {
+                    if ($(this).data('f') == my.data('f')) {
+                        let el = $(this)
+                        el.show();
+                    }
+                });
             } else {
                 // el.css("display", "none");
                 el.hide();
@@ -288,8 +299,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         });
 
         //修改
-        $('.btn-title').click(function() {
-            var id = $(this).data('id');
+        $('.btn-title').closest('tr').find('td:not(.opera)').click(function() {
+        // $("tr.first td:not(.opera),tr.feat td:not(.opera)").click(function() {
+            var id = $(this).closest('tr').find('.btn-title').data('id');
 
             $('#router').val('update')
             $('#id').val(id)
@@ -299,10 +311,17 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             $('.class_tree').parent('tr').hide();
             //
             $.ajax({
-                headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
+                headers: {
+                    'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
+                },
                 url: 'ajax/api_crud.php',
                 type: "POST",
-                data: {'router': 'get', 'table': 'class', 'key': 'id', 'value': id },
+                data: {
+                    'router': 'get',
+                    'table': 'class',
+                    'key': 'id',
+                    'value': id
+                },
                 cache: false,
                 resetForm: true,
                 success: function(rtndata) {
@@ -325,7 +344,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 }
             });
         });
-        
+
         //新增
         $(".button3").click(function() {
             var id = $(this).data('id');
@@ -337,22 +356,29 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             $(this).attr('disabled', true);
 
             $('.class_tree').parent('tr').show();
-            
+
             current_modal = $('#form_edit1');
             current_modal.find('input[type=text]').val('')
             //
             $.ajax({
-                headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
+                headers: {
+                    'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
+                },
                 url: 'ajax/get_class_tree.php',
                 type: 'POST',
-                data: {'router': 'get', 'table': 'class', 'key': 'id', 'value': id },
+                data: {
+                    'router': 'get',
+                    'table': 'class',
+                    'key': 'id',
+                    'value': id
+                },
                 cache: false,
                 resetForm: true,
                 success: function(rtndata) {
                     rtndata = JSON.parse(rtndata);
                     if (rtndata.status > 0) {
                         $('.class_tree').text(rtndata.data);
-                        $('#floor').val( rtndata.floor);
+                        $('#floor').val(rtndata.floor);
                     } else {
                         console.log(JSON.stringify(rtndata));
                     }
@@ -364,30 +390,37 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             $('.btn-title').parent('tr').find('td:not(.list1)').css('background-color', tr_bg_color)
             $(this).find('td:not(.list1)').css('background-color', '#dddddd')
         });
-        
+
         //刪除
         $(".button4").click(function() {
             // $('.btn-title').parent('tr').find('td:not(.list1)').css('background-color', tr_bg_color)
             // $(this).parent('td').parent('tr').find('td:not(.list1)').css('background-color', '#dddddd')
 
-            var msg = "您真的確定要刪除嗎？"; 
-            if (confirm(msg)!=true){ 
-                return false; 
-            } 
+            var msg = "您真的確定要刪除嗎？";
+            if (confirm(msg) != true) {
+                return false;
+            }
             var id = $(this).data('id');
+            var url = window.location.href;
+            url = url.split('?')[0]
             $.ajax({
-                headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
+                headers: {
+                    'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
+                },
                 url: 'ajax/api_edit001.php',
                 type: 'POST',
-                data: {'router': 'delete', 'table': 'class', 'key': 'id', 'value': id },
+                data: {
+                    'router': 'delete',
+                    'table': 'class',
+                    'key': 'id',
+                    'value': id
+                },
                 cache: false,
                 resetForm: false,
                 success: function(rtndata) {
                     rtndata = JSON.parse(rtndata);
                     if (rtndata.status > 0) {
-                        // alert(rtndata.message)
-
-                        window.location.reload();
+                        location.href = url + '?show=' + rtndata.id;
                     } else {
                         console.log(JSON.stringify(rtndata));
                     }
@@ -442,30 +475,34 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         $("#button1").click(function() {
             current_modal = $('#form_edit1');
             //
-            var data = { "_token": "<?php echo csrf_token() ?>" };
+            var data = {
+                "_token": "<?php echo csrf_token() ?>"
+            };
             data.router = current_modal.find("#router").val();
             data.table = 'class';
             data.key = 'id';
             data.value = current_modal.find('#id').val()
-            data.class = current_modal.find('#floor').val(); 
-            data.title = current_modal.find("#title").val(); 
-            data.unit = current_modal.find("#unit").val(); 
+            data.class = current_modal.find('#floor').val();
+            data.title = current_modal.find("#title").val();
+            data.unit = current_modal.find("#unit").val();
             data.quantity = current_modal.find("#quantity").val(); //項目說明
             data.price = current_modal.find("#price").val(); //項目說明
             //
-            console.log(data);
 
+            var url = window.location.href;
+            url = url.split('?')[0]
             $.ajax({
-                headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
+                headers: {
+                    'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
+                },
                 url: 'ajax/api_edit001.php',
                 type: 'POST',
                 data: data,
                 cache: false,
                 resetForm: true,
                 success: function(rtndata) {
-                    console.log(rtndata);
-
-                    window.location.reload();
+                    rtndata = JSON.parse(rtndata);
+                    location.href = url + '?show=' + rtndata.id;
 
                     // setTimeout(function () {
                     //     location.href = data.redirectUrl

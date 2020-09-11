@@ -32,8 +32,10 @@ $tablename = $posts['table'];
         $datas['created_at'] = date('Y-m-d H:i:s');
         array_except($posts, ['router', 'table', 'key', 'value']);  //不寫入資料庫欄位
         $rs = dataInsert($tablename, $posts);
+        //可逆的加密函數 base64_encode ( string $data) <==> base64_decode ( string $data)
+        $rs = base64_encode($rs);
     
-        $rtn = array('status' => $rs, 'message' => 'db insert success', 'code' => 200);
+        $rtn = array('status' => $rs, 'message' => 'db insert success', 'code' => 200, 'id'=>$rs);
         logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功新增". ($rs>0? 1: 0). "筆資料");
 
     }
@@ -46,7 +48,14 @@ $tablename = $posts['table'];
 
         $rs = dataUpdate($tablename, $datas, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);
 
-        $rtn = array('status' => $rs, 'message' => 'db update success', 'code' => 200);
+
+        //得到目標資料的父資料id
+        $parent_id = getSingleValue("SELECT parent_id FROM ".$tablename." WHERE `{$posts['key']}`=:{$posts['key']} ", $params);
+        //可逆的加密函數 base64_encode ( string $data) <==> base64_decode ( string $data)
+        $parent_id = base64_encode($parent_id);
+        
+
+        $rtn = array('status' => $rs, 'message' => 'db update success', 'code' => 200, 'id'=>$parent_id);
         logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功更新". $rs. "筆資料");
 
     }
@@ -59,8 +68,14 @@ $tablename = $posts['table'];
         $datas['updated_at'] = date('Y-m-d H:i:s');
         $rs = dataUpdate($tablename, $datas, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);
         // $rs = dataDelete($tablename, " WHERE `{$posts['key']}`=:{$posts['key']} ", $params, 1);
-    
-        $rtn = array('status' => $rs, 'message' => 'db delete success', 'code' => 200);
+
+
+        //得到目標資料的父資料id
+        $parent_id = getSingleValue("SELECT parent_id FROM ".$tablename." WHERE `{$posts['key']}`=:{$posts['key']} ", $params);
+        //可逆的加密函數 base64_encode ( string $data) <==> base64_decode ( string $data)
+        $parent_id = base64_encode($parent_id);
+
+        $rtn = array('status' => $rs, 'message' => 'db delete success', 'code' => 200, 'id'=>$parent_id);
         logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功刪除". $rs. "筆資料");
     }
     

@@ -66,9 +66,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             $subs = sql_get($db, "SELECT * FROM {$tablename} where parent_id=? and class=2 ".$queryStr , array($row['id']));
           ?>
             <?php if (empty($subs)) { ?>
-              <tr>
+              <tr class="first" data-f="1">
                 <!-- <td class="td_font"><input name="radio<?php echo $key; ?>" type="radio" id="radio<?php echo $key; ?>" value="radio<?php echo $key; ?>" /> </td> -->
-                <td><div class="feat-btn" data-sn="<?php echo $key;?>"> </div></td>
+                <td><div class="feat-btn2" data-sn="<?php echo $key;?>"> </div></td>
                 <td bgcolor="#FFFFFF" class="td_01"><?php echo $str_no[1][$key]; ?></td>
                 <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
                 <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
@@ -96,15 +96,15 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
                 <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>-->
                 <td bgcolor="#FFFFFF" class="list2">&nbsp;</td> 
-                <td class="list2">                   
+                <td class="list2 opera">                   
                   <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $row['id'];?>" />
                   <input type="button" name="button4" class="button4" value="刪除" data-id="<?php echo $row['id'];?>" />
                 </td>
               </tr>
             <?php } else { ?>
-              <tr class=" first<?php echo $key;?>">
+              <tr class="first first<?php echo $key;?> feat-show"  data-f="1">
                 <!-- <td class="td_font"><input name="radio<?php echo $key; ?>" type="radio" id="radio<?php echo $key; ?>" value="radio<?php echo $key; ?>" /> </td> -->
-                <td><div class="feat-btn" data-sn="<?php echo $key;?>">+</div></td>
+                <td><div class="feat-btn" data-sn="<?php echo $key;?>"  data-f="2">+</div></td>
                 <td bgcolor="#FFFFFF" class="td_01"><?php echo $str_no[1][$key]; ?></td>
                 <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
                 <td bgcolor="#FFFFFF" class="td_font">&nbsp;</td>
@@ -132,7 +132,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
                 <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>-->
                 <td bgcolor="#FFFFFF" class="list2">&nbsp;</td> 
-                <td class="list2">                   
+                <td class="list2 opera">                   
                   <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $row['id'];?>" />
                   <input type="button" name="button4" class="button4" value="刪除" data-id="<?php echo $row['id'];?>" />
                 </td>
@@ -145,9 +145,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 
               ?>
                 <?php if (empty($subs2)) { ?>
-                  <tr  class="feat feat-show<?php echo $key;?>">
+                  <tr  class="feat feat-show<?php echo $key;?>"  data-f="2">
                     <!-- <td class="font_main"> <input type="radio" name="radio<?php echo $key . $key2; ?>" id="radio<?php echo $key . $key2; ?>" value="radio<?php echo $key . $key2; ?>" /> </td> -->
-                    <td  class="feat-btn" data-sn="<?php echo $key.$key2;?>"> </td>
+                    <td  class="feat-btn2" data-sn="<?php echo $key.$key2;?>"> </td>
                     <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
                     <td bgcolor="#FFFFFF" class="td_04"><?php echo $str_no[2][$key2]; ?></td>
                     <td class="td_04">&nbsp;</td>
@@ -169,15 +169,15 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     <td class="td_04">&nbsp;</td>
                     <td class="td_04">&nbsp;</td>-->
                     <td class="td_04">&nbsp;</td> 
-                    <td class="td_04">                   
+                    <td class="td_04 opera">                   
                       <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub['id'];?>" />
                       <input type="button" name="button4" class="button4" value="刪除" data-id="<?php echo $sub['id'];?>" />
                     </td>
                   </tr>
                 <?php } else { ?>
-                  <tr  class="feat feat-show<?php echo $key;?>">
+                  <tr  class="feat feat-show<?php echo $key;?>"  data-f="2">
                     <!-- <td class="font_main"> <input type="radio" name="radio<?php echo $key . $key2; ?>" id="radio<?php echo $key . $key2; ?>" value="radio<?php echo $key . $key2; ?>" /> </td> -->
-                    <td><div class="feat-btn" data-sn="<?php echo $key.$key2;?>"> + </div></td>
+                    <td><div class="feat-btn" data-sn="<?php echo $key.$key2;?>"  data-f="3"> + </div></td>
                     <td bgcolor="#FFFFFF" class="td_04">&nbsp;</td>
                     <td bgcolor="#FFFFFF" class="td_04"><?php echo $str_no[2][$key2]; ?></td>
                     <td class="td_04">&nbsp;</td>
@@ -199,7 +199,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     <td class="td_04">&nbsp;</td>
                     <td class="td_04">&nbsp;</td>-->
                     <td class="td_04">&nbsp;</td> 
-                    <td class="td_04">                   
+                    <td class="td_04 opera">                   
                       <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub['id'];?>" />
                       <input type="button" name="button4" class="button4" value="刪除" data-id="<?php echo $sub['id'];?>" />
                     </td>
@@ -211,9 +211,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     $subs3 = sql_get($db, $sql, $exec);
                     ?>
                       <?php if (empty($subs3)) { ?>
-                      <tr  class="feat feat-show<?php echo $key.$key2;?> feat-show<?php echo $key;?>">
+                      <tr  class="feat feat-show<?php echo $key.$key2;?> feat-show<?php echo $key;?>"  data-f="3">
                         <!-- <td class="font_main"> <input type="radio" name="radio<?php echo $key.$key2.$key3;?>" id="radio<?php echo $key.$key2.$key3;?>" value="radio<?php echo $key.$key2.$key3;?>" /></td> -->
-                        <td class="feat-btn" data-sn="<?php echo $key.$key2.$key3;?>"> </td>
+                        <td class="feat-btn2" data-sn="<?php echo $key.$key2.$key3;?>"> </td>
                         <td class="font_main">&nbsp;</td>
                         <td class="font_main">&nbsp;</td>
                         <td class="td_01"><?php echo $str_no[3][$key3]; ?></td>
@@ -235,15 +235,15 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                         <td class="td_04">&nbsp;</td>
                         <td class="td_04">&nbsp;</td>-->
                         <td class="td_04">&nbsp;</td> 
-                          <td class="list2">                   
+                          <td class="list2 opera">                   
                             <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub2['id'];?>" />
                             <input type="button" name="button4" class="button4" value="刪除" data-id="<?php echo $sub2['id'];?>" />
                           </td>
                       </tr>
                       <?php } else { ?>
-                        <tr  class="feat feat-show<?php echo $key.$key2;?> feat-show<?php echo $key;?>">
+                        <tr  class="feat feat-show<?php echo $key.$key2;?> feat-show<?php echo $key;?>"  data-f="3">
                           <!-- <td class="font_main"> <input type="radio" name="radio<?php echo $key.$key2.$key3;?>" id="radio<?php echo $key.$key2.$key3;?>" value="radio<?php echo $key.$key2.$key3;?>" /></td> -->
-                          <td class="feat-btn" data-sn="<?php echo $key.$key2.$key3;?>"> + </td>
+                          <td class="feat-btn" data-sn="<?php echo $key.$key2.$key3;?>"   data-f="4"> + </td>
                           <td class="font_main">&nbsp;</td>
                           <td class="font_main">&nbsp;</td>
                           <td class="td_01"><?php echo $str_no[3][$key3]; ?></td>
@@ -265,7 +265,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                           <td class="td_04">&nbsp;</td>
                           <td class="td_04">&nbsp;</td>-->
                           <td class="td_04">&nbsp;</td> 
-                          <td class="list2">                   
+                          <td class="list2 opera">                   
                             <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub2['id'];?>" />
                             <input type="button" name="button4" class="button4" value="刪除" data-id="<?php echo $sub2['id'];?>" />
                           </td>
@@ -280,9 +280,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                           $budget = $sub3;
       
                           ?>
-                          <tr  class="feat feat-show<?php echo $key.$key2.$key3;?>  feat-show<?php echo $key.$key2;?> feat-show<?php echo $key;?>">
+                          <tr data-f="4" class="feat feat-show<?php echo $key.$key2.$key3;?>  feat-show<?php echo $key.$key2;?> feat-show<?php echo $key;?>">
                             <!-- <td class="font_main"> <input type="radio" name="radio<?php echo $key.$key2.$key3;?>" id="radio<?php echo $key.$key2.$key3;?>" value="radio<?php echo $key.$key2.$key3;?>" /></td> -->
-                            <td class="feat-btn" data-sn="<?php echo $key.$key2.$key3.$key4;?>"> </td>
+                            <td class="feat-btn2" data-sn="<?php echo $key.$key2.$key3.$key4;?>"> </td>
                             <td class="font_main">&nbsp;</td>
                             <td class="font_main">&nbsp;</td>
                             <td class="td_02"><?php echo $str_no[4][$key4]; ?></td>
@@ -310,7 +310,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                             <td class="list2">&nbsp;</td>
                             <td class="list2">&nbsp;</td>-->   
                             <td class="list2">&nbsp;</td>       
-                            <td class="list2">                   
+                            <td class="list2 opera">                   
                               <!-- <input type="button" name="button3" class="button3" value="新增" data-id="<?php echo $sub3['id'];?>" /> -->
                               <input type="button" name="button4" class="button4" value="刪除" data-id="<?php echo $sub3['id'];?>" />
                             </td>

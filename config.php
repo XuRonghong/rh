@@ -69,3 +69,7 @@ if( isset($Request['_token'])) {
         exit;
     }
 }
+
+
+//record guest 
+logInsert('log_read', 0, "有訪客來訪網站");
