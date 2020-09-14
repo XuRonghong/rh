@@ -24,6 +24,10 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
     <link href="css/first.css" rel="stylesheet" type="text/css" />
 
     <style type="text/css">
+        .td_point {
+            background-color: #dddddd;
+        }
+
         .feat-btn {
             text-align: center;
             font-size: large;
@@ -76,7 +80,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
     <table width="1200" height="" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td valign="top">
-                <table width="100%" height="600" border="0" cellpadding="0" cellspacing="0" style=";">
+                <table width="100%" height="600" border="0" cellpadding="0" cellspacing="0" >
                     <tr>
                         <td height="40" colspan="2" valign="top">
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="top_logo">
@@ -220,77 +224,59 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         </tr>
     </table>
 
+    <script src="Scripts/script.js" type="text/javascript" ></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="Scripts/switchmenu.js" type="text/javascript"></script>
-    <script src="Scripts/script.js" type="text/javascript"></script>
     <script>
-        var tr_bg_color = '';
         $(document).ready(function() {
-            // $('.btn').toggleClass("click");
-            // $('.sidebar').toggleClass("show");
+            var params = {}
+            var show_id = ''
+            var classStr = ''
+            var classArr = []
 
-            // $('.feat').css("display", "none");
             $('.feat').hide();
             $('.feat-btn').text(' + ')
 
-            tr_bg_color = $('.btn-title').parent('tr').find('td').css('background-color');
-
-            
-
-            var params = getSearchParameters();
-            console.log(params.show)
-            var show_id = atob(params.show)
-            console.log(show_id)
-            var c = $(".btn-title[data-id="+show_id+"]").closest('tr').prop('className')
-            cc = c.split(' ')
-            $.each(cc, function(i, item){ 
-                if( item.indexOf("feat-show") != -1 ){
+            //直接顯示修改中資料
+            params = getSearchParameters();
+            show_id = atob( vv(params.show) )
+            classStr = $(".btn-title[data-id="+show_id+"]").closest('tr').prop('className')
+            classArr = vv(classStr, '').split(' ')            
+            $.each(classArr, function(i, item) { 
+                if( item.indexOf("feat-show") != -1 ) {
                      $("[class~='"+item+"']").show()
                      $("[class~='"+item+"']").find('.feat-btn').text(' - ')
                 }
             })
         })
 
-        function getSearchParameters() {
-            var prmstr = window.location.search.substr(1);
-            return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
-        }
+        //被選取效果
+        $('.feat').click(function() {
+            $('.btn-title').parent('tr').find('td:not(.list1)').removeClass('td_point')
+            $(this).find('td:not(.list1)').addClass('td_point')
+        });
 
-        function transformToAssocArray(prmstr) {
-            var params = {};
-            var prmarr = prmstr.split("&");
-            for (var i = 0; i < prmarr.length; i++) {
-                var tmparr = prmarr[i].split("=");
-                params[tmparr[0]] = tmparr[1];
-            }
-            return params;
-        }
-
-        // $('.btn').click(function() {
-        //   $(this).toggleClass("click");
-        //   $('.sidebar').toggleClass("show");
-        // });
 
         $('.feat-btn').click(function() {
-            var my = $(this);
-            $(this).text(' - ')
+            var my = $(this)
+            var sn = my.data('sn')
+            var el = $('.feat-show' + sn)
 
-            var sn = $(this).data('sn');
-            var el = $('.feat-show' + sn);
+            my.text(' - ')
 
             /* ul元件顯示或隱藏 */
             if (el.css("display") == 'none') {
                 // el.css("display", "block");
                 $.each(el, function(i, item) {
-                    if ($(this).data('f') == my.data('f')) {
-                        let el = $(this)
-                        el.show();
+                    let el = $(this)
+                    if (el.data('f') == my.data('f')) {
+                        el.show()
                     }
                 });
             } else {
                 // el.css("display", "none");
-                el.hide();
+                el.hide()
                 el.find('.feat-btn').text(' + ')
                 $(this).text(' + ')
 
@@ -301,7 +287,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         //修改
         $('.btn-title').closest('tr').find('td:not(.opera)').click(function() {
         // $("tr.first td:not(.opera),tr.feat td:not(.opera)").click(function() {
-            var id = $(this).closest('tr').find('.btn-title').data('id');
+            var id = ''
+            
+            id = $(this).closest('tr').find('.btn-title').data('id');
 
             $('#router').val('update')
             $('#id').val(id)
@@ -384,11 +372,6 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     }
                 }
             });
-        });
-
-        $('.feat').click(function() {
-            $('.btn-title').parent('tr').find('td:not(.list1)').css('background-color', tr_bg_color)
-            $(this).find('td:not(.list1)').css('background-color', '#dddddd')
         });
 
         //刪除

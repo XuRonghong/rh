@@ -1,4 +1,45 @@
 
+    function dd(input=null, type=null)
+    {
+        switch(type) {
+            //Outputs an error message to the console
+            case 'error':
+                return console.log(input)
+            //Outputs an informational message to the console
+            case 'info':
+                return console.info(input)
+            //Outputs a stack trace to the console
+            case 'trace':
+                return console.trace(input)
+            //	Outputs a warning message to the console
+            case 'warn':
+                return console.warn(input)
+            //Outputs a message to the console
+            default:
+                return console.log(input)
+        }
+    }
+
+    function vv(params, def=null)
+    {
+        return params != null && params != "" ? params : def
+    }
+    
+    //get URL $_GET Request
+    function getSearchParameters() {
+        var prmstr = window.location.search.substr(1);
+        return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+    }
+
+    function transformToAssocArray(prmstr) {
+        var params = {};
+        var prmarr = prmstr.split("&");
+        for (var i = 0; i < prmarr.length; i++) {
+            var tmparr = prmarr[i].split("=");
+            params[tmparr[0]] = tmparr[1];
+        }
+        return params;
+    }
 
     function api(u, r, t, k, v)
     {
