@@ -57,8 +57,8 @@
                         <div align="center">
                             <label>
                                 <div align="center"></a></span>
-                                    <input type="button" name="button1" id="button1" value="確定" />
-                                    <input type="button" name="button2" id="button2" value="取消" />
+                                    <input type="button" name="btn-submit" id="btn-submit" value="確定" />
+                                    <!-- <input type="button" name="btn-cancel" id="btn-cancel" value="取消" /> -->
                                     
                                     <input type="hidden" name="router" id="router" value="create" />
                                     <input type="hidden" name="id" id="id" value="0" />
