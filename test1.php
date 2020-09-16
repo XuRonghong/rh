@@ -2,8 +2,9 @@
 include_once dirname(__FILE__) . '/config.php';
 
 $tablename = 'class';
-$queryStr = " and open=1 ";
-$rs = $db->prepare("SELECT * FROM {$tablename} where class=1 " . $queryStr);
+$queryStr = " AND open=1 ";
+$orderStr = " ORDER BY rank ASC ";
+$rs = $db->prepare("SELECT * FROM {$tablename} WHERE class=1 ". $queryStr. $orderStr);
 $rs->execute();
 $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
 
@@ -19,51 +20,15 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
     <link href="css/menu.css" rel="stylesheet" type="text/css" />
     <link href="css/tree.css" rel="stylesheet" type="text/css" />
     <link href="css/first.css" rel="stylesheet" type="text/css" />
+    <link href="css/test1.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
-        .td_point {
-            background-color: #dddddd;
-        }
-        .more-btn {
-            text-align: center;
-            font-size: large;
-        }
-        .btn-title {
-            cursor: pointer;
-        }
-        .td_01 {
-            width: 30px;
-            text-align: left;
-        }
-        .btn-rm {
-            box-shadow: inset 0px 39px 0px -24px #e67a73;
-            background-color: #e4685d;
-            border-radius: 4px;
-            border: 1px solid #ffffff;
-            /* display:inline-block; */
-            cursor: pointer;
-            color: #ffffff;
-            font-family: Arial;
-            font-size: 12px;
-            padding: 4px 12px;
-            text-decoration: none;
-            text-shadow: 0px 1px 0px #b23e35;
-
-            float: right;
-            right: 1px;
-        }
-        .btn-rm:hover {
-            background-color: #eb675e;
-        }
-        .btn-rm:active {
-            position: relative;
-            top: 1px;
-        }
     </style>
 
     <script src="Scripts/script.js" type="text/javascript" ></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="Scripts/switchmenu.js" type="text/javascript"></script>
+    <script src="Scripts/test1.js" type="text/javascript" defer ></script>
     <script>
         // $(document).ready(function() {
         document.addEventListener("DOMContentLoaded", function() {
@@ -86,7 +51,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                      $("[class~='"+item+"']").show()
                      $("[class~='"+item+"']").find('.more-btn').text(' - ')
                 }
-            })            
+            })    
 
             //被選取效果(非Jquery寫法)
             // var threads = document.querySelectorAll('.feat')
@@ -105,7 +70,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             //+功能-
             $('.more-btn').click(function() {
                 let my = $(this)
-                let sn = my.data('sn') || null
+                let sn = my.data('sn')
                 let tr = $('.feat-show' + sn)
 
                 my.text(' - ')
@@ -137,7 +102,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 $('.class_tree').parent('tr').show()
 
                 var current_modal = $('#form_edit1')
-                var current_modal.find('input[type=text]').val('')
+                current_modal.find('input[type=text]').val('')
                 //
                 $.ajax({
                     headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
@@ -152,12 +117,12 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     cache: false,
                     resetForm: true,
                     success: function(rtndata) {
-                        rtndata = JSON.parse(rtndata);
+                        rtndata = JSON.parse(rtndata)
                         if (rtndata.status > 0) {
                             $('.class_tree').text(rtndata.data)
                             $('#floor').val(rtndata.floor)
                         } else {
-                            console.log(JSON.stringify(rtndata));
+                            console.log(JSON.stringify(rtndata))
                         }
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -170,7 +135,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             //切換修改功能
             $('.btn-title').closest('tr').find('td:not(.opera)').click(function() {
                 var id = $(this).closest('tr').find('.btn-title').data('id') || ''  
-
+                //
                 $('#router').val('update')
                 $('#id').val(id)
                 $('.form1_title').text('編輯項次')
@@ -190,21 +155,21 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     cache: false,
                     resetForm: true,
                     success: function(rtndata) {
-                        rtndata = JSON.parse(rtndata);
+                        rtndata = JSON.parse(rtndata)
                         if (rtndata.status > 0) {
-                            var datas = rtndata.data;
+                            var datas = rtndata.data
                             for (key in datas) {
-                                $('#title').val(datas[key].title);
-                                $('#unit').val(datas[key].unit);
-                                $('#ratio').val(datas[key].ratio);
-                                $('#quantity').val(datas[key].quantity);
-                                $('#price').val(datas[key].price);
-                                $('#remark').val(datas[key].remark);
+                                $('#title').val(datas[key].title)
+                                $('#unit').val(datas[key].unit)
+                                $('#ratio').val(datas[key].ratio)
+                                $('#quantity').val(datas[key].quantity)
+                                $('#price').val(datas[key].price)
+                                $('#remark').val(datas[key].remark)
 
-                                $('#floor').val(datas[key].class);
+                                $('#floor').val(datas[key].class)
                             }
                         } else {
-                            console.log(JSON.stringify(rtndata));
+                            console.log(JSON.stringify(rtndata))
                         }
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -220,77 +185,89 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 if (confirm(msg) != true) {
                     return false
                 }
-                var id = $(this).data('id') || ''
-                var url = window.location.href 
-                url = url.split('?')[0] || ''
-                $.ajax({
-                    headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
-                    url: 'ajax/api_edit001.php',
-                    type: 'POST',
-                    data: {
-                        'router': 'delete',
-                        'table': 'class',
-                        'key': 'id',
-                        'value': id
-                    },
-                    cache: false,
-                    resetForm: false,
-                    success: function(rtndata) {
-                        rtndata = JSON.parse(rtndata);
-                        if (rtndata.status > 0) {
-                            location.href = url + '?show=' + rtndata.id;
-                        } else {
-                            console.log(JSON.stringify(rtndata));
-                        }
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        // 通常情況下textStatus和errorThown只有其中一個有值 
-                        console.error('status:'+XMLHttpRequest.status+';rs:'+XMLHttpRequest.readyState+';ts:'+textStatus)
-                    }
-                });
+                let id = $(this).data('id') || ''
+                ajax_crud('ajax/api_edit001.php', 'delete', 'class', 'id', id)
             });
 
             //表單送出
             $("#btn-submit").click(function() {
-                var current_modal = $('#form_edit1');
+                var current_modal = $('#form_edit1')
                 //
                 var data = {
                     "_token": "<?php echo csrf_token() ?>"
-                };
-                data.router = current_modal.find("#router").val();
-                data.table = 'class';
-                data.key = 'id';
-                data.value = current_modal.find('#id').val()
-                data.class = current_modal.find('#floor').val();
-                data.title = current_modal.find("#title").val();
-                data.unit = current_modal.find("#unit").val();
-                data.quantity = current_modal.find("#quantity").val(); //項目說明
-                data.price = current_modal.find("#price").val(); //項目說明
+                }
+                data.class = current_modal.find('#floor').val()
+                data.title = current_modal.find("#title").val()
+                data.unit = current_modal.find("#unit").val()
+                data.quantity = current_modal.find("#quantity").val() //項目說明
+                data.price = current_modal.find("#price").val() //項目說明
                 //
-                var url = window.location.href;
-                url = url.split('?')[0] || ''
-                $.ajax({
-                    headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
-                    url: 'ajax/api_edit001.php',
-                    type: 'POST',
-                    data: data,
-                    cache: false,
-                    resetForm: true,
-                    success: function(rtndata) {
-                        rtndata = JSON.parse(rtndata);
-                        location.href = url + '?show=' + rtndata.id;
+                r = current_modal.find("#router").val()
+                v = current_modal.find('#id').val()
+                ajax_crud('ajax/api_edit001.php', r, 'class', 'id', v, data)
+            });
 
-                        // setTimeout(function () { location.href = data.redirectUrl }, 500)
-                        // toastr.error(data.message, "{{trans('web_alert.notice')}}").css("width","360px")
-                        // Swal.fire("{{trans('web_alert.error')}}", JSON.stringify(data.errors), "error");
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        // 通常情況下textStatus和errorThown只有其中一個有值 
-                        console.error('status:'+XMLHttpRequest.status+';rs:'+XMLHttpRequest.readyState+';ts:'+textStatus)
-                    }
-                });
+            //點擊即編輯
+            $('.txt').click(function(){
+                $('.txt').show()
+                $(this).hide()
+                $('.ipt').hide()
+                $(this).siblings('.ipt').show()
+            })
+
+            //為了消除編輯模式
+            $('.top_table1').mouseleave(function(){
+                $('.txt').show()
+                $('.ipt').hide()
+            })
+
+            //異動即更新
+            $('.ipt').on('change', function () {     
+                var n = $(this).prop('name') || ''
+                if(n=='undefined' || n=='') {
+                    return null
+                }
+                var id = $(this).closest('tr').find('.btn-title').data('id') || ''      
+                var v = $(this).val() || 0   
+                var data = []
+                data[n] = v
+                ajax_crud('ajax/api_edit001.php', 'update', 'class', 'id', id, data)
             });
         })
+
+        //非同步傳輸資料
+        function ajax_crud(u, r, t, k, v, datas=[])
+        {
+            var data = { 'router' : r, 'table' : t, 'key' : k, 'value' : v }
+            //假如還有資料就填充上去
+            for (let key in datas) {
+                // data.push({key : datas[key]})
+                data[key] = datas[key]
+            }       
+            var url = window.location.href
+            url = url.split('?')[0] || ''
+            $.ajax({
+                headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
+                url: u,
+                type: 'POST',
+                data: data,
+                cache: false,
+                resetForm: true,
+                success: function(rtndata) {
+                    rtndata = JSON.parse(rtndata)       
+                    // console.log(rtndata)             
+                    location.href = url + '?show=' + rtndata.id
+
+                    // setTimeout(function () { location.href = data.redirectUrl }, 500)
+                    // toastr.error(data.message, "{{trans('web_alert.notice')}}").css("width","360px")
+                    // Swal.fire("{{trans('web_alert.error')}}", JSON.stringify(data.errors), "error");
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    // 通常情況下textStatus和errorThown只有其中一個有值 
+                    console.error('status:'+XMLHttpRequest.status+';rs:'+XMLHttpRequest.readyState+';ts:'+textStatus)
+                }
+            });
+        }
     </script>
 
 </head>
