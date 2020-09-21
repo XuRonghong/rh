@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" ><!-- InstanceBegin template="/Templates/index.dwt" codeOutsideHTMLIsLocked="false" -->
 <head id="Head1" runat="server">
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>´ÿøv§uÆ∆§¿™R®t≤Œ</title>
+<title>Âª∫ÁØâÂ∑•ÊñôÂàÜÊûêÁ≥ªÁµ±</title>
 <!-- InstanceEndEditable -->
 <script type="text/javascript">
 <!--
@@ -46,7 +46,7 @@ body {
 </style>
 <!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
 </head>
-<body style="font-family:∑s≤”©˙≈È;" onload="MM_preloadImages('images/service_1.png')" >
+<body style="font-family:Êñ∞Á¥∞ÊòéÈ´î;" onload="MM_preloadImages('images/service_1.png')" >
 <table width="1200" height="" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td valign="top"><table width="100%" height="600" border="0" cellpadding="0" cellspacing="0" style=";">
@@ -62,30 +62,30 @@ body {
         </table></td>
       </tr>
       <tr>
-        <td width="200" height="552" class="left_tab" style="vertical-align:top; text-align:center;"><asp:Button ID="Button1" runat="server" Text="°’" onclick="Button1_Click" Height="28" />    
+        <td width="200" height="552" class="left_tab" style="vertical-align:top; text-align:center;"><asp:Button ID="Button1" runat="server" Text="Ôºú" onclick="Button1_Click" Height="28" />    
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
               <tr>
                 <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="top_colr_table">
                   <tr>
                     <td width="6%" rowspan="2"><asp:Image ID="Image1" ImageUrl="~/IMAGES/user.png" runat="server" /></td>
-                    <td width="63%" height="26">Ωs∏π°G1234567890</td>
-                    <td width="31%" rowspan="2"><div align="center"><a href="index.htm"><img src="IMAGES/logout.gif" alt="µn•X" border="0" /></a></div></td>
+                    <td width="63%" height="26">Á∑®ËôüÔºö1234567890</td>
+                    <td width="31%" rowspan="2"><div align="center"><a href="index.htm"><img src="IMAGES/logout.gif" alt="ÁôªÂá∫" border="0" /></a></div></td>
                   </tr>
                   <tr>
-                    <td>©m¶W°GæG∏Œ∂«</td>
+                    <td>ÂßìÂêçÔºöÈÑ≠Ë£ïÂÇ≥</td>
                   </tr>
                 </table></td>
               </tr>
             </table>
             <table width="100%" height="55" border="0">
               <tr>
-                <td class="td_03_top"><strong>§uµ{±MÆ◊</strong></td>
+                <td class="td_03_top"><strong>Â∑•Á®ãÂ∞àÊ°à</strong></td>
               </tr>
               <tr>
                 <td class="td_03"><p>20150604A1 <br />
-                  ∑s•_•´§T≠´∞œ<br />
+                  Êñ∞ÂåóÂ∏Ç‰∏âÈáçÂçÄ<br />
                   <br />
-                  §j≥∞´ÿ≥]¶Ì¶v<br />
+                  Â§ßÈô∏Âª∫Ë®≠‰ΩèÂÆÖ<br />
                 </p>
                 </td>
               </tr>
@@ -93,7 +93,7 @@ body {
             <!-- begin class menu -->
             <div id="navcontainer">
               <ul id="navlist" style="list-style-type:none;padding-left:0px">
-                <li><a style="background-repeat: no-repeat;background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="index01.htm">±M Æ◊ ´ÿ •ﬂ</a>
+                <li><a style="background-repeat: no-repeat;background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="index01.htm">Â∞à Ê°à Âª∫ Á´ã</a>
     <div name="submenu" class="SubMenu" style="display:none" root="yes" pid="11" id="22" align="center">
                       <ul id="subnavlist" style="list-style-type:none;padding-left:0px">
                         <li><a class="SubMenu" href="#" target="_parent"></a></li>
@@ -101,7 +101,7 @@ body {
                       </ul>
                   </div>
                 </li>
-                <li><a style="background-repeat: no-repeat;background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="index02.htm">§u µ{ ∂Ò ≥¯</a>
+                <li><a style="background-repeat: no-repeat;background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="index02.htm">Â∑• Á®ã Â°´ Â†±</a>
               <div name="submenu" class="SubMenu" style="display:none" root="yes" pid="33" id="44" align="left">
                       <ul id="subnavlist" style="list-style-type:none;padding-left:0px">
                         <li><a class="SubMenu" href=" ../index05.htm" target="_top"></a></li>
@@ -109,7 +109,7 @@ body {
                       </ul>
                   </div>
                 </li>
-                <li><a style="background-repeat: no-repeat;background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="index03.htm">§u µ{ §¿ ™R</a>
+                <li><a style="background-repeat: no-repeat;background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="index03.htm">Â∑• Á®ã ÂàÜ Êûê</a>
                   <div name="submenu" class="SubMenu" style="display:none" root="yes" pid="55" id="66" align="left">
                     <ul id="subnavlist" style="list-style-type:none;padding-left:0px">
                       <li><a class="SubMenu" href="#" target="_top"></a></li>
@@ -117,15 +117,15 @@ body {
                     </ul>
                   </div>
                 </li>
-              <li><a style="background-repeat: no-repeat;background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="JavaScript:showOnOff('yes','7','8');">Æ∆ ∏π Ωs ΩX</a>
+              <li><a style="background-repeat: no-repeat;background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="JavaScript:showOnOff('yes','7','8');">Êñô Ëôü Á∑® Á¢º</a>
               <div name="submenu" class="SubMenu" style="display:none" root="yes" pid="7" id="8" >
                       <ul id="subnavlist2" style="list-style-type:none;padding-left:0px">
-                        <li><a class="SubMenu" href="index05.htm" target="_parent">§u ∂µ Ωd ≥Ú</a></li>
-                        <li><a class="SubMenu" href="#" target="_parent">§u Æ∆ Ωd ≥Ú</a></li>
+                        <li><a class="SubMenu" href="index05.htm" target="_parent">Â∑• È†Ö ÁØÑ Âúç</a></li>
+                        <li><a class="SubMenu" href="#" target="_parent">Â∑• Êñô ÁØÑ Âúç</a></li>
                       </ul>
                     </div>
                 </li>
-                <li><a style="background-repeat: no-repeat; background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="index06.htm">®t ≤Œ ∫˚ ≈@</a></li>
+                <li><a style="background-repeat: no-repeat; background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="index06.htm">Á≥ª Áµ± Á∂≠ Ë≠∑</a></li>
               </ul>
           </div>
             <p>&nbsp;</p>
@@ -133,7 +133,7 @@ body {
             </p>
             <div>
               <ul id="navlist3" style="list-style-type:none;padding-left:0px">
-                <li><span class="left_font">11§Î13§È¨P¥¡•|</span>
+                <li><span class="left_font">11Êúà13Êó•ÊòüÊúüÂõõ</span>
                     <br />
                 <span class="left_font1">PM 3:37</span></li>
               </ul>
@@ -149,7 +149,7 @@ body {
                       <td width="100%"><table width="100%" align="center" cellpadding="1" cellspacing="0" class="top_tab">
                           <tr>
                             <td width="3%">&nbsp;</td>
-                            <td width="88%">§uµ{±MÆ◊</td>
+                            <td width="88%">Â∑•Á®ãÂ∞àÊ°à</td>
                             <td width="9%"><div align="right"><strong><img src="images/report.png" width="16" height="16" border="0" />&nbsp;<img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" />&nbsp;<img src="images/trash-empty16x16.png" width="16" height="16" border="0" />&nbsp;</strong></div></td>
                           </tr>
                       </table></td>
@@ -166,23 +166,23 @@ body {
                   <td colspan="6" bgcolor="#FFFFFF" class="form1_td"><table width="100%" height="19" border="0" cellpadding="0" cellspacing="0">
                       <tr>
                         <td width="3%"><img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" /></td>
-                        <td width="88%">ΩsøË§∫Æe</td>
+                        <td width="88%">Á∑®ËºØÂÖßÂÆπ</td>
                         <td width="9%">&nbsp;</td>
                       </tr>
                   </table></td>
                 </tr>
                 <tr>
-                  <td class="list2">≥Ê¶ÏΩs∏π</td>
+                  <td class="list2">ÂñÆ‰ΩçÁ∑®Ëôü</td>
                   <td class="list2"><label>
                     <input type="text" name="textfield" id="textfield" />
                   </label></td>
-                  <td class="list2">≥Ê¶Ï¶W∫Ÿ</td>
+                  <td class="list2">ÂñÆ‰ΩçÂêçÁ®±</td>
                   <td width="25%" class="list2"><form id="form2" name="form2" method="post" action="">
                       <label>
                       <input type="text" name="textfield2" id="textfield2" />
                       </label>
                   </form></td>
-                  <td width="7%" class="list2">´ÿ¿…§È¥¡</td>
+                  <td width="7%" class="list2">Âª∫Ê™îÊó•Êúü</td>
                   <td width="29%" class="list2"><form id="form3" name="form3" method="post" action="">
                       <label>
                       <input type="text" name="textfield3" id="textfield3" />
@@ -190,19 +190,19 @@ body {
                   </form></td>
                 </tr>
                 <tr>
-                  <td width="7%" class="list2">§uµ{Ωs∏π</td>
+                  <td width="7%" class="list2">Â∑•Á®ãÁ∑®Ëôü</td>
                   <td width="25%" class="list2"><form id="form4" name="form4" method="post" action="">
                       <label>
                       <input name="textfield4" type="text" id="textfield4" />
                       </label>
                   </form></td>
-                  <td width="7%" class="list2">§uµ{¶W∫Ÿ</td>
+                  <td width="7%" class="list2">Â∑•Á®ãÂêçÁ®±</td>
                   <td class="list2"><form id="form5" name="form5" method="post" action="">
                       <label>
                       <input name="textfield5" type="text" id="textfield5" />
                       </label>
                   </form></td>
-                  <td class="list2">§uµ{ßO∏π</td>
+                  <td class="list2">Â∑•Á®ãÂà•Ëôü</td>
                   <td class="list2"><form id="form6" name="form6" method="post" action="">
                       <label>
                       <input type="text" name="textfield6" id="textfield6" />
@@ -210,19 +210,19 @@ body {
                   </form></td>
                 </tr>
                 <tr>
-                  <td class="list2">§uµ{¶a¬I</td>
+                  <td class="list2">Â∑•Á®ãÂú∞Èªû</td>
                   <td class="list2"><form id="form7" name="form7" method="post" action="">
                       <label>
                       <input name="textfield7" type="text" id="textfield7" />
                       </label>
                   </form></td>
-                  <td class="list2">•Œ≥~ª°©˙</td>
+                  <td class="list2">Áî®ÈÄîË™™Êòé</td>
                   <td class="list2"><form id="form8" name="form8" method="post" action="">
                       <label>
                       <input type="text" name="textfield8" id="textfield8" />
                       </label>
                   </form></td>
-                  <td class="list2">µ≤∫c´¨¶°</td>
+                  <td class="list2">ÁµêÊßãÂûãÂºè</td>
                   <td class="list2"><form id="form9" name="form9" method="post" action="">
                       <label>
                       <input type="text" name="textfield9" id="textfield9" />
@@ -230,20 +230,20 @@ body {
                   </form></td>
                 </tr>
                 <tr>
-                  <td class="list4">§Â•Û∏ÍÆ∆</td>
+                  <td class="list4">Êñá‰ª∂Ë≥áÊñô</td>
                   <td class="list4"><form id="form10" name="form10" enctype="multipart/form-data" method="post" action="" >
                       <label></label>
                       <input name="textfield10" type="text" id="textfield10" />
                       <label>
-                      <input type="submit" name="button" id="button" value="§W∂«PDF" />
+                      <input type="submit" name="button" id="button" value="‰∏äÂÇ≥PDF" />
                       </label>
                   </form></td>
-                  <td class="list4">ºvπ≥∏ÍÆ∆</td>
+                  <td class="list4">ÂΩ±ÂÉèË≥áÊñô</td>
                   <td class="list4"><input name="textfield11" type="text" id="textfield11" />
                       <label>
-                      <input type="submit" name="button3" id="button3" value="§W∂«JPG" />
+                      <input type="submit" name="button3" id="button3" value="‰∏äÂÇ≥JPG" />
                     </label></td>
-                  <td class="list4">πw∫‚¬Í©w</td>
+                  <td class="list4">È†êÁÆóÈéñÂÆö</td>
                   <td class="list4"><form id="form1" name="form1" method="post" action="">
                     <label>
                       <input type="radio" name="radio" id="radio" value="radio" />
@@ -263,8 +263,8 @@ body {
                 <tr>
                   <td colspan="6" bgcolor="#FFFFFF"><div align="center">
                       <form id="form11" name="form11" method="post" action="#">
-                        <input name="button1" type="submit" id="button1" value="¿x¶s" />
-                        <input name="button2" type="submit" value="®˙Æ¯" id="button2" />
+                        <input name="button1" type="submit" id="button1" value="ÂÑ≤Â≠ò" />
+                        <input name="button2" type="submit" value="ÂèñÊ∂à" id="button2" />
                       </form>
                   </div></td>
                 </tr>
@@ -276,7 +276,7 @@ body {
     </table>
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td bgcolor="#303f5e" class="bottom1">&nbsp;πF∏q∏Í∞Tæ„¶X¶≥≠≠§Ω•q<strong> reach right Information Co.,Ltd.</strong></td>
+          <td bgcolor="#303f5e" class="bottom1">&nbsp;ÈÅîÁæ©Ë≥áË®äÊï¥ÂêàÊúâÈôêÂÖ¨Âè∏<strong> reach right Information Co.,Ltd.</strong></td>
         </tr>
       </table>    </td>
   </tr>

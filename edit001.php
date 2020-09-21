@@ -2,9 +2,9 @@
     <tr>
         <td width="100%">
             <form id="form_edit1">
-                <table width="100%" cellpadding="2" cellspacing="0">
+                <table width="90%" cellpadding="2" cellspacing="0">
                     <tr>
-                        <td colspan="9" bgcolor="#FFFFFF" class="form1_td">
+                        <td colspan="3" bgcolor="#FFFFFF" class="form1_td">
                             <table width="100%" height="19" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td width="3%"><img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" /></td>
@@ -15,43 +15,34 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="list2">類別</td>
-                        <td class="list2 class_tree"></td>
-                        <td class="list2"><input name="floor" type="text" id="floor" value="" disabled="true" /></td>
-                        <td class="list2"></td>
-                        <td class="list2"></td>
-                        <td class="list2"></td>
-                    </tr>
-                    <tr>
-                        <!-- <td class="list2"><strong>填報</strong></td> -->
-                        <td class="list2">項目說明</td>
-                        <td class="list2"><input name="title" type="text" id="title" value="" size="27" /></td>
-                        <td class="list2">比率</td>
-                        <td class="list2"><label><input name="ratio" type="text" id="ratio" /></label></td>
-                        <td class="list2">備註</td>
-                        <td class="list2"><input name="remark" type="text" id="remark" size="14" /></td>
-                    </tr>
-                    <tr>
-                        <!-- <td class="list2">備註</td>
-                        <td class="list2"><input name="textfield8" type="text" id="textfield8" size="14" /></td>
-                        <td class="list6"><strong>審核</strong></td> -->
-                        <td class="list2">單位</td>
-                        <td class="list2"><input name="unit" type="text" id="unit" /></td>
-                        <td class="list2">數量</td>
-                        <td class="list2"><input name="quantity" type="text" id="quantity" /></td>
-                        <td class="list2">單價</td>
-                        <td class="list2"><input name="price" type="text" id="price" /></td>
-                    </tr>
-                    <tr>
-                        <td class="list6">差異金額</td>
-                        <td class="list6">
-                            <input name="textfield12" type="text" id="textfield12" size="7" />％
-                            <input name="textfield13" type="text" id="textfield13" size="3" />
+                        <td class="list2"><div>類別
+                            <p class="class_tree"></p></div>
                         </td>
-                        <td class="list2">建案單價</td>
-                        <td class="list2"><input name="textfield26" type="text" id="textfield26" /></td>
-                        <td class="list2">項目別名</td>
-                        <td class="list2"><input name="textfield" type="text" id="textfield" size="27" /></td>
+                        <td class="list2"><div>Floor
+                            <input name="floor" type="text" id="floor" value="" disabled="true" /></div>
+                        </td>
+                        <td class="list2"></td>
+                    </tr>
+                    <tr>
+                        <td class="list2"><div>項目說明
+                            <input name="title" type="text" id="title" value="" size="27" /></div>
+                        </td>
+                        <td class="list2"><div><strong>Rank</strong>
+                            <input name="rank" type="text" id="rank" size="8" value="5" /></div>
+                        </td>
+                        <td class="list2"><div>備註
+                            <input name="remark" type="text" id="remark" size="35" /></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="list2"><div>單位<input name="unit" type="text" id="unit" /></div></td>
+                        <td class="list2"><div>比率<label><input name="ratio" type="text" id="ratio" /></label></div></td>
+                        <td class="list2"><div>數量<input name="quantity" type="text" id="quantity" /></div></td>
+                    </tr>
+                    <tr>
+                        <td class="list2"><div>單價<input name="price" type="text" id="price" /></div></td>
+                        <td class="list2" ><div>複價<input name="reprice" type="text" id="reprice" /></div></td>
+                        <td class="list2" ><div id="nomore"></div></td>
                     </tr>
                     <tr>
                         <td colspan="9" bgcolor="#FFFFFF"><label></label>

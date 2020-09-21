@@ -44,20 +44,20 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
       <table width="100%" cellpadding="1" cellspacing="0" id="table1">
         <tr>
           <td width="24" bgcolor="#FFFFFF" class="list3">&nbsp;</td>
-          <td width="64" colspan="3" bgcolor="#FFFFFF" class="list3"><strong>項次</strong></td>
-          <td width="285" bgcolor="#FFFFFF" class="list3">項目說明</td>
-          <td width="50" bgcolor="#FFFFFF" class="list3">Rank</td>
+          <td width="44" colspan="3" bgcolor="#FFFFFF" class="list3"><strong>項次</strong></td>
+          <td width="360" bgcolor="#FFFFFF" class="list3">項目說明</td>
+          <td width="55" bgcolor="#FFFFFF" class="list3">Rank</td>
           <td width="54" bgcolor="#FFFFFF" class="list3">單位</td>
           <td width="52" bgcolor="#FFFFFF" class="list3">比率</td>
           <td width="72" bgcolor="#FFFFFF" class="list3">數量</td>
-          <td width="95" bgcolor="#FFFFFF" class="list3">單價</td>
-          <td width="96" bgcolor="#FFFFFF" class="list3">複價</td>
-          <td width="174" bgcolor="#FFFFFF" class="list3">備註</td>
-          <td width="65" bgcolor="#FFFFFF" class="list7">審核</td>
+          <td width="105" bgcolor="#FFFFFF" class="list3">單價</td>
+          <td width="106" bgcolor="#FFFFFF" class="list3">複價</td>
+          <td width="278" bgcolor="#FFFFFF" class="list3">備註</td>
+          <!-- <td width="65" bgcolor="#FFFFFF" class="list7">審核</td> -->
           <!-- <td width="58" bgcolor="#FFFFFF" class="list7">比率</td>
             <td width="57" bgcolor="#FFFFFF" class="list7">數量</td>
             <td width="93" bgcolor="#FFFFFF" class="list7">單價</td>-->
-          <td width="99" bgcolor="#FFFFFF" class="list7">複價</td>
+          <!-- <td width="99" bgcolor="#FFFFFF" class="list7">複價</td> -->
           <td width="105" bgcolor="#FFFFFF" class="list3">
             <input type="button" name="btn-add" class="btn-add" value="新增" data-id="0" />
           </td>
@@ -96,13 +96,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 <div align="right"></div>
               </td>
               <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
-              <td bgcolor="#FFFFFF" class="list2">
-                <div align="center"></div>
-              </td>
               <!-- <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
                 <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
                 <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>-->
-              <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
               <td class="list2 opera">
                 <input type="button" name="btn-add" class="btn-add" value="新增" data-id="<?php echo $row['id']; ?>" />
                 <input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="<?php echo $row['id']; ?>" />
@@ -138,13 +134,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                 <div align="right"></div>
               </td>
               <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
-              <td bgcolor="#FFFFFF" class="list2">
-                <div align="center"></div>
-              </td>
               <!-- <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
                 <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
                 <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>-->
-              <td bgcolor="#FFFFFF" class="list2">&nbsp;</td>
               <td class="list2 opera">
                 <input type="button" name="btn-add" class="btn-add" value="新增" data-id="<?php echo $row['id']; ?>" />
                 <input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="<?php echo $row['id']; ?>" />
@@ -179,13 +171,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     <div align="right"></div>
                   </td>
                   <td class="td_04">&nbsp;</td>
-                  <td class="td_04">
-                    <div align="center"></div>
-                  </td>
                   <!-- <td class="td_04">&nbsp;</td>
                     <td class="td_04">&nbsp;</td>
                     <td class="td_04">&nbsp;</td>-->
-                  <td class="td_04">&nbsp;</td>
                   <td class="td_04 opera">
                     <input type="button" name="btn-add" class="btn-add" value="新增" data-id="<?php echo $sub['id']; ?>" />
                     <input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="<?php echo $sub['id']; ?>" />
@@ -215,13 +203,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     <div align="right"></div>
                   </td>
                   <td class="td_04">&nbsp;</td>
-                  <td class="td_04">
-                    <div align="center"></div>
-                  </td>
                   <!-- <td class="td_04">&nbsp;</td>
                     <td class="td_04">&nbsp;</td>
                     <td class="td_04">&nbsp;</td>-->
-                  <td class="td_04">&nbsp;</td>
                   <td class="td_04 opera">
                     <input type="button" name="btn-add" class="btn-add" value="新增" data-id="<?php echo $sub['id']; ?>" />
                     <input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="<?php echo $sub['id']; ?>" />
@@ -255,13 +239,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                         <div align="right"></div>
                       </td>
                       <td class="td_04">&nbsp;</td>
-                      <td class="td_04">
-                        <div align="center"></div>
-                      </td>
                       <!-- <td class="td_04">&nbsp;</td>
                         <td class="td_04">&nbsp;</td>
                         <td class="td_04">&nbsp;</td>-->
-                      <td class="td_04">&nbsp;</td>
                       <td class="list2 opera">
                         <input type="button" name="btn-add" class="btn-add" value="新增" data-id="<?php echo $sub2['id']; ?>" />
                         <input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="<?php echo $sub2['id']; ?>" />
@@ -289,13 +269,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                         <div align="right"></div>
                       </td>
                       <td class="td_04">&nbsp;</td>
-                      <td class="td_04">
-                        <div align="center"></div>
-                      </td>
                       <!-- <td class="td_04">&nbsp;</td>
                           <td class="td_04">&nbsp;</td>
                           <td class="td_04">&nbsp;</td>-->
-                      <td class="td_04">&nbsp;</td>
                       <td class="list2 opera">
                         <input type="button" name="btn-add" class="btn-add" value="新增" data-id="<?php echo $sub2['id']; ?>" />
                         <input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="<?php echo $sub2['id']; ?>" />
@@ -337,15 +313,11 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                           <div class="txt"><?php echo sprintf("%01.1f", $budget['price']) ?></div>
                           <input class="ipt" type="text" name="price" value="<?php echo sprintf("%01.1f", $budget['price']) ?>" >
                         </td>
-                        <td class="list2">&nbsp;</td>
+                        <td class="list2">&nbsp;<?php echo sprintf("%01.1f", $budget['reprice']) ?></td>
                         <td class="list2">&nbsp;<?php echo $budget['remarks'] ?></td>
-                        <td class="list2">
-                          <div align="center"><img src="images/right.png" width="16" height="17" /></div>
-                        </td>
                         <!-- <td class="list2">&nbsp;</td>
                             <td class="list2">&nbsp;</td>
                             <td class="list2">&nbsp;</td>-->
-                        <td class="list2">&nbsp;</td>
                         <td class="list2 opera">
                           <!-- <input type="button" name="btn-add" class="btn-add" value="新增" data-id="<?php echo $sub3['id']; ?>" /> -->
                           <input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="<?php echo $sub3['id']; ?>" />

@@ -135,12 +135,19 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             //切換修改功能
             $('.btn-title').closest('tr').find('td:not(.opera)').click(function() {
                 var id = $(this).closest('tr').find('.btn-title').data('id') || ''  
+                var floor = $(this).closest('tr').data('f') || ''  
+                console.log(floor)
                 //
                 $('#router').val('update')
                 $('#id').val(id)
                 $('.form1_title').text('編輯項次')
                 $(".btn-add").attr('disabled', false)
                 $('.class_tree').parent('tr').hide()
+                if(floor!=4) {
+                    $('#unit , #ratio ,#quantity ,#price ,#reprice, #nomore').closest('td').hide()
+                } else {
+                    $('#unit , #ratio ,#quantity ,#price ,#reprice, #nomore').closest('td').show()
+                }
                 //
                 $.ajax({
                     headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
@@ -159,11 +166,13 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                         if (rtndata.status > 0) {
                             var datas = rtndata.data
                             for (key in datas) {
+                                $('#rank').val(datas[key].rank)
                                 $('#title').val(datas[key].title)
                                 $('#unit').val(datas[key].unit)
                                 $('#ratio').val(datas[key].ratio)
                                 $('#quantity').val(datas[key].quantity)
                                 $('#price').val(datas[key].price)
+                                $('#reprice').val(datas[key].reprice)
                                 $('#remark').val(datas[key].remark)
 
                                 $('#floor').val(datas[key].class)
@@ -197,10 +206,13 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                     "_token": "<?php echo csrf_token() ?>"
                 }
                 data.class = current_modal.find('#floor').val()
+                data.rank = current_modal.find('#rank').val()
                 data.title = current_modal.find("#title").val()
                 data.unit = current_modal.find("#unit").val()
-                data.quantity = current_modal.find("#quantity").val() //項目說明
-                data.price = current_modal.find("#price").val() //項目說明
+                data.ratio = current_modal.find("#ratio").val()
+                data.quantity = current_modal.find("#quantity").val() 
+                data.price = current_modal.find("#price").val() 
+                data.reprice = current_modal.find("#reprice").val() 
                 //
                 r = current_modal.find("#router").val()
                 v = current_modal.find('#id').val()
