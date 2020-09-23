@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+
+.btn {
+	cursor: pointer;
+}
+
+.btn-logout {
+	cursor: pointer;
+}
+
+.btn-submit {
+	cursor: pointer;
+}

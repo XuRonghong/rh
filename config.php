@@ -8,14 +8,17 @@ date_default_timezone_set('Asia/Taipei');
 //ini_set('display_errors','on');     # 開啟錯誤輸出
 error_reporting(E_ALL & ~E_NOTICE);  # 設定輸出錯誤類型 , 除了 Notice 外，全部錯誤輸出
 
-session_cache_expire(20);//session逾時設定;
+session_cache_expire(20); //session逾時設定;
 session_start();
-ob_start();//可以解決header有先送出東西的問題
-ob_end_clean();//先ob_start 再進行一次ob_end_clean
+ob_start(); //可以解決header有先送出東西的問題
+ob_end_clean(); //先ob_start 再進行一次ob_end_clean
 
-header("Cache-Control:no-cache,must-revalidate");//強迫更新
+ini_set('upload_max_filesize', '15M');
+
+
+header("Cache-Control:no-cache,must-revalidate"); //強迫更新
 //header("P3P: CP=".$_SERVER["HTTP_HOST"]."");//解決在frame中session不能使用的問題，可填ip或是domain
-header('Content-type: text/html; charset=utf-8');//指定utf8編碼 
+header('Content-type: text/html; charset=utf-8'); //指定utf8編碼 
 //header('Vary: Accept-Language');
 
 
@@ -34,10 +37,10 @@ define('Controllers', 'Controllers');
 
 
 $str_no = [
-    1 => ['壹','貳','參','肆','伍','陸','柒','捌','玖','拾','佰','仟', '零'],
-    2 => ['一','二','三','四','五','六','七','八','九','十','百', '○'],
-    3 => ['1','2','3','4','5','6','7','8','9', '0'],
-    4 => ['01','02','03','04','05','06','07','08','09', '00'],
+    1 => ['壹', '貳', '參', '肆', '伍', '陸', '柒', '捌', '玖', '拾', '佰', '仟', '零'],
+    2 => ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '百', '○'],
+    3 => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+    4 => ['01', '02', '03', '04', '05', '06', '07', '08', '09', '00'],
 ];
 
 
@@ -53,23 +56,30 @@ $Request = $_REQUEST;
 // } 
 
 // print_r(apache_request_headers()); // 印出所有 Header
-if( isset(apache_request_headers()['X-CSRF-TOKEN'])) {    
+if (isset(apache_request_headers()['X-CSRF-TOKEN'])) {
     $_token = apache_request_headers()['X-CSRF-TOKEN'];
-    if($_SESSION['token']!== $_token) {
+    if ($_SESSION['token'] !== $_token) {
         $rtn = array('statue' => 0, 'message' => 'token no find or error!!', 'code' => 204);
         echo json_encode($rtn, JSON_UNESCAPED_UNICODE);
         exit;
     }
 }
 
-if( isset($Request['_token'])) {    
-    if($_SESSION['token']!==$Request['_token']) {
+if (isset($Request['_token'])) {
+    if ($_SESSION['token'] !== $Request['_token']) {
         $rtn = array('statue' => 0, 'message' => 'token no find or error!!', 'code' => 204);
         echo json_encode($rtn, JSON_UNESCAPED_UNICODE);
         exit;
     }
 }
-
 
 //record guest 
-logInsert('log_read', 0, "有訪客來訪網站");
+logInsert('log_read', 0, "Request!!");
+
+
+//沒有登入驗證成功，導回登入
+if ($_SERVER['REQUEST_URI'] != '/rh3/login.php' && !strpos($_SERVER['REQUEST_URI'], '/ajax/' )) {
+    if ( !isset($_SESSION['admin_id']) || $_SESSION['admin_id'] == '') {
+        header("location: login.php");
+    }
+}

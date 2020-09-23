@@ -350,11 +350,12 @@ function data_get($target, $key, $default = null)
         }
 
         if (is_array($target) && array_key_exists($segment, $target)) {
-            // 如果 $target 是個 array 且有資料的話，就使用 array 方法取資料
-            $target = $target[$segment];
+			// 如果 $target 是個 array 且有資料的話，就使用 array 方法取資料
+			
+            $target = $target[$segment] ? $target[$segment] : $default;
         } elseif (is_object($target) && isset($target->{$segment})) {
             // 如果 $target 是個 object 且有資料的話，就使用 object 方法取資料
-            $target = $target->{$segment};
+            $target = $target->{$segment} ? $target->{$segment} : $default;
         } else {
             // 都不是的話，key 是有問題的，只好回傳預設值
             return $default;

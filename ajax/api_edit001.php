@@ -29,7 +29,7 @@ $tablename = $posts['table'];
     else if($posts['router']=='create') {
     
         $posts['parent_id'] = $posts['value'];
-        $datas['created_at'] = date('Y-m-d H:i:s');
+        $posts['created_at'] = date('Y-m-d H:i:s');
         array_except($posts, ['router', 'table', 'key', 'value']);  //不寫入資料庫欄位
         $rs = dataInsert($tablename, $posts);
         //可逆的加密函數 base64_encode ( string $data) <==> base64_decode ( string $data)

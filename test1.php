@@ -21,11 +21,11 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
     <link href="css/tree.css" rel="stylesheet" type="text/css" />
     <link href="css/first.css" rel="stylesheet" type="text/css" />
     <link href="css/test1.css" rel="stylesheet" type="text/css" />
+    <link href="css/master.css" rel="stylesheet" type="text/css">
     <style type="text/css">
     </style>
 
-    <script src="Scripts/script.js" type="text/javascript" ></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <?php require_once dirname(__FILE__).'/layouts/script.php'; ?>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="Scripts/switchmenu.js" type="text/javascript"></script>
     <script src="Scripts/test1.js" type="text/javascript" defer ></script>
@@ -290,74 +290,11 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             <td valign="top">
                 <table width="100%" height="600" border="0" cellpadding="0" cellspacing="0" >
                     <tr>
-                        <td height="40" colspan="2" valign="top">
-                            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="top_logo">
-                                <tr>
-                                    <td width="26%" class="top_bg">
-                                        <asp:ImageButton ID="BMS51_ID" ImageUrl="~/IMAGES/top_01.gif" runat="server" onclick="BMS51_ID_Click" />
-                                        <img src="images/CEC_top_01.gif" width="311" height="40" /></td>
-                                    <td width="23%" class="top_font">&nbsp;</td>
-                                    <td width="24%" class="top_font" style="text-align:right">&nbsp;</td>
-                                    <td width="27%" align="right"><a href="#"></a><img src="images/CEC_top_04.gif" width="356" height="40" /></td>
-                                </tr>
-                            </table>
-                        </td>
+                        <?php require_once dirname(__FILE__) . '/layouts/top.php'; ?>
                     </tr>
                     <tr>
-                        <td width="200" height="552" class="left_tab" style="vertical-align:top; text-align:center;">
-                            <asp:Button ID="Button1" runat="server" Text="＜" onclick="Button1_Click" Height="28" />
-                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                <tr>
-                                    <td>
-                                        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top_colr_table">
-                                            <tr>
-                                                <td width="6%" rowspan="2">
-                                                    <asp:Image ID="Image1" ImageUrl="~/IMAGES/user.png" runat="server" />
-                                                </td>
-                                                <td width="63%" height="26">編號：1234567890</td>
-                                                <td width="31%" rowspan="2">
-                                                    <div align="center"><a href="index.htm"><img src="IMAGES/logout.gif" alt="登出" border="0" /></a></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>姓名：鄭裕傳</td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                            <table width="100%" height="55" border="0">
-                                <tr>
-                                    <td class="td_03_top"><strong>工程專案</strong></td>
-                                </tr>
-                                <tr>
-                                    <td class="td_03">
-                                        <p>20150604A1 <br />
-                                            新北市三重區<br />
-                                            <br />
-                                            大陸建設住宅<br />
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <!-- begin class menu -->
-                            <?php require_once dirname(__FILE__) . '/menu.php'; ?>
-                            <p>&nbsp;</p>
-                            <p><br />
-                            </p>
-                            <div>
-                                <ul id="navlist3" style="list-style-type:none;padding-left:0px">
-                                    <li><span class="left_font">11月13日星期四</span>
-                                        <br />
-                                        <span class="left_font1">PM 3:37</span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image7','','images/service_1.png',1)">
-                                    <img src="images/service.png" name="Image7" width="150" height="53" border="0" id="Image7" />
-                                </a>
-                            </div>
-                        </td>
+                        <?php require_once dirname(__FILE__) . '/layouts/menu.php'; ?>
+
                         <td width="1118" valign="top" class="top_colr">
                             <!-- InstanceBeginEditable name="EditRegion1" -->
                             <div style="width:100%; height:528px; overflow: auto;">
@@ -423,11 +360,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                         </td>
                     </tr>
                 </table>
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                        <td bgcolor="#303f5e" class="bottom1">&nbsp;達義資訊整合有限公司<strong> reach right Information Co.,Ltd.</strong></td>
-                    </tr>
-                </table>
+                <?php require_once dirname(__FILE__) . '/layouts/bottom.php'; ?>
             </td>
         </tr>
     </table>
