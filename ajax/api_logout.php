@@ -1,5 +1,8 @@
 <?php
 include_once dirname(__DIR__) . '/config.php';
+/*
+* 登出功能
+*/
 
 $posts = filterVar($_POST);    
 array_except($posts, '_token');

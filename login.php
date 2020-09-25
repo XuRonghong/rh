@@ -125,7 +125,7 @@ $row = $rs->fetch(PDO::FETCH_ASSOC);
     <table width="800" height="486" border="0" align="center" cellpadding="0" cellspacing="0" id="___01">
       <tr>
         <td rowspan="2">
-          <img src="storage/<?php echo data_get($row, 'Logo', '../images/index_01.jpg'); ?>" width="190" height="184" alt="logo">
+          <img src="storage/<?php echo $tablename.'/'.data_get($row, 'Logo', '../images/index_01.jpg'); ?>" width="190" height="184" alt="logo">
         </td>
         <td><img src="images/index_02.jpg" width="125" height="145" alt=""></td>
         <td><img src="images/index_03.jpg" width="296" height="145" alt=""></td>

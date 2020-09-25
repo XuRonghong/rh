@@ -1,5 +1,8 @@
 <?php
 include_once dirname(__DIR__) . '/config.php';
+/*
+* 登入驗證、更換密碼
+*/
 
 $posts = filterVar($_POST);    
 array_except($posts, '_token');

@@ -1,6 +1,8 @@
 <?php
 include_once dirname(__DIR__) . '/config.php';
-
+/*
+* 找表class的階層關係，目前有4層
+*/
 
 try {
 

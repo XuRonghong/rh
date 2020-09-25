@@ -88,7 +88,7 @@ $row = $rows[0];
                           <td class="list2">
                             <label>
                               <input name="file" type="file" accept="image/gif, image/jpeg, image/png" id="imgInp" class="form1" >
-                              <img id="blah" src="storage/<?php echo data_get($row, 'Logo', '../images/246x0w.png');?>" alt="your image" style="width: 100px;" />
+                              <img id="blah" src="storage/<?php echo $tablename.'/'.data_get($row, 'Logo', '../images/246x0w.png');?>" alt="your image" style="width: 100px;" />
                               <br>
                               <input class="rmLogo" type="button" value="圖片拿掉">
                               <input name="Logo" type="hidden" value="<?php echo $row['Logo'];?>">

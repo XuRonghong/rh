@@ -30,6 +30,7 @@ include_once 'sys/function-pdo.php';
 // include_once 'sys/function-mysql.php';
 
 /* 代名詞 */
+define('APP_NAME', 'rh3');
 define('_DIR_', __DIR__);
 define('Models', 'Models');
 define('Views', 'Views');
@@ -78,8 +79,12 @@ logInsert('log_read', 0, "Request!!");
 
 
 //沒有登入驗證成功，導回登入
-if ($_SERVER['REQUEST_URI'] != '/rh3/login.php' && !strpos($_SERVER['REQUEST_URI'], '/ajax/' )) {
+if ($_SERVER['REQUEST_URI'] != '/'.APP_NAME.'/login.php' && !strpos($_SERVER['REQUEST_URI'], '/ajax/' )) {
     if ( !isset($_SESSION['admin_id']) || $_SESSION['admin_id'] == '') {
         header("location: login.php");
     }
+}
+//抵擋非正確來源的request
+if ( strpos($_SERVER['REQUEST_URI'], '/ajax/api_upload.php') && !strpos($_SERVER['HTTP_REFERER'], 'unit_edit') ) {
+    header("location: index.php");
 }

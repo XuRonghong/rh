@@ -25,9 +25,92 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
     <style type="text/css">
     </style>
 
+</head>
+
+<body>
+    <table width="1200" height="" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td valign="top">
+                <table width="100%" height="600" border="0" cellpadding="0" cellspacing="0" >
+                    <tr>
+                        <?php require_once dirname(__FILE__) . '/layouts/top.php'; ?>
+                    </tr>
+                    <tr>
+                        <?php require_once dirname(__FILE__) . '/layouts/menu.php'; ?>
+
+                        <td width="1118" valign="top" class="top_colr">
+                            <!-- InstanceBeginEditable name="EditRegion1" -->
+                            <div style="width:100%; height:528px; overflow: auto;">
+                                <table style="width:100%; height:348;" align="center" cellpadding="0" cellspacing="1" class="main_sbar">
+                                    <tr>
+                                        <td align="center">
+                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top_table1">
+                                                <tr>
+                                                    <td width="100%">
+                                                        <table width="100%" align="center" cellpadding="1" cellspacing="0" class="top_tab">
+                                                            <tr>
+                                                                <td width="3%">&nbsp;</td>
+                                                                <td width="90%"><strong>預算填報</strong></td>
+                                                                <td width="7%">
+                                                                    <div align="right">
+                                                                        <strong>
+                                                                            <img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" />&nbsp;
+                                                                            <img src="images/trash-empty16x16.png" width="16" height="16" border="0" />&nbsp;
+                                                                        </strong>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                            <?php require_once dirname(__FILE__) . '/layouts/p002.php'; ?>
+                                            <!-- <iframe src="p002.php" name="list1" width="100%" height="352" id="list1" scrolling="Yes" frameborder="no" border="0 framespacing=" 0"></iframe> -->
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="bottom_table">
+                                <tr>
+                                    <td>
+                                        <table width="100%" cellpadding="1" cellspacing="0">
+                                            <tr>
+                                                <td width="77" bgcolor="#FFFFFF" class="bottom">
+                                                    <div align="center">總計</div>
+                                                </td>
+                                                <td width="329" class="bottom">1,530,330.00</td>
+                                                <td width="48" class="bottom">&nbsp;</td>
+                                                <td width="50" class="bottom">&nbsp;</td>
+                                                <td width="49" class="bottom">　 </td>
+                                                <td width="84" class="bottom">&nbsp;</td>
+                                                <td width="84" class="bottom">&nbsp;</td>
+                                                <td width="75" class="bottom">&nbsp;</td>
+                                                <td width="113" class="bottom">&nbsp;</td>
+                                                <td width="76" class="bottom">&nbsp;</td>
+                                                <td width="52" class="bottom">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- InstanceEndEditable -->
+                            <!-- InstanceBeginEditable name="EditRegion2" -->
+                            <?php require_once dirname(__FILE__) . '/layouts/edit002.php'; ?>
+                            <!-- InstanceEndEditable -->
+                        </td>
+                    </tr>
+                </table>
+                <?php require_once dirname(__FILE__) . '/layouts/bottom.php'; ?>
+            </td>
+        </tr>
+    </table>
+    
+
     <?php require_once dirname(__FILE__).'/layouts/script.php'; ?>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="Scripts/switchmenu.js" type="text/javascript"></script>
     <script src="Scripts/test1.js" type="text/javascript" defer ></script>
     <script>
         // $(document).ready(function() {
@@ -281,89 +364,6 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             });
         }
     </script>
-
-</head>
-
-<body>
-    <table width="1200" height="" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-            <td valign="top">
-                <table width="100%" height="600" border="0" cellpadding="0" cellspacing="0" >
-                    <tr>
-                        <?php require_once dirname(__FILE__) . '/layouts/top.php'; ?>
-                    </tr>
-                    <tr>
-                        <?php require_once dirname(__FILE__) . '/layouts/menu.php'; ?>
-
-                        <td width="1118" valign="top" class="top_colr">
-                            <!-- InstanceBeginEditable name="EditRegion1" -->
-                            <div style="width:100%; height:528px; overflow: auto;">
-                                <table style="width:100%; height:348;" align="center" cellpadding="0" cellspacing="1" class="main_sbar">
-                                    <tr>
-                                        <td align="center">
-                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top_table1">
-                                                <tr>
-                                                    <td width="100%">
-                                                        <table width="100%" align="center" cellpadding="1" cellspacing="0" class="top_tab">
-                                                            <tr>
-                                                                <td width="3%">&nbsp;</td>
-                                                                <td width="90%"><strong>預算填報</strong></td>
-                                                                <td width="7%">
-                                                                    <div align="right">
-                                                                        <strong>
-                                                                            <img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" />&nbsp;
-                                                                            <img src="images/trash-empty16x16.png" width="16" height="16" border="0" />&nbsp;
-                                                                        </strong>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </table>
-
-                                            <?php require_once dirname(__FILE__) . '/p002.php'; ?>
-                                            <!-- <iframe src="p002.php" name="list1" width="100%" height="352" id="list1" scrolling="Yes" frameborder="no" border="0 framespacing=" 0"></iframe> -->
-
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="bottom_table">
-                                <tr>
-                                    <td>
-                                        <table width="100%" cellpadding="1" cellspacing="0">
-                                            <tr>
-                                                <td width="77" bgcolor="#FFFFFF" class="bottom">
-                                                    <div align="center">總計</div>
-                                                </td>
-                                                <td width="329" class="bottom">1,530,330.00</td>
-                                                <td width="48" class="bottom">&nbsp;</td>
-                                                <td width="50" class="bottom">&nbsp;</td>
-                                                <td width="49" class="bottom">　 </td>
-                                                <td width="84" class="bottom">&nbsp;</td>
-                                                <td width="84" class="bottom">&nbsp;</td>
-                                                <td width="75" class="bottom">&nbsp;</td>
-                                                <td width="113" class="bottom">&nbsp;</td>
-                                                <td width="76" class="bottom">&nbsp;</td>
-                                                <td width="52" class="bottom">&nbsp;</td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                            <!-- InstanceEndEditable -->
-                            <!-- InstanceBeginEditable name="EditRegion2" -->
-                            <?php require_once dirname(__FILE__) . '/edit001.php'; ?>
-                            <!-- InstanceEndEditable -->
-                        </td>
-                    </tr>
-                </table>
-                <?php require_once dirname(__FILE__) . '/layouts/bottom.php'; ?>
-            </td>
-        </tr>
-    </table>
 </body>
 
 </html>

@@ -105,12 +105,12 @@ include_once dirname(__FILE__) . '/config.php';
                                 </a>
                               </td>
                               <td>
-                                <a href="index06_2.htm" target="_parent" onmouseover="MM_swapImage('Image2','','images/ma_02.png',1)" onmouseout="MM_swapImgRestore()">
+                                <a href="accounts.php" alt="帳號權限管理" target="_parent" onmouseover="MM_swapImage('Image2','','images/ma_02.png',1)" onmouseout="MM_swapImgRestore()">
                                   <img src="images/m_02.png" name="Image2" width="190" height="170" border="0" id="Image2" />
                                 </a>
                               </td>
                               <td>
-                                <a href="index06_3.htm" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image3','','images/ma_03.png',1)">
+                                <a href="projects.php" alt="專案備份維護" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image3','','images/ma_03.png',1)">
                                   <img src="images/m_03.png" name="Image3" width="194" height="170" border="0" id="Image3" />
                                 </a>
                               </td>
@@ -118,22 +118,22 @@ include_once dirname(__FILE__) . '/config.php';
                             </tr>
                             <tr>
                               <td height="58">
-                                <a href="index06_4.htm" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image4','','images/ma_05.png',1)">
+                                <a href="index06_4.htm" alt="料號分類設定" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image4','','images/ma_05.png',1)">
                                   <img src="images/m_05.png" name="Image4" width="193" height="169" border="0" id="Image4" />
                                 </a>
                               </td>
                               <td>
-                                <a href="index06_5.htm" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image5','','images/ma_06.png',1)">
+                                <a href="index06_5.htm" alt="工項編碼維護" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image5','','images/ma_06.png',1)">
                                   <img src="images/m_06.png" name="Image5" width="190" height="169" border="0" id="Image5" />
                                 </a>
                               </td>
                               <td>
-                                <a href="index06_6.htm" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image7','','images/ma_07.png',1)">
+                                <a href="index06_6.htm" alt="工料編碼維護" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image7','','images/ma_07.png',1)">
                                   <img src="images/m_07.png" name="Image7" width="194" height="169" border="0" id="Image7" />
                                 </a>
                               </td>
                               <td>
-                                <a href="index06_7.htm" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image8','','images/ma_08.png',1)">
+                                <a href="index06_7.htm" alt="單價分析維護" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image8','','images/ma_08.png',1)">
                                   <img src="images/m_08.png" name="Image8" width="206" height="169" border="0" id="Image8" />
                                 </a>
                               </td>

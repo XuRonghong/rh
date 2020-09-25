@@ -64,7 +64,7 @@ if (isset($_FILES['file']) && !empty($_FILES['file']["name"])) {
         //tmp_name:上傳成功後的臨時檔案
         //size:上傳檔案的大小
         //error:上傳檔案的錯誤資訊
-        $uploaddir = "../storage/"; //選擇要上傳的檔案存放目錄
+        $uploaddir = "../storage/".$tablename."/"; //選擇要上傳的檔案存放目錄
         //$uploadfile=$uploaddir.basename($file['name']);//獲得上傳檔案的名稱
 
         //解析檔案的名字
