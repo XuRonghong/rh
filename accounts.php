@@ -105,68 +105,39 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
   <!-- Custom scripts for all pages-->
   <script src="Scripts/sb-admin-2.min.js"></script>
   <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <!-- <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
+  <script src="vendor/xtreme-admin/assets/extra-libs/DataTables/datatables.min.js"></script>
+  <script src="vendor/xtreme-admin/dist/js/pages/datatable/datatable-basic.init.js"></script>
 
   <script src="Scripts/test1.js" type="text/javascript" defer></script>
   <script>
     $(document).ready(function() {
 
       // $('#dataTable').DataTable();
-
-      let table = $('#data_table').dataTable({
-        "columns": [{
-            "title": "單位統編",
-            "data": "Code1",
-            "render": function(data, type, row, meta) {
-              return data;
-            }
-          }, 
-          {
-            "title": "帳號",
-            "data": "Account",
-            "render": function(data, type, row, meta) {
-              return data;
-            }
-          }, 
-          {
-            "title": "使用人員",
-            "data": "Name",
-            "render": function(data, type, row, meta) {
-              return data;
-            }
-          }, 
-          {
-            "title": "系統權限",
-            "data": "System",
-            "render": function(data, type, row, meta) {
-              return data;
-            }
-          }, 
-          {
-            "title": "專案權限",
-            "data": "Project",
-            "render": function(data=0, type, row, meta) {
-              return data? data : '';
-            }
-          }, 
-          {
-            "sTitle": "建立時間",
-            "mData": "created_at",
-            // "sName": "id",
-            "width": "40px",
-            "bSortable": false,
-            "bSearchable": false,
-            "sName": "operate",
-            "mRender": function(data=0, type, row, meta) {
-              return data? data.substr(0, 4) + '/' + data.substr(5, 2) + '/' + data.substr(8, 2) : '';
-            }
-          }, 
-        ],
+      var table = $('#data_table').dataTable({
+        "bServerSide": true,
+        // "stateSave": true,
+        "scrollX": true,
+        "scrollY": '40vh',
+        'bProcessing': true,
+        // 'sServerMethod': 'GET',
+        // "sAjaxSource": 'ajax/api_datatable.php',
         "searching": true, //搜尋功能, 預設是開啟
         "paging": true, //分頁功能, 預設是開啟
         "ordering": true, //排序功能, 預設是開啟
-        "lengthMenu": [10, 20, 50],
+        "pageLength": 3,
+        "lengthMenu": [3, 2, 10, 20, 50],
+        "order": [
+          [0, "desc"]
+        ],
+        "autoWidth": true,
+        // "dom": `<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>
+        //       <'row'<'col-sm-12'tr>>
+        //       <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>`,
+        "oLanguage": {
+          "sSearch": 'Search:<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+        },
         "language": {
           "processing": "處理中...",
           "loadingRecords": "載入中...",
@@ -188,19 +159,10 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             "sortDescending": ": 降冪排列"
           }
         },
-        // "dom": `<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>
-        //       <'row'<'col-sm-12'tr>>
-        //       <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>`,
-        "serverSide": true,
-        // "stateSave": true,
-        "scrollX": true,
-        "scrollY": '40vh',
-        'bProcessing': true,
-        // 'sServerMethod': 'GET',
-        "order": [
-          [0, "desc"]
-        ],
         "ajax": {
+          "headers": {
+            'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
+          },
           "url": "ajax/api_datatable.php", //要抓哪個地方的資料
           "type": "GET", //使用什麼方式抓
           "data": {
@@ -209,23 +171,74 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             // 'key': 'id',
             // 'value': id
           },
+          "dataSrc": 'data',
           "dataType": 'json', //回傳資料的類型
           // "success": function() {
           //   console.log("你是右邊!!")
           // }, //成功取得回傳時的事件
-          "error": function() {
-            console.log("資料取得失敗 回去檢討檢討")
-          } //失敗事件
+          "error": function (XMLHttpRequest, textStatus, errorThrown) {
+              // 通常情況下textStatus和errorThown只有其中一個有值 
+              // console.log(XMLHttpRequest)
+              console.error('('+XMLHttpRequest.status+') '+XMLHttpRequest.responseText+' ;'+textStatus)
+          }
         },
-        // "sAjaxSource": 'ajax/api_datatable.php',
-        // "ajax": 'ajax/api_datatable.php',
-        // "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>" +
-        //     "t" +
-        //     "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-        // "autoWidth": true,
-        // "oLanguage": {
-        //   "sSearch": 'Search:<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-        // },
+        "columns": [{
+            "title": "單位統編",
+            "data": "Code1",
+            "bSortable": true,
+            "bSearchable": true,
+            "render": function(data, type, row, meta) {
+              return data;
+            }
+          },
+          {
+            "title": "帳號",
+            "data": "Account",
+            "bSortable": false,
+            "bSearchable": true,
+            "render": function(data, type, row, meta) {
+              return data;
+            }
+          },
+          {
+            "title": "使用人員",
+            "data": "Name",
+            "bSortable": false,
+            "bSearchable": true,
+            "render": function(data, type, row, meta) {
+              return data;
+            }
+          },
+          {
+            "title": "系統權限",
+            "data": "System",
+            "bSortable": false,
+            "bSearchable": false,
+            "render": function(data, type, row, meta) {
+              return data;
+            }
+          },
+          {
+            "title": "專案權限",
+            "data": "Project",
+            "bSortable": false,
+            "bSearchable": false,
+            "render": function(data = 0, type, row, meta) {
+              return data ? data : '';
+            }
+          },
+          {
+            "sTitle": "建立時間",
+            "mData": "created_at",
+            // "sName": "id",
+            "width": "40px",
+            "bSortable": false,
+            "bSearchable": false,
+            "mRender": function(data = 0, type, row, meta) {
+              return data ? data.substr(0, 4) + '/' + data.substr(5, 2) + '/' + data.substr(8, 2) : '';
+            }
+          },
+        ],
       });
       $.fn.dataTable.ext.errMode = 'throw';
 

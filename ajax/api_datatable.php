@@ -3,68 +3,97 @@ include_once dirname(__DIR__) . '/config.php';
 /*
 * api設計，對表動作Create、Read、Update、Delete
 */
+$gets = filterVar($_GET);
+$posts = filterVar($_POST);
+$request = filterVar($_REQUEST);
 
 
 try {
+    array_except($request, '_token');
 
-    $posts = filterVar($_REQUEST);
+    $tablename = $request['table'];
 
-    array_except($posts, '_token');
 
-    $tablename = $posts['table'];
+    if ($request['router'] == 'get') {
 
-    if ($posts['router'] == 'get') {
+        $sort_arr = [];
+        $search_arr = [];
+        $search_word =    $request['search'] ?? '';
+        $iDisplayLength = $request['length'] ?? $request['iDisplayLength'] ?? 0;
+        $iDisplayStart =  $request['start'] ?? $request['iDisplayStart'] ?? 0;
+        $sEcho =          $request['sEcho'] ?? '';
+        $column_arr =     $request['columns'] ?? '';
+        $order_arr =     $request['order'] ?? '';
+        // $column_arr = explode( ',', $column_arr );
+        foreach ($column_arr as $key => $item) {
+            if ($item['data'] == "") {
+                unset($column_arr[$key]);
+                continue;
+            }
+            if ($item['searchable'] == "true") {
+                $search_arr[$key] = $item['data'];
+            }
+            if ($item['orderable'] == "true") {
+                $sort_arr[$key] = $item['data'];
+            }
+        }
+        $sort_name = $sort_arr[$order_arr[0]['column']] ?? 'id';
+        $sort_dir = $order_arr[0]['dir'] ?? 'ASC';
 
-        // $params = array($posts['key'] => $posts['value']);
-        // $rows = getMultiRow("SELECT * FROM {$tablename} where `{$posts['key']}`=:{$posts['key']} ", $params);
 
-        $params = array($posts['key'] => $posts['value']);
-        $rows = getMultiRow("SELECT * FROM {$tablename} where 1 ");
+        $map = array();
+        $params = array();
+        $map['status'] = 1;     //未被刪除
+        $queryStr = implodeSQL($map, $params);
+        $queryStr = $queryStr != '' ? $queryStr : ' 1 ';
 
-        $rtn = array(
-            'status' => 1,
-            // 'sEcho' => '',
-            // 'iTotalDisplayRecords' => 1,
-            // 'iTotalRecords' => 1,
-            'message' => 'db query success',
-            'data' => $rows
-        );
-    } else if ($posts['router'] == 'create') {
+        if ($search_word['value'] && $search_arr) {
+            $queryStr .= ' AND ( 0';
+            foreach ($search_arr as $item) {
+                $queryStr .= ' OR ' . $item . ' LIKE ' . '"%' . $search_word['value'] . '%"';
+            }
+            $queryStr .= ' ) ';
+        }
 
-        $datas = $posts;
-        $datas['created_at'] = date('Y-m-d H:i:s');
-        array_except($datas, ['router', 'table', 'key', 'value']);  //不寫入資料庫欄位
-        $rs = dataInsert($tablename, $datas);
 
-        $rtn = array('status' => $rs, 'message' => 'db insert success', 'code' => 200);
-        logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功新增" . $rs . "筆資料");
-    } else if ($posts['router'] == 'update') {
+        $sql = "SELECT COUNT(*) " .
+            "FROM {$tablename} " .
+            "WHERE {$queryStr} ";
+        $total_count = getSingleValue($sql, $params);
 
-        $params = array($posts['key'] => $posts['value']);
-        $datas = $posts;
-        $datas['updated_at'] = date('Y-m-d H:i:s');
-        array_except($datas, ['router', 'table', 'key', 'value']);  //不寫入資料庫欄位
-        $rs = dataUpdate($tablename, $datas, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);
+        $sql = "SELECT * " .
+            "FROM {$tablename} " .
+            "WHERE {$queryStr} " .
+            "ORDER BY {$sort_name} {$sort_dir} " .
+            "LIMIT {$iDisplayStart}, {$iDisplayLength} ";
+        $rows = getMultiRow($sql, $params);
+        // dd($sql);
 
-        $rtn = array('status' => $rs, 'message' => 'db update success', 'code' => 200);
-        logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功更新" . $rs . "筆資料");
-    } else if ($posts['router'] == 'delete') {
-
-        $params = array($posts['key'] => $posts['value']);
-
-        $datas = [];
-        $datas['open'] = '0';
-        $datas['updated_at'] = date('Y-m-d H:i:s');
-        $rs = dataUpdate($tablename, $datas, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);
-        // $rs = dataDelete($tablename, $posts, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);
-
-        $rtn = array('status' => $rs, 'message' => 'db delete success', 'code' => 200);
-        logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功刪除" . $rs . "筆資料");
+        if ($rows) {
+            foreach ($rows as $key => $var) {
+            }
+            $rtn = array(
+                'status' => 1,
+                'message' => 'db query success',
+                'sEcho' => $sEcho,
+                'iTotalDisplayRecords' => $total_count,
+                'iTotalRecords' => $total_count,
+                'data' => $rows
+            );
+        } else {
+            $rtn = array(
+                'status' => 0,
+                'message' => 'Oops! 沒有使用者資訊!',
+                'sEcho' => '',
+                'iTotalDisplayRecords' => 0,
+                'iTotalRecords' => 0,
+                'data' => $rows
+            );
+        }
     }
 
     echo json_encode($rtn, JSON_UNESCAPED_UNICODE);
 } catch (Exception $e) {
     $err = array('status' => 0, 'message' => $e->getMessage(), 'code' => $e->getCode());
-
     echo json_encode($err, JSON_UNESCAPED_UNICODE);
 }
