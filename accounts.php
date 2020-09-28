@@ -26,7 +26,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
   <link href="css/master.css" rel="stylesheet" type="text/css">
 
   <!-- Custom fonts for this template -->
-  <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
+  <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> --> -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
   <!-- Custom styles for this template -->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -126,18 +126,18 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         "searching": true, //搜尋功能, 預設是開啟
         "paging": true, //分頁功能, 預設是開啟
         "ordering": true, //排序功能, 預設是開啟
-        "pageLength": 3,
-        "lengthMenu": [3, 2, 10, 20, 50],
+        "pageLength": 10,
+        "lengthMenu": [5, 10, 20, 50],
         "order": [
-          [0, "desc"]
+          [1, "desc"]
         ],
         "autoWidth": true,
         // "dom": `<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>
         //       <'row'<'col-sm-12'tr>>
         //       <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>`,
-        "oLanguage": {
-          "sSearch": 'Search:<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-        },
+        // "oLanguage": {
+        //   "sSearch": 'Search:<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+        // },
         "language": {
           "processing": "處理中...",
           "loadingRecords": "載入中...",
@@ -183,8 +183,18 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
           }
         },
         "columns": [{
+            "title": "ID",
+            "data": "id",
+            "width": "5%",
+            "bSortable": false,
+            "bSearchable": false,
+            "render": function(data, type, row, meta) {
+              return data;
+            }
+          },{
             "title": "單位統編",
             "data": "Code1",
+            "width": "15%",
             "bSortable": true,
             "bSearchable": true,
             "render": function(data, type, row, meta) {
@@ -231,7 +241,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             "sTitle": "建立時間",
             "mData": "created_at",
             // "sName": "id",
-            "width": "40px",
+            // "width": "40px",
             "bSortable": false,
             "bSearchable": false,
             "mRender": function(data = 0, type, row, meta) {
