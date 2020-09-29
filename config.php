@@ -74,8 +74,13 @@ if (isset($Request['_token'])) {
     }
 }
 
+
 //record guest 
-logInsert('log_read', 0, "Request!!");
+if(strpos($_SERVER['REQUEST_URI'], 'api' )) {
+    logInsert('log_read', 0, "API");
+} else {
+    logInsert('log_read', 0, "Request!!");
+}
 
 
 //沒有登入驗證成功，導回登入
@@ -88,3 +93,42 @@ if ($_SERVER['REQUEST_URI'] != '/'.APP_NAME.'/login.php' && !strpos($_SERVER['RE
 if ( strpos($_SERVER['REQUEST_URI'], '/ajax/api_upload.php') && !strpos($_SERVER['HTTP_REFERER'], 'unit_edit') ) {
     header("location: index.php");
 }
+
+
+/* select options */
+//Building建物用途:
+$buildingConf = [
+   '1' => '一般住宅',
+   '2' => '高層住宅',
+   '3' => '別墅透天',
+   '4' => '工業廠房',
+   '5' => '辦 公 室',
+   '6' => '辦公廠房',
+   '7' => '大 賣 場',
+   '8' => '學    校',
+   '9' => '體 育 館',
+   '10' => '活動中心',
+   '11' => '宗廟塔寺',
+   '12' => '停 車 場',
+   '13' => '庭園景觀',
+   '14' => '土木工程',
+   '15' => '其他'
+];
+
+// Structure1	建造模式	char	20	Y	(DATA)
+/*
+// Structure2	結構型式	char	20	Y	(DATA)
+$structure2_conf = [
+    1.RC鋼筋混凝土
+    2.SRC全鋼骨鋼筋混凝土
+    3.SC.鋼骨混凝土
+    4.SS鋼結構
+    5.SRC續接RC鋼骨鋼筋混凝土
+    6.PCa預鑄結構
+    7.其他
+];
+Structure3	建造工法	char	20	Y	(DATA)
+Retaining patterns	擋土開挖	char	20	Y	(DATA)
+Facades	外牆型態	char	20	Y	(DATA)
+
+Regional	地理區域	char	10	N	10地理分區(DATA)*/

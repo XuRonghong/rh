@@ -96,7 +96,6 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
 
 
   <?php require_once dirname(__FILE__) . '/layouts/script.php'; ?>
-
   <!-- Bootstrap core JavaScript-->
   <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
