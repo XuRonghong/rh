@@ -43,9 +43,10 @@ try {
 
         $map = array();
         $params = array();
-        $map['status'] = 1;     //未被刪除
+        //$map['status'] = 1;     //未被刪除
         $queryStr = implodeSQL($map, $params);
         $queryStr = $queryStr != '' ? $queryStr : ' 1 ';
+        $queryStr .= ' AND status > 0 ';
 
         if ($search_word['value'] && $search_arr) {
             $queryStr .= ' AND ( 0';

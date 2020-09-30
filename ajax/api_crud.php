@@ -33,7 +33,7 @@ $tablename = $posts['table'];
         
         $datas = $posts;
         $datas['created_at'] = date('Y-m-d H:i:s');
-        array_except($datas, ['router', 'table', 'key', 'value']);  //不寫入資料庫欄位
+        array_except($datas, ['router', 'table', 'key', 'value', 'id']);  //不寫入資料庫欄位
         $rs = dataInsert($tablename, $datas);
     
         $rtn = array('status' => $rs, 'message' => 'db insert success', 'code' => 200);
@@ -56,8 +56,8 @@ $tablename = $posts['table'];
     
         $params = array($posts['key'] => $posts['value']);
 
-        $datas = [];
-        $datas['open'] = '0';
+        $datas = $posts;
+        array_except($datas, ['router', 'table', 'key', 'value', 'id']);  //不寫入資料庫欄位
         $datas['updated_at'] = date('Y-m-d H:i:s');
         $rs = dataUpdate($tablename, $datas, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);
         // $rs = dataDelete($tablename, $posts, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);

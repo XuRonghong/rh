@@ -77,7 +77,7 @@ if (isset($Request['_token'])) {
 
 //record guest 
 if(strpos($_SERVER['REQUEST_URI'], 'api' )) {
-    logInsert('log_read', 0, "API");
+    logInsert('log_action', 0, "API");
 } else {
     logInsert('log_read', 0, "Request!!");
 }
@@ -97,7 +97,7 @@ if ( strpos($_SERVER['REQUEST_URI'], '/ajax/api_upload.php') && !strpos($_SERVER
 
 /* select options */
 //Building建物用途:
-$buildingConf = [
+$building_conf = [
    '1' => '一般住宅',
    '2' => '高層住宅',
    '3' => '別墅透天',
@@ -116,19 +116,78 @@ $buildingConf = [
 ];
 
 // Structure1	建造模式	char	20	Y	(DATA)
-/*
+
+
 // Structure2	結構型式	char	20	Y	(DATA)
 $structure2_conf = [
-    1.RC鋼筋混凝土
-    2.SRC全鋼骨鋼筋混凝土
-    3.SC.鋼骨混凝土
-    4.SS鋼結構
-    5.SRC續接RC鋼骨鋼筋混凝土
-    6.PCa預鑄結構
-    7.其他
+   '1' => 'RC鋼筋混凝土',
+   '2' => 'SRC全鋼骨鋼筋混凝土',
+   '3' => 'SC鋼骨混凝土',
+   '4' => 'SS鋼結構',
+   '5' => 'SRC續接RC鋼骨鋼筋混凝土',
+   '6' => 'PCa預鑄結構',
+   '7' => '其他'
 ];
-Structure3	建造工法	char	20	Y	(DATA)
-Retaining patterns	擋土開挖	char	20	Y	(DATA)
-Facades	外牆型態	char	20	Y	(DATA)
 
-Regional	地理區域	char	10	N	10地理分區(DATA)*/
+//Structure3	建造工法	char	20	Y	(DATA)',
+$structure3_conf = [
+   '1' => '順    打',
+   '2' => '雙 順 打',
+   '3' => '逆    打',
+   '4' => '半 逆 打',
+   '5' => '其他'
+];
+
+//Retaining patterns	擋土開挖	char	20	Y	(DATA)',
+$rp_conf = [
+   '1' => '連 續 壁',
+   '2' => '擋土排樁',
+   '3' => '鋼 軌 樁',
+   '4' => '鋼 板 樁',
+   '5' => '明挖工法',
+   '6' => '島式工法',
+   '7' => '其他型式'
+];
+
+//Facades	外牆型態	char	20	Y	(DATA)',
+$facades_conf = [
+   '1' => 'RC外牆',
+   '2' => '玻璃帷幕',
+   '3' => 'PC版預鑄',
+   '4' => '其他'
+];
+
+
+//Regional	地理區域	char	10	N	10地理分區(DATA)
+$regional_conf = [
+    '台北市',
+    '北部(新北, 桃園, 新竹, 苗栗)',
+    '中部(台中, 彰化, 南投, 雲林, 嘉義)',
+    '南部(台南, 高雄, 屏東)',
+    '東北部(基隆, 宜蘭)',
+    '東部(花蓮)東南部(台東)',
+    '澎湖.金門.馬祖'
+];
+
+//工程縣市
+$area_conf = [
+    '台北',
+    '新北',
+    '桃園',
+    '新竹',
+    '苗栗',
+    '台中',
+    '彰化',
+    '南投',
+    '雲林',
+    '嘉義',
+    '台南',
+    '高雄',
+    '屏東基隆',
+    '宜蘭',
+    '花蓮',
+    '台東',
+    '澎湖',
+    '金門',
+    '馬祖'
+];

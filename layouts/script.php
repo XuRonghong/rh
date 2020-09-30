@@ -4,6 +4,51 @@
 <script src="Scripts/switchmenu.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+    //非同步傳輸資料
+    function ajax_crud(u, r, t, k, v, datas = []) {
+        var data = {
+            'router': r,
+            'table': t,
+            'key': k,
+            'value': v
+        }
+        //假如還有資料就填充上去
+        for (let key in datas) {
+            // data.push({key : datas[key]})
+            data[key] = datas[key]
+        }
+        var url = window.location.href
+        url = url.split('?')[0] || ''
+        
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
+            },
+            url: u,
+            type: 'POST',
+            data: data,
+            dataType : 'json',
+            cache: false,
+            resetForm: true,
+            success: function(rtndata) {
+                // rtndata = JSON.parse(rtndata)
+                if (rtndata.id) {
+                    url + '?show=' + rtndata.id
+                }
+                location.href = url 
+
+                // setTimeout(function () { location.href = data.redirectUrl }, 500)
+                // toastr.error(data.message, "{{trans('web_alert.notice')}}").css("width","360px")
+                // Swal.fire("{{trans('web_alert.error')}}", JSON.stringify(data.errors), "error");
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                // 通常情況下textStatus和errorThown只有其中一個有值 
+                console.error('(' + XMLHttpRequest.status + ')' + XMLHttpRequest.readyState + ';' + textStatus)
+            }
+        });
+    }
+
+
     document.addEventListener("DOMContentLoaded", function() {
         $(".btn-logout").click(function() {
             $.ajax({
@@ -39,7 +84,7 @@
         });
     })
 
-    
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();

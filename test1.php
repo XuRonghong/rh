@@ -218,8 +218,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             //切換修改功能
             $('.btn-title').closest('tr').find('td:not(.opera)').click(function() {
                 var id = $(this).closest('tr').find('.btn-title').data('id') || ''  
-                var floor = $(this).closest('tr').data('f') || ''  
-                console.log(floor)
+                var floor = $(this).closest('tr').data('f') || '' 
                 //
                 $('#router').val('update')
                 $('#id').val(id)
@@ -330,39 +329,6 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             });
         })
 
-        //非同步傳輸資料
-        function ajax_crud(u, r, t, k, v, datas=[])
-        {
-            var data = { 'router' : r, 'table' : t, 'key' : k, 'value' : v }
-            //假如還有資料就填充上去
-            for (let key in datas) {
-                // data.push({key : datas[key]})
-                data[key] = datas[key]
-            }       
-            var url = window.location.href
-            url = url.split('?')[0] || ''
-            $.ajax({
-                headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
-                url: u,
-                type: 'POST',
-                data: data,
-                cache: false,
-                resetForm: true,
-                success: function(rtndata) {
-                    rtndata = JSON.parse(rtndata)       
-                    // console.log(rtndata)             
-                    location.href = url + '?show=' + rtndata.id
-
-                    // setTimeout(function () { location.href = data.redirectUrl }, 500)
-                    // toastr.error(data.message, "{{trans('web_alert.notice')}}").css("width","360px")
-                    // Swal.fire("{{trans('web_alert.error')}}", JSON.stringify(data.errors), "error");
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    // 通常情況下textStatus和errorThown只有其中一個有值 
-                    console.error('status:'+XMLHttpRequest.status+';rs:'+XMLHttpRequest.readyState+';ts:'+textStatus)
-                }
-            });
-        }
     </script>
 </body>
 

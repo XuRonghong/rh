@@ -12,3 +12,23 @@
 .btn-submit {
 	cursor: pointer;
 }
+
+.txt {
+	text-align: center;
+}
+.ipt {
+	width: 30px;
+	display: none;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*Datatables框架中使用到serverSide，伺服器查詢資料屬性，它會使Table標籤中多一個style=”width:**px;”屬性，導致變化大小標題對不齊現象。*/
+.table-responsive {
+	width: 100% !important; 
+}
+#data_table {
+	font-family: Microsoft JhengHei;	/*微軟正黑體語法*/
+	color: black;
+}

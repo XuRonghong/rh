@@ -26,7 +26,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
   <link href="css/master.css" rel="stylesheet" type="text/css">
 
   <!-- Custom fonts for this template -->
-  <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> --> -->
+  <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
   <!-- Custom styles for this template -->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -74,7 +74,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
 
                   <div class="card-body">
                     <div class="table-responsive">
-                      <table class="table table-bordered" id="data_table" width="100%" cellspacing="0">
+                      <table class="table table-bordered" id="data_table">
                       </table>
                     </div>
                   </div>
@@ -114,29 +114,24 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
     $(document).ready(function() {
 
       // $('#dataTable').DataTable();
-      var table = $('#data_table').dataTable({
+      let table = $('#data_table').dataTable({
         "bServerSide": true,
         // "stateSave": true,
         "scrollX": true,
         "scrollY": '40vh',
         'bProcessing': true,
-        // 'sServerMethod': 'GET',
-        // "sAjaxSource": 'ajax/api_datatable.php',
         "searching": true, //搜尋功能, 預設是開啟
         "paging": true, //分頁功能, 預設是開啟
         "ordering": true, //排序功能, 預設是開啟
         "pageLength": 10,
         "lengthMenu": [5, 10, 20, 50],
         "order": [
-          [1, "desc"]
+          [1, "asc"]
         ],
         "autoWidth": true,
-        // "dom": `<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>
-        //       <'row'<'col-sm-12'tr>>
-        //       <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>`,
-        // "oLanguage": {
-        //   "sSearch": 'Search:<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-        // },
+        "dom": `<'row'<'col-sm-12 col-md-2'l><'col-sm-12 col-md-10'f>>
+              <'row'<'col-sm-12'tr>>
+              <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>`,
         "language": {
           "processing": "處理中...",
           "loadingRecords": "載入中...",
@@ -158,6 +153,8 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             "sortDescending": ": 降冪排列"
           }
         },
+        // 'sServerMethod': 'GET',
+        // "sAjaxSource": 'ajax/api_datatable.php',
         "ajax": {
           "headers": {
             'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
@@ -175,10 +172,10 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
           // "success": function() {
           //   console.log("你是右邊!!")
           // }, //成功取得回傳時的事件
-          "error": function (XMLHttpRequest, textStatus, errorThrown) {
-              // 通常情況下textStatus和errorThown只有其中一個有值 
-              // console.log(XMLHttpRequest)
-              console.error('('+XMLHttpRequest.status+') '+XMLHttpRequest.responseText+' ;'+textStatus)
+          "error": function(XMLHttpRequest, textStatus, errorThrown) {
+            // 通常情況下textStatus和errorThown只有其中一個有值 
+            // console.log(XMLHttpRequest)
+            console.error('(' + XMLHttpRequest.status + ') ' + XMLHttpRequest.responseText + ' ;' + textStatus)
           }
         },
         "columns": [{
@@ -190,7 +187,21 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             "render": function(data, type, row, meta) {
               return data;
             }
-          },{
+          },
+          {
+            "sTitle": "Rank",
+            "mData": "rank",
+            "sName": "rank",
+            "bSearchable": false,
+            "width": "5%",
+            "mRender": function(data, type, row) {
+              let btn = '';
+              btn += '<div class="txt txtRank" >' + data + '</div>';
+              btn += '<input class="ipt iptRank" name="rank" size="1" type="text" value="' + data + '"></input>';
+              return btn;
+            }
+          },
+          {
             "title": "單位統編",
             "data": "Code1",
             "width": "15%",
@@ -237,14 +248,40 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             }
           },
           {
+            "sTitle": "啟用",
+            "mData": "active",
+            "width": "9%",
+            "bSortable": false,
+            "bSearchable": false,
+            "render": function(data = 0, type, row, meta) {
+              return data==1 ? '啟用' : '未啟用';
+            }
+          },
+          {
             "sTitle": "建立時間",
             "mData": "created_at",
-            // "sName": "id",
-            // "width": "40px",
+            "width": "15%",
             "bSortable": false,
             "bSearchable": false,
             "mRender": function(data = 0, type, row, meta) {
-              return data ? data.substr(0, 4) + '/' + data.substr(5, 2) + '/' + data.substr(8, 2) : '';
+              // return data ? data.substr(0, 4) + '/' + data.substr(5, 2) + '/' + data.substr(8, 2) : '';
+              return data;
+            }
+          },
+          {
+            "sTitle": '<input type="button" name="btn-add" class="btn-add" value="新增" data-id="0" />',
+            "bSortable": false,
+            "bSearchable": false,
+            "width": "12%",
+            "mRender": function(data, type, row) {
+              // current_data[row.iId] = row;
+              // btn = '<button class="btn btn-xs btn-default btn-attributes" title="全部資訊"><i class="fa fa-book" aria-hidden="true"></i></button>';
+              let btn = '';
+              // btn +='<button class="btn btn-xs btn-default btn-edit" title="修改"><i class="fa fa-pencil" aria-hidden="true">修改</i></button>';
+              // btn += '<button class="pull-right btn btn-xs btn-default btn-del" title="刪除"><i class="fa fa-trash" aria-hidden="true"></i></button>';
+              btn += '<input type="button" name="btn-edit" class="btn-edit" value="修改" data-id="' + row.id + '" />';
+              btn += '<input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="' + row.id + '" />';
+              return btn;
             }
           },
         ],
@@ -252,73 +289,53 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
       $.fn.dataTable.ext.errMode = 'throw';
 
 
-      //被選取效果(Jquery寫法)
-      $('.feat').click(function() {
-        $('.btn-title').parent('tr').find('td:not(.list1)').removeClass('td_point')
-        $(this).find('td:not(.list1)').addClass('td_point')
+      //點擊即編輯
+      table.on('click', '.txt', function() {
+        $('.txt').show()
+        $(this).hide()
+        $('.ipt').hide()
+        $(this).siblings('.ipt').show()
       })
 
+      //為了消除編輯模式
+      table.mouseleave(function() {
+        $('.txt').show()
+        $('.ipt').hide()
+      })
 
-      //切換新增功能
+      //異動即更新
+      table.on('change', '.ipt', function() {
+        let n = $(this).prop('name') || ''
+        if (n == 'undefined' || n == '') {
+          return null
+        }
+        let id = $(this).closest('tr').find('td').first().text();
+        let v = $(this).val() || 0
+        let data = []
+        data[n] = v
+        ajax_crud('ajax/api_crud.php', 'update', 'accounts', 'id', id, data)
+      });
+
+      //新增
       $(".btn-add").click(function() {
-        var id = $(this).data('id') || ''
+        let id = $(this).data('id') || '';
 
         $('#router').val('create')
         $('#id').val(id)
         $('.form1_title').text('新增項次')
-        $(".btn-add").attr('disabled', false)
-        $(this).attr('disabled', true)
-        $('.class_tree').parent('tr').show()
 
-        var current_modal = $('#form_edit1')
+        let current_modal = $('#form_edit1')
         current_modal.find('input[type=text]').val('')
-        //
-        $.ajax({
-          headers: {
-            'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
-          },
-          url: 'ajax/get_class_tree.php',
-          type: 'POST',
-          data: {
-            'router': 'get',
-            'table': 'class',
-            'key': 'id',
-            'value': id
-          },
-          cache: false,
-          resetForm: true,
-          success: function(rtndata) {
-            rtndata = JSON.parse(rtndata)
-            if (rtndata.status > 0) {
-              $('.class_tree').text(rtndata.data)
-              $('#floor').val(rtndata.floor)
-            } else {
-              console.log(JSON.stringify(rtndata))
-            }
-          },
-          error: function(XMLHttpRequest, textStatus, errorThrown) {
-            // 通常情況下textStatus和errorThown只有其中一個有值 
-            console.error('status:' + XMLHttpRequest.status + ';rs:' + XMLHttpRequest.readyState + ';ts:' + textStatus)
-          }
-        });
       });
 
-      //切換修改功能
-      $('.btn-title').closest('tr').find('td:not(.opera)').click(function() {
-        var id = $(this).closest('tr').find('.btn-title').data('id') || ''
-        var floor = $(this).closest('tr').data('f') || ''
-        console.log(floor)
-        //
+      //修改
+      table.on('click', '.btn-edit', function() {
+        //let id = $(this).closest('tr').attr('id');
+        let id = $(this).closest('tr').find('td').first().text() || 0;
+
         $('#router').val('update')
         $('#id').val(id)
-        $('.form1_title').text('編輯項次')
-        $(".btn-add").attr('disabled', false)
-        $('.class_tree').parent('tr').hide()
-        if (floor != 4) {
-          $('#unit , #ratio ,#quantity ,#price ,#reprice, #nomore').closest('td').hide()
-        } else {
-          $('#unit , #ratio ,#quantity ,#price ,#reprice, #nomore').closest('td').show()
-        }
+        $('.form1_title').text('編輯內容')
         //
         $.ajax({
           headers: {
@@ -328,7 +345,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
           type: "POST",
           data: {
             'router': 'get',
-            'table': 'class',
+            'table': 'accounts',
             'key': 'id',
             'value': id
           },
@@ -340,15 +357,18 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
               var datas = rtndata.data
               for (key in datas) {
                 $('#rank').val(datas[key].rank)
-                $('#title').val(datas[key].title)
-                $('#unit').val(datas[key].unit)
-                $('#ratio').val(datas[key].ratio)
-                $('#quantity').val(datas[key].quantity)
-                $('#price').val(datas[key].price)
-                $('#reprice').val(datas[key].reprice)
-                $('#remark').val(datas[key].remark)
+                $('#Code1').val(datas[key].Code1)
+                $('#Account').val(datas[key].Account)
+                $('#Name').val(datas[key].Name)
+                $('#Project').val(datas[key].Project)
 
-                $('#floor').val(datas[key].class)
+                if (datas[key].active == 1) {
+                  $('.active[value="1"]').prop('checked', true)
+                } else {
+                  $('.active[value="0"]').prop('checked', true)
+                }
+
+                $('.optStatus').find('option[value="' + datas[key].status + '"]').prop('selected', true)
               }
             } else {
               console.log(JSON.stringify(rtndata))
@@ -362,103 +382,35 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
       });
 
       //刪除項目
-      $(".btn-rm").click(function() {
+      table.on('click', '.btn-rm', function() {
         let msg = "您真的確定要刪除嗎？"
         if (confirm(msg) != true) {
           return false
         }
-        let id = $(this).data('id') || ''
-        ajax_crud('ajax/api_edit001.php', 'delete', 'class', 'id', id)
+        let id = $(this).data('id') || 0
+        let data = []
+        data['status'] = 0
+        ajax_crud('ajax/api_crud.php', 'delete', 'accounts', 'id', id, data)
       });
 
       //表單送出
       $("#btn-submit").click(function() {
-        var current_modal = $('#form_edit1')
-        //
-        var data = {
-          "_token": "<?php echo csrf_token() ?>"
-        }
-        data.class = current_modal.find('#floor').val()
-        data.rank = current_modal.find('#rank').val()
-        data.title = current_modal.find("#title").val()
-        data.unit = current_modal.find("#unit").val()
-        data.ratio = current_modal.find("#ratio").val()
-        data.quantity = current_modal.find("#quantity").val()
-        data.price = current_modal.find("#price").val()
-        data.reprice = current_modal.find("#reprice").val()
-        //
-        r = current_modal.find("#router").val()
-        v = current_modal.find('#id').val()
-        ajax_crud('ajax/api_edit001.php', r, 'class', 'id', v, data)
+        let current_modal = $('#form_edit1')
+        let r = current_modal.find('#router').val() || ''
+        let v = current_modal.find('#id').val() || 0
+        console.log(r + ':' + v)
+        if (r == '') return false;
+
+        let datas = current_modal.serializeArray()
+        let newdata = {}
+        datas.forEach(function(data, key) {
+          newdata[data['name']] = data['value'];
+        });
+
+        ajax_crud('ajax/api_crud.php', r, 'accounts', 'id', v, newdata)
       });
 
-      //點擊即編輯
-      $('.txt').click(function() {
-        $('.txt').show()
-        $(this).hide()
-        $('.ipt').hide()
-        $(this).siblings('.ipt').show()
-      })
-
-      //為了消除編輯模式
-      $('.top_table1').mouseleave(function() {
-        $('.txt').show()
-        $('.ipt').hide()
-      })
-
-      //異動即更新
-      $('.ipt').on('change', function() {
-        var n = $(this).prop('name') || ''
-        if (n == 'undefined' || n == '') {
-          return null
-        }
-        var id = $(this).closest('tr').find('.btn-title').data('id') || ''
-        var v = $(this).val() || 0
-        var data = []
-        data[n] = v
-        ajax_crud('ajax/api_edit001.php', 'update', 'class', 'id', id, data)
-      });
-    })
-
-    //非同步傳輸資料
-    function ajax_crud(u, r, t, k, v, datas = []) {
-      var data = {
-        'router': r,
-        'table': t,
-        'key': k,
-        'value': v
-      }
-      //假如還有資料就填充上去
-      for (let key in datas) {
-        // data.push({key : datas[key]})
-        data[key] = datas[key]
-      }
-      var url = window.location.href
-      url = url.split('?')[0] || ''
-      $.ajax({
-        headers: {
-          'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
-        },
-        url: u,
-        type: 'POST',
-        data: data,
-        cache: false,
-        resetForm: true,
-        success: function(rtndata) {
-          rtndata = JSON.parse(rtndata)
-          // console.log(rtndata)             
-          location.href = url + '?show=' + rtndata.id
-
-          // setTimeout(function () { location.href = data.redirectUrl }, 500)
-          // toastr.error(data.message, "{{trans('web_alert.notice')}}").css("width","360px")
-          // Swal.fire("{{trans('web_alert.error')}}", JSON.stringify(data.errors), "error");
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          // 通常情況下textStatus和errorThown只有其中一個有值 
-          console.error('status:' + XMLHttpRequest.status + ';rs:' + XMLHttpRequest.readyState + ';ts:' + textStatus)
-        }
-      });
-    }
+    });
   </script>
 
 </body>

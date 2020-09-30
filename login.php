@@ -148,7 +148,7 @@ $row = $rs->fetch(PDO::FETCH_ASSOC);
                       </td>
                       <td class="style1">
                         <div align="left" class="style2">
-                          <input class="txt txtAccount" name="account" maxLength="20" size="20" type="text">
+                          <input class=" iptAccount" name="account" maxLength="20" size="20" type="text">
                         </div>
                       </td>
                     </tr>
@@ -158,7 +158,7 @@ $row = $rs->fetch(PDO::FETCH_ASSOC);
                       </td>
                       <td class="style1">
                         <div align="left" class="style2">
-                          <input class="txt txtPassword" name="password" maxLength="20" size="20" type="password">
+                          <input class=" iptPassword" name="password" maxLength="20" size="20" type="password">
                         </div>
                       </td>
                     </tr>

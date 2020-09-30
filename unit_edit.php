@@ -139,6 +139,11 @@ $row = $rows[0];
         $('#blah').prop('src', 'images/246x0w.png')
         $("[name~='Logo']").val('')
       })
+
+      $('.btn-cancel').click(function(){
+        history.go(-1)
+      })
+
     })
   </script>
 
