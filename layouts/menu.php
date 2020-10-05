@@ -37,7 +37,7 @@
     <!-- begin class menu -->
     <div id="navcontainer">
         <ul id="navlist" style="list-style-type:none;padding-left:0px">
-            <li><a style="background-repeat: no-repeat;background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="index01.htm">專 案 建 立</a>
+            <li><a style="background-repeat: no-repeat;background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="project.php">專 案 建 立</a>
                 <div name="submenu" class="SubMenu" style="display:none" root="yes" pid="11" id="22" align="center">
                     <ul id="subnavlist" style="list-style-type:none;padding-left:0px">
                         <li><a class="SubMenu" href="#" target="_parent"></a></li>

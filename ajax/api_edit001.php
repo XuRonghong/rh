@@ -38,7 +38,7 @@ $tablename = $posts['table'];
         $rs = base64_encode($rs);
     
         $rtn = array('status' => $rs, 'message' => 'db insert success', 'code' => 200, 'id'=>$rs);
-        logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功新增". ($rs>0? 1: 0). "筆資料");
+        logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功新增". ($rs>0? 1: 0). "筆id.". $rs. "資料");
 
     }
     else if($posts['router']=='update') {

@@ -14,6 +14,7 @@ try {
     
     if($posts['type']=='logout'){        
 
+        logInsert('log_login', data_get($_SESSION, 'admin_id', 0), data_get($_SESSION, 'admin_account', '__')."登出系統");
         unset($_SESSION['admin_id']);
         unset($_SESSION['admin_code']);
         unset($_SESSION['admin_unit']);
@@ -22,7 +23,6 @@ try {
         unset($_SESSION['admin_auth1']);
         unset($_SESSION['admin_auth2']);
 
-        logInsert('log_login', data_get($_SESSION, 'unit_code'), "登出". $tablename. "系統");
 
         $rtn = array('status' => 1, 'message' => '成功登出', 'url' => $goto_url);
     } else {        

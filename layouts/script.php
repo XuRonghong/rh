@@ -32,10 +32,12 @@
             resetForm: true,
             success: function(rtndata) {
                 // rtndata = JSON.parse(rtndata)
-                if (rtndata.id) {
-                    url + '?show=' + rtndata.id
+                if(rtndata.status) {
+                    if (rtndata.id) {
+                        url + '?show=' + rtndata.id
+                    }
+                    location.href = url 
                 }
-                location.href = url 
 
                 // setTimeout(function () { location.href = data.redirectUrl }, 500)
                 // toastr.error(data.message, "{{trans('web_alert.notice')}}").css("width","360px")

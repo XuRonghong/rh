@@ -105,12 +105,12 @@ include_once dirname(__FILE__) . '/config.php';
                                 </a>
                               </td>
                               <td>
-                                <a href="accounts.php" alt="帳號權限管理" target="_parent" onmouseover="MM_swapImage('Image2','','images/ma_02.png',1)" onmouseout="MM_swapImgRestore()">
+                                <a href="account.php" alt="帳號權限管理" target="_parent" onmouseover="MM_swapImage('Image2','','images/ma_02.png',1)" onmouseout="MM_swapImgRestore()">
                                   <img src="images/m_02.png" name="Image2" width="190" height="170" border="0" id="Image2" />
                                 </a>
                               </td>
                               <td>
-                                <a href="projects.php" alt="專案備份維護" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image3','','images/ma_03.png',1)">
+                                <a href="project.php" alt="專案備份維護" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image3','','images/ma_03.png',1)">
                                   <img src="images/m_03.png" name="Image3" width="194" height="170" border="0" id="Image3" />
                                 </a>
                               </td>

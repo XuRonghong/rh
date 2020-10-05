@@ -1,7 +1,7 @@
 <?php
 include_once dirname(__FILE__) . '/config.php';
 
-$tablename = 'accounts';
+$tablename = 'projects';
 // $queryStr = " AND status=1 ";
 $orderStr = " ORDER BY rank ASC ";
 $rs = $db->prepare("SELECT * FROM {$tablename} WHERE 1 " . $orderStr);
@@ -19,79 +19,88 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
   <link href="css/menu.css" rel="stylesheet" type="text/css" />
   <link href="css/tree.css" rel="stylesheet" type="text/css" />
   <link href="css/first.css" rel="stylesheet" type="text/css" />
   <link href="css/master.css" rel="stylesheet" type="text/css">
 
   <!-- Custom fonts for this template -->
-  <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
-  <!-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
   <style type="text/css">
-
   </style>
 </head>
 
-<body ">
-  <table width=" 1200" height="" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td valign="top">
-      <table width="100%" height="600" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <?php require_once dirname(__FILE__) . '/layouts/top.php'; ?>
-        </tr>
-        <tr>
-          <?php require_once dirname(__FILE__) . '/layouts/menu.php'; ?>
+<body>
+  <table width="1200" height="" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td valign="top">
+        <table width="100%" height="600" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <?php require_once dirname(__FILE__) . '/layouts/top.php'; ?>
+          </tr>
 
-          <td width="1118" valign="top" class="top_colr">
-            <!-- InstanceBeginEditable name="EditRegion1" -->
-            <table width="100%" align="center" cellpadding="0" cellspacing="1" class="main_sbar">
-              <tr>
-                <td height="276" align="right">
-                  <table border="0" cellspacing="0" cellpadding="3" align="center" scrollbar-face-color:="scrollbar-face-color:" #b46868;>
-                  </table>
-                  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top_table1">
-                    <tr>
-                      <td width="100%">
-                        <table width="100%" align="center" cellpadding="1" cellspacing="0" class="top_tab">
-                          <tr>
-                            <td width="3%">&nbsp;</td>
-                            <td width="90%"><strong>帳號權限管理</strong></td>
-                            <td width="7%">
-                              <div align="right"><strong>&nbsp;<img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" />&nbsp;<img src="images/trash-empty16x16.png" width="16" height="16" border="0" />&nbsp;</strong></div>
-                            </td>
-                          </tr>
+          <tr>
+            <?php require_once dirname(__FILE__) . '/layouts/menu.php'; ?>
+
+            <td width="1118" valign="top" class="top_colr">
+              <!-- InstanceBeginEditable name="EditRegion1" -->
+              <table width="100%" height="348" align="center" cellpadding="0" cellspacing="1" class="main_sbar">
+                <tr>
+                  <td align="center">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top_table1">
+                      <tr>
+                        <td width="100%">
+                          <table width="100%" align="center" cellpadding="1" cellspacing="0" class="top_tab">
+                            <tr>
+                              <td width="3%">&nbsp;</td>
+                              <td width="90%">專案選擇</td>
+                              <td width="7%">
+                                <div align="right">&nbsp;</span></div>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered" id="data_table">
                         </table>
-                      </td>
-                    </tr>
-                  </table>
-
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-bordered" id="data_table">
-                      </table>
+                      </div>
                     </div>
-                  </div>
 
-                </td>
-              </tr>
-            </table>
-            <!-- InstanceEndEditable -->
-            <!-- InstanceBeginEditable name="EditRegion2" -->
-            <?php require_once dirname(__FILE__) . '/layouts/edit006.php'; ?>
-            <!-- InstanceEndEditable -->
-          </td>
-        </tr>
-      </table>
-      <?php require_once dirname(__FILE__) . '/layouts/bottom.php'; ?>
-    </td>
-  </tr>
+                  </td>
+                </tr>
+              </table>
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td height="15">
+                    <!-- <form id="form1" name="form1" method="post" action="index03_1.htm">
+                      <div align="center">
+                        <input type="submit" name="button4" id="button4" value="選擇" />
+                        <input type="reset" name="清除" id="清除" value="取消" />
+                      </div>
+                    </form> -->
+                  </td>
+                </tr>
+              </table>
+              <!-- InstanceEndEditable -->
+              <!-- InstanceBeginEditable name="EditRegion2" -->
+              <?php require_once dirname(__FILE__) . '/layouts/edit003.php'; ?>
+              <!-- InstanceEndEditable -->
+            </td>
+          </tr>
+        </table>
+        <?php require_once dirname(__FILE__) . '/layouts/bottom.php'; ?>
+      </td>
+    </tr>
   </table>
 
 
@@ -108,10 +117,9 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
   <script src="vendor/xtreme-admin/assets/extra-libs/DataTables/datatables.min.js"></script>
   <script src="vendor/xtreme-admin/dist/js/pages/datatable/datatable-basic.init.js"></script>
-
-  <script src="Scripts/test1.js" type="text/javascript" defer></script>
   <script>
     $(document).ready(function() {
+      tablename = 'projects';
 
       // $('#dataTable').DataTable();
       let table = $('#data_table').dataTable({
@@ -163,7 +171,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
           "type": "GET", //使用什麼方式抓
           "data": {
             'router': 'get',
-            'table': 'accounts',
+            'table': tablename,
             // 'key': 'id',
             // 'value': id
           },
@@ -202,8 +210,8 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             }
           },
           {
-            "title": "單位統編",
-            "data": "Code1",
+            "title": "工程編號",
+            "data": "ECode1",
             "width": "15%",
             "bSortable": true,
             "bSearchable": true,
@@ -212,16 +220,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             }
           },
           {
-            "title": "帳號",
-            "data": "Account",
-            "bSortable": false,
-            "bSearchable": true,
-            "render": function(data, type, row, meta) {
-              return data;
-            }
-          },
-          {
-            "title": "使用人員",
+            "title": "工程名稱",
             "data": "Name",
             "bSortable": false,
             "bSearchable": true,
@@ -230,31 +229,12 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             }
           },
           {
-            "title": "系統權限",
-            "data": "System",
+            "title": "工程區域",
+            "data": "area",
             "bSortable": false,
-            "bSearchable": false,
+            "bSearchable": true,
             "render": function(data, type, row, meta) {
               return data;
-            }
-          },
-          {
-            "title": "專案權限",
-            "data": "Project",
-            "bSortable": false,
-            "bSearchable": false,
-            "render": function(data = 0, type, row, meta) {
-              return data ? data : '';
-            }
-          },
-          {
-            "sTitle": "啟用",
-            "mData": "active",
-            "width": "9%",
-            "bSortable": false,
-            "bSearchable": false,
-            "render": function(data = 0, type, row, meta) {
-              return data==1 ? '啟用' : '未啟用';
             }
           },
           {
@@ -275,10 +255,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             "width": "12%",
             "mRender": function(data, type, row) {
               // current_data[row.iId] = row;
-              // btn = '<button class="btn btn-xs btn-default btn-attributes" title="全部資訊"><i class="fa fa-book" aria-hidden="true"></i></button>';
               let btn = '';
-              // btn +='<button class="btn btn-xs btn-default btn-edit" title="修改"><i class="fa fa-pencil" aria-hidden="true">修改</i></button>';
-              // btn += '<button class="pull-right btn btn-xs btn-default btn-del" title="刪除"><i class="fa fa-trash" aria-hidden="true"></i></button>';
               btn += '<input type="button" name="btn-edit" class="btn-edit" value="修改" data-id="' + row.id + '" />';
               btn += '<input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="' + row.id + '" />';
               return btn;
@@ -313,7 +290,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         let v = $(this).val() || 0
         let data = []
         data[n] = v
-        ajax_crud('ajax/api_crud.php', 'update', 'accounts', 'id', id, data)
+        ajax_crud('ajax/api_crud.php', 'update', tablename, 'id', id, data)
       });
 
       //新增
@@ -345,7 +322,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
           type: "POST",
           data: {
             'router': 'get',
-            'table': 'accounts',
+            'table': tablename,
             'key': 'id',
             'value': id
           },
@@ -358,9 +335,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
               for (key in datas) {
                 $('#rank').val(datas[key].rank)
                 $('#Code1').val(datas[key].Code1)
-                $('#Account').val(datas[key].Account)
                 $('#Name').val(datas[key].Name)
-                $('#Project').val(datas[key].Project)
 
                 if (datas[key].active == 1) {
                   $('.active[value="1"]').prop('checked', true)
@@ -390,7 +365,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         let id = $(this).data('id') || 0
         let data = []
         data['status'] = 0
-        ajax_crud('ajax/api_crud.php', 'delete', 'accounts', 'id', id, data)
+        ajax_crud('ajax/api_crud.php', 'delete', tablename, 'id', id, data)
       });
 
       //表單送出
@@ -407,12 +382,14 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
           newdata[data['name']] = data['value'];
         });
 
-        ajax_crud('ajax/api_crud.php', r, 'accounts', 'id', v, newdata)
+        ajax_crud('ajax/api_crud.php', r, tablename, 'id', v, newdata)
       });
 
     });
   </script>
 
+
 </body>
+<!-- InstanceEnd -->
 
 </html>

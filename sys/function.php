@@ -34,6 +34,10 @@ function logInsert($tablename,$id,$edit,$trace=null){
 	//記錄所有傳入參數值
 	$_request = $_REQUEST;
 	array_except($_request, ['_token']);
+	//密碼加密處理
+	if( isset($_request['password']) ){
+		$_request['password'] = hash('sha256', $_request['password']);
+	}
 	$_request = json_encode($_request, JSON_UNESCAPED_UNICODE);
 
 	$page=(isset($_SERVER['HTTPS'])?'https://':'http://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];

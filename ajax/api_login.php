@@ -30,7 +30,7 @@ try {
                 $goto_url = 'repw.php';   //重設密碼
             }
 
-            logInsert('log_login', data_get($_SESSION, 'admin_id'), "成功登入系統");
+            logInsert('log_login', data_get($_SESSION, 'admin_id'), data_get($_SESSION, 'admin_account', '__')."登入系統");
 
             $rtn = array('status' => 1, 'message' => 'db query success', 'url' => $goto_url);
         } else {

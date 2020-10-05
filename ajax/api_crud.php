@@ -36,8 +36,8 @@ $tablename = $posts['table'];
         array_except($datas, ['router', 'table', 'key', 'value', 'id']);  //不寫入資料庫欄位
         $rs = dataInsert($tablename, $datas);
     
-        $rtn = array('status' => $rs, 'message' => 'db insert success', 'code' => 200);
-        logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功新增". $rs. "筆資料");
+        $rtn = array('status' => 1, 'message' => 'db insert success', 'code' => 200);
+        logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功新增1筆id.". $rs. "資料");
 
     }
     else if($posts['router']=='update') {
@@ -48,7 +48,7 @@ $tablename = $posts['table'];
         array_except($datas, ['router', 'table', 'key', 'value']);  //不寫入資料庫欄位
         $rs = dataUpdate($tablename, $datas, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);
     
-        $rtn = array('status' => $rs, 'message' => 'db update success', 'code' => 200);
+        $rtn = array('status' => 1, 'message' => 'db update success', 'code' => 200);
         logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功更新". $rs. "筆資料");
 
     }
@@ -62,7 +62,7 @@ $tablename = $posts['table'];
         $rs = dataUpdate($tablename, $datas, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);
         // $rs = dataDelete($tablename, $posts, " WHERE `{$posts['key']}`=:{$posts['key']}", $params);
     
-        $rtn = array('status' => $rs, 'message' => 'db delete success', 'code' => 200);
+        $rtn = array('status' => 1, 'message' => 'db delete success', 'code' => 200);
         logInsert('log_data', data_get($_SESSION, 'admin_id'), "成功刪除". $rs. "筆資料");
 
     }

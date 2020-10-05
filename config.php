@@ -77,9 +77,12 @@ if (isset($Request['_token'])) {
 
 //record guest 
 if(strpos($_SERVER['REQUEST_URI'], 'api' )) {
-    logInsert('log_action', 0, "API");
+    //
+    if( !strpos($_SERVER['REQUEST_URI'], 'crud') && !strpos($_SERVER['REQUEST_URI'], 'api_login') && !strpos($_SERVER['REQUEST_URI'], 'api_logout') ) {
+        logInsert('log_action', data_get($_SESSION, 'admin_id', 0), "API");
+    }
 } else {
-    logInsert('log_read', 0, "Request!!");
+    logInsert('log_read', data_get($_SESSION, 'admin_id', 0), "Request!!");
 }
 
 
