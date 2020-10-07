@@ -96,6 +96,15 @@ if ($_SERVER['REQUEST_URI'] != '/'.APP_NAME.'/login.php' && !strpos($_SERVER['RE
 if ( strpos($_SERVER['REQUEST_URI'], '/ajax/api_upload.php') && !strpos($_SERVER['HTTP_REFERER'], 'unit_edit') ) {
     header("location: index.php");
 }
+//
+$rf = $_SERVER['REQUEST_URI'];
+if( data_get($_SESSION, 'admin_auth1')!=1 && (
+    strpos($rf,'unit_edit') || 
+    strpos($rf,'account') || 
+    strpos($rf,'system_manage')) 
+) {        
+    header("location: 401.php");
+}
 
 
 /* select options */

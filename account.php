@@ -37,60 +37,60 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
   </style>
 </head>
 
-<body >
+<body>
   <table width=" 1200" height="" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td valign="top">
-      <table width="100%" height="600" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <?php require_once dirname(__FILE__) . '/layouts/top.php'; ?>
-        </tr>
-        <tr>
-          <?php require_once dirname(__FILE__) . '/layouts/menu.php'; ?>
+    <tr>
+      <td valign="top">
+        <table width="100%" height="600" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <?php require_once dirname(__FILE__) . '/layouts/top.php'; ?>
+          </tr>
+          <tr>
+            <?php require_once dirname(__FILE__) . '/layouts/menu.php'; ?>
 
-          <td width="1118" valign="top" class="top_colr">
-            <!-- InstanceBeginEditable name="EditRegion1" -->
-            <table width="100%" align="center" cellpadding="0" cellspacing="1" class="main_sbar">
-              <tr>
-                <td height="276" align="right">
-                  <table border="0" cellspacing="0" cellpadding="3" align="center" scrollbar-face-color:="scrollbar-face-color:" #b46868;>
-                  </table>
-                  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top_table1">
-                    <tr>
-                      <td width="100%">
-                        <table width="100%" align="center" cellpadding="1" cellspacing="0" class="top_tab">
-                          <tr>
-                            <td width="3%">&nbsp;</td>
-                            <td width="90%"><strong>帳號權限管理</strong></td>
-                            <td width="7%">
-                              <div align="right"><strong>&nbsp;<img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" />&nbsp;<img src="images/trash-empty16x16.png" width="16" height="16" border="0" />&nbsp;</strong></div>
-                            </td>
-                          </tr>
+            <td width="1118" valign="top" class="top_colr">
+              <!-- InstanceBeginEditable name="EditRegion1" -->
+              <table width="100%" align="center" cellpadding="0" cellspacing="1" class="main_sbar">
+                <tr>
+                  <td height="276" align="right">
+                    <table border="0" cellspacing="0" cellpadding="3" align="center" scrollbar-face-color:="scrollbar-face-color:" #b46868;>
+                    </table>
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top_table1">
+                      <tr>
+                        <td width="100%">
+                          <table width="100%" align="center" cellpadding="1" cellspacing="0" class="top_tab">
+                            <tr>
+                              <td width="3%">&nbsp;</td>
+                              <td width="90%"><strong>帳號權限管理</strong></td>
+                              <td width="7%">
+                                <div align="right"><strong>&nbsp;<img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" />&nbsp;<img src="images/trash-empty16x16.png" width="16" height="16" border="0" />&nbsp;</strong></div>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered" id="data_table">
                         </table>
-                      </td>
-                    </tr>
-                  </table>
-
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-bordered" id="data_table">
-                      </table>
+                      </div>
                     </div>
-                  </div>
 
-                </td>
-              </tr>
-            </table>
-            <!-- InstanceEndEditable -->
-            <!-- InstanceBeginEditable name="EditRegion2" -->
-            <?php require_once dirname(__FILE__) . '/layouts/edit006.php'; ?>
-            <!-- InstanceEndEditable -->
-          </td>
-        </tr>
-      </table>
-      <?php require_once dirname(__FILE__) . '/layouts/bottom.php'; ?>
-    </td>
-  </tr>
+                  </td>
+                </tr>
+              </table>
+              <!-- InstanceEndEditable -->
+              <!-- InstanceBeginEditable name="EditRegion2" -->
+              <?php require_once dirname(__FILE__) . '/layouts/edit006.php'; ?>
+              <!-- InstanceEndEditable -->
+            </td>
+          </tr>
+        </table>
+        <?php require_once dirname(__FILE__) . '/layouts/bottom.php'; ?>
+      </td>
+    </tr>
   </table>
 
 
@@ -254,13 +254,13 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             "bSortable": false,
             "bSearchable": false,
             "render": function(data = 0, type, row, meta) {
-              return data==1 ? '啟用' : '未啟用';
+              return data == 1 ? '啟用' : '未啟用';
             }
           },
           {
             "sTitle": "建立時間",
             "mData": "created_at",
-            "width": "15%",
+            "width": "16%",
             "bSortable": false,
             "bSearchable": false,
             "mRender": function(data = 0, type, row, meta) {
@@ -272,13 +272,15 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             "sTitle": '<input type="button" name="btn-add" class="btn-add" value="新增" data-id="0" />',
             "bSortable": false,
             "bSearchable": false,
-            "width": "12%",
+            "width": "18%",
             "mRender": function(data, type, row) {
               // current_data[row.iId] = row;
               // btn = '<button class="btn btn-xs btn-default btn-attributes" title="全部資訊"><i class="fa fa-book" aria-hidden="true"></i></button>';
               let btn = '';
+              let go = encodeURIComponent(location.href);
               // btn +='<button class="btn btn-xs btn-default btn-edit" title="修改"><i class="fa fa-pencil" aria-hidden="true">修改</i></button>';
               // btn += '<button class="pull-right btn btn-xs btn-default btn-del" title="刪除"><i class="fa fa-trash" aria-hidden="true"></i></button>';
+              btn += '<input type="button" class="btn-goto pj_permiss" value="專案權限" data-url="project_permiss.php?u=' + row.id + '&go=' + go + '" />';
               btn += '<input type="button" name="btn-edit" class="btn-edit" value="修改" data-id="' + row.id + '" />';
               btn += '<input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="' + row.id + '" />';
               return btn;
@@ -288,6 +290,12 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
       });
       $.fn.dataTable.ext.errMode = 'throw';
 
+
+      //
+      table.on('click', '.btn-goto', function() {
+        let u = $(this).data('url')
+        location.href = u
+      })
 
       //點擊即編輯
       table.on('click', '.txt', function() {
@@ -329,13 +337,23 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
       });
 
       //修改
-      table.on('click', '.btn-edit', function() {
+      table.on('click', 'td', function() {
+        //被選取效果(Jquery寫法)
+        table.find('td:not(.list1)').removeClass('td_point')
+        $(this).parent('tr').find('td:not(.list1)').addClass('td_point')
+
         //let id = $(this).closest('tr').attr('id');
         let id = $(this).closest('tr').find('td').first().text() || 0;
 
         $('#router').val('update')
         $('#id').val(id)
         $('.form1_title').text('編輯內容')
+
+        //代入專案權限
+        // $('.pj_permiss').show()
+        // let u = $('.pj_permiss').data('url').toString().split('?')[0] +'?u='+id
+        // $('.pj_permiss').data('url', u )
+
         //
         $.ajax({
           headers: {
@@ -368,6 +386,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                   $('.active[value="0"]').prop('checked', true)
                 }
 
+                $('.optSystem').find('option[value="' + datas[key].System + '"]').prop('selected', true)
                 $('.optStatus').find('option[value="' + datas[key].status + '"]').prop('selected', true)
               }
             } else {

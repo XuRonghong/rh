@@ -1,12 +1,6 @@
 <?php
 include_once dirname(__FILE__) . '/config.php';
 
-$tablename = 'projects';
-// $queryStr = " AND status=1 ";
-$orderStr = " ORDER BY rank ASC ";
-$rs = $db->prepare("SELECT * FROM {$tablename} WHERE 1 " . $orderStr);
-$rs->execute();
-$rows = $rs->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -306,7 +300,11 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
       });
 
       //修改
-      table.on('click', '.btn-edit', function() {
+      table.on('click', 'td', function() {
+        //被選取效果(Jquery寫法)
+        table.find('td:not(.list1)').removeClass('td_point')
+        $(this).parent('tr').find('td:not(.list1)').addClass('td_point')
+        
         //let id = $(this).closest('tr').attr('id');
         let id = $(this).closest('tr').find('td').first().text() || 0;
 
@@ -373,7 +371,6 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         let current_modal = $('#form_edit1')
         let r = current_modal.find('#router').val() || ''
         let v = current_modal.find('#id').val() || 0
-        console.log(r + ':' + v)
         if (r == '') return false;
 
         let datas = current_modal.serializeArray()

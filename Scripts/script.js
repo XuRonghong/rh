@@ -24,6 +24,49 @@
     {
         return params != null && params != "" ? params : def
     }
+
+    function getDateString(num='')
+    {
+        let d;
+        if(num!='') {
+            d = new Date(num);
+        } else {            
+            d = new Date();
+        }
+        let year = d.getFullYear();    //2020
+        let months = "一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月".split(",");
+        let weekdays = "星期日,星期一,星期二,星期三,星期四,星期五,星期六".split(",");
+        return (year-1911)+'年'+(d.getMonth()+1) +'月' +d.getDate()+'日' +weekdays[d.getDay()]
+    }
+
+    function getTimeString(num='')
+    {
+        let d;
+        if(num!='') {
+            d = new Date(num);
+        } else {            
+            d = new Date();
+        }
+        let h = d.getHours();
+        let ampm;
+        if(h>13) {
+            ampm = ' PM ';
+            h = h-12;
+        } else {
+            ampm = ' AM ';
+        }
+        if(d.getMinutes()<10){
+            m = '0'+d.getMinutes()
+        } else {
+            m = d.getMinutes()
+        }
+        if(d.getSeconds()<10){
+            s = '0'+d.getSeconds()
+        } else {
+            s = d.getSeconds()
+        }
+        return ampm +h +':' +m +':' +s;
+    }
     
     //get URL $_GET Request
     function getSearchParameters() {

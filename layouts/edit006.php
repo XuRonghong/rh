@@ -44,17 +44,11 @@
                         <td class="list2">系統權限</td>
                         <td class="list2">
                             <label>
-                                <select name="System" id="System">
+                                <select name="System" id="System" class="optSystem">
                                     <option value="3">填報人員</option>
                                     <option value="2">審核人員</option>
                                     <option value="1">系統人員</option>
                                 </select>
-                            </label>
-                        </td>
-                        <td class="list2">專案權限</td>
-                        <td width="18%" class="list2">
-                            <label>
-                                <input type="text" name="Project" id="Project" value="" />
                             </label>
                         </td>
                         <td width="6%" class="list2"></td>
@@ -69,6 +63,12 @@
                                 <option value="1" selected>1</option>
                                 <option value="2">2</option>
                             </select>
+                        </td>
+                        <td class="list2"></td>
+                        <td width="18%" class="list2">
+                            <label>
+                                
+                            </label>
                         </td>
                     </tr>
                     <tr>

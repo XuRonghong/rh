@@ -19,7 +19,7 @@
         }
         var url = window.location.href
         url = url.split('?')[0] || ''
-        
+
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
@@ -27,16 +27,16 @@
             url: u,
             type: 'POST',
             data: data,
-            dataType : 'json',
+            dataType: 'json',
             cache: false,
             resetForm: true,
             success: function(rtndata) {
                 // rtndata = JSON.parse(rtndata)
-                if(rtndata.status) {
+                if (rtndata.status) {
                     if (rtndata.id) {
                         url + '?show=' + rtndata.id
                     }
-                    location.href = url 
+                    location.href = url
                 }
 
                 // setTimeout(function () { location.href = data.redirectUrl }, 500)
@@ -50,8 +50,23 @@
         });
     }
 
-
+    // let clock;
     document.addEventListener("DOMContentLoaded", function() {
+
+        let menu = $('.left_menu')
+        menu.find('.date').text(getDateString())
+        menu.find('.time').text(getTimeString())
+        setInterval(function() {
+            menu.find('.date').text(getDateString())
+            menu.find('.time').text(getTimeString())
+        }, 1000)
+
+
+        $('.btn-goto').click(function() {
+            let u = $(this).data('url')
+            location.href = u
+        })
+
         $(".btn-logout").click(function() {
             $.ajax({
                 headers: {
