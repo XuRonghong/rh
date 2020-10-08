@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+.doHidden {
+	display: none;
+}
+
 .td_point {
 	background-color: #dddddd;
 }
@@ -35,3 +39,5 @@
 	font-family: Microsoft JhengHei;	/*微軟正黑體語法*/
 	color: black;
 }
+
+/**/

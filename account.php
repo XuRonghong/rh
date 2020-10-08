@@ -118,7 +118,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         "bServerSide": true,
         // "stateSave": true,
         "scrollX": true,
-        "scrollY": '40vh',
+        "scrollY": '50vh',
         'bProcessing': true,
         "searching": true, //搜尋功能, 預設是開啟
         "paging": true, //分頁功能, 預設是開啟
@@ -235,7 +235,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             "bSortable": false,
             "bSearchable": false,
             "render": function(data, type, row, meta) {
-              return data;
+              return $('#System').find('option[value="' + data + '"]').text()
             }
           },
           {
@@ -261,7 +261,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             "sTitle": "建立時間",
             "mData": "created_at",
             "width": "16%",
-            "bSortable": false,
+            "bSortable": true,
             "bSearchable": false,
             "mRender": function(data = 0, type, row, meta) {
               // return data ? data.substr(0, 4) + '/' + data.substr(5, 2) + '/' + data.substr(8, 2) : '';
@@ -281,7 +281,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
               // btn +='<button class="btn btn-xs btn-default btn-edit" title="修改"><i class="fa fa-pencil" aria-hidden="true">修改</i></button>';
               // btn += '<button class="pull-right btn btn-xs btn-default btn-del" title="刪除"><i class="fa fa-trash" aria-hidden="true"></i></button>';
               btn += '<input type="button" class="btn-goto pj_permiss" value="專案權限" data-url="project_permiss.php?u=' + row.id + '&go=' + go + '" />';
-              btn += '<input type="button" name="btn-edit" class="btn-edit" value="修改" data-id="' + row.id + '" />';
+              // btn += '<input type="button" name="btn-edit" class="btn-edit" value="修改" data-id="' + row.id + '" />';
               btn += '<input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="' + row.id + '" />';
               return btn;
             }
@@ -289,6 +289,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         ],
       });
       $.fn.dataTable.ext.errMode = 'throw';
+
 
 
       //
@@ -326,14 +327,16 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
 
       //新增
       $(".btn-add").click(function() {
-        let id = $(this).data('id') || '';
+        location.href = 'register.php';
 
-        $('#router').val('create')
-        $('#id').val(id)
-        $('.form1_title').text('新增項次')
+        // let id = $(this).data('id') || '';
 
-        let current_modal = $('#form_edit1')
-        current_modal.find('input[type=text]').val('')
+        // $('#router').val('create')
+        // $('#id').val(id)
+        // $('.form1_title').text('新增項次')
+
+        // let current_modal = $('#form_edit1')
+        // current_modal.find('input[type=text]').val('')
       });
 
       //修改

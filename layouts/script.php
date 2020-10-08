@@ -14,16 +14,13 @@
         }
         //假如還有資料就填充上去
         for (let key in datas) {
-            // data.push({key : datas[key]})
             data[key] = datas[key]
         }
         var url = window.location.href
         url = url.split('?')[0] || ''
 
         $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
-            },
+            headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
             url: u,
             type: 'POST',
             data: data,
@@ -38,7 +35,6 @@
                     }
                     location.href = url
                 }
-
                 // setTimeout(function () { location.href = data.redirectUrl }, 500)
                 // toastr.error(data.message, "{{trans('web_alert.notice')}}").css("width","360px")
                 // Swal.fire("{{trans('web_alert.error')}}", JSON.stringify(data.errors), "error");
@@ -49,10 +45,10 @@
             }
         });
     }
-
-    // let clock;
+    
     document.addEventListener("DOMContentLoaded", function() {
 
+        //時間模組
         let menu = $('.left_menu')
         menu.find('.date').text(getDateString())
         menu.find('.time').text(getTimeString())
@@ -61,17 +57,16 @@
             menu.find('.time').text(getTimeString())
         }, 1000)
 
-
+        //導向按鈕
         $('.btn-goto').click(function() {
             let u = $(this).data('url')
             location.href = u
         })
 
+        //登出處理
         $(".btn-logout").click(function() {
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
-                },
+                headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
                 url: "ajax/api_logout.php",
                 type: "POST",
                 data: {

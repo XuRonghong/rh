@@ -15,6 +15,12 @@
                         </td>
                     </tr>
                     <tr>
+                        <td width="6%" class="list2">帳號</td>
+                        <td colspan="1" class="list2">
+                            <label>
+                                <input type="text" name="Account" id="Account" value="" disabled="disabled" />
+                            </label>
+                        </td>
                         <td width="6%" class="list2">Rank</td>
                         <td width="18%" class="list2">
                             <label>
@@ -25,12 +31,6 @@
                         <td width="18%" class="list2">
                             <label>
                                 <input type="text" name="Code1" id="Code1" value="" />
-                            </label>
-                        </td>
-                        <td width="6%" class="list2">帳號</td>
-                        <td colspan="1" class="list2">
-                            <label>
-                                <input type="text" name="Account" id="Account" value="" />
                             </label>
                         </td>
                         <td width="6%" class="list2">使用人員</td>

@@ -6,17 +6,22 @@
             <td>
                 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top_colr_table">
                     <tr>
-                        <td width="6%" rowspan="2">
+                        <td width="6%" rowspan="3">
                             <asp:Image ID="Image1" ImageUrl="~/IMAGES/user.png" runat="server" />
                         </td>
-                        <td width="63%" height="26">編號：<?php echo data_get($_SESSION, 'admin_code'); ?></td>
+                        <td width="63%" height="26">編號：<?php echo data_get($_SESSION, 'admin_id'); ?></td>
                         <td width="31%" rowspan="2">
                             <div class="btn-logout"><img src="IMAGES/logout.gif" alt="登出" border="0" /></div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            姓名：<?php echo data_get($_SESSION, 'admin_name'); ?>
+                            統編<?php echo data_get($_SESSION, 'admin_code'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            姓名：<?php echo data_get($_SESSION, 'admin_name'); ?><br>
                             <input type="button" class="btn-goto" data-url="repw.php" value="更改密碼" />
                         </td>
                     </tr>
