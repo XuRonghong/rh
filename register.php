@@ -192,10 +192,6 @@ include_once dirname(__FILE__) . '/config.php';
 
         document.addEventListener("DOMContentLoaded", function() {
 
-            $(".btn-clear").click(function() {
-                $(".txtPassword").val('')
-            })
-
             $('form').on('submit', function(e) {
                 e.preventDefault();
 
@@ -210,9 +206,7 @@ include_once dirname(__FILE__) . '/config.php';
                 var formData = new FormData(form);
 
                 $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
-                    },
+                    headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
                     url: "ajax/api_register.php",
                     type: "POST",
                     data: formData,

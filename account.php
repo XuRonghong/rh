@@ -275,13 +275,10 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
             "width": "18%",
             "mRender": function(data, type, row) {
               // current_data[row.iId] = row;
-              // btn = '<button class="btn btn-xs btn-default btn-attributes" title="全部資訊"><i class="fa fa-book" aria-hidden="true"></i></button>';
               let btn = '';
               let go = encodeURIComponent(location.href);
-              // btn +='<button class="btn btn-xs btn-default btn-edit" title="修改"><i class="fa fa-pencil" aria-hidden="true">修改</i></button>';
-              // btn += '<button class="pull-right btn btn-xs btn-default btn-del" title="刪除"><i class="fa fa-trash" aria-hidden="true"></i></button>';
               btn += '<input type="button" class="btn-goto pj_permiss" value="專案權限" data-url="project_permiss.php?u=' + row.id + '&go=' + go + '" />';
-              // btn += '<input type="button" name="btn-edit" class="btn-edit" value="修改" data-id="' + row.id + '" />';
+              btn += '<input type="button" class="btn-goto repw" value="修改密碼" data-url="repw.php?u=' + row.id + '&go=' + go + '" />';
               btn += '<input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="' + row.id + '" />';
               return btn;
             }
