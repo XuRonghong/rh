@@ -10,7 +10,9 @@
                                     <td colspan="9" bgcolor="#FFFFFF" class="form1_td">
                                         <table width="100%" height="19" border="0" cellpadding="0" cellspacing="0">
                                             <tr>
-                                                <td width="3%"><img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" /></td>
+                                                <td width="3%"><div class="flash">
+                                                    <img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" /></div>
+                                                </td>
                                                 <td class="form1_title" width="90%">編輯項次</td>
                                                 <td width="7%">&nbsp;</td>
                                             </tr>

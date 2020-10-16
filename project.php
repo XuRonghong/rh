@@ -52,10 +52,21 @@ include_once dirname(__FILE__) . '/config.php';
                         <td width="100%">
                           <table width="100%" align="center" cellpadding="1" cellspacing="0" class="top_tab">
                             <tr>
-                              <td width="3%">&nbsp;</td>
-                              <td width="90%">專案選擇</td>
-                              <td width="7%">
-                                <div align="right">&nbsp;</span></div>
+                              <td width="5%">
+                                <div align="left">
+
+                                  <input type="button" class="btn-goto btn-add" value="新增" data-id="0" data-url="register.php" />
+
+                                </div>
+                              </td>
+                              <td width="60%">專案選擇</td>
+                              <td width="35%">
+                                <div align="right">
+
+                                  <input type="button" class="btn-goto1 btn-edit" value="修改" data-url="" />
+                                  <input type="button" class="btn-rm" value="刪除" data-id="" />
+
+                                </div>
                               </td>
                             </tr>
                           </table>
@@ -70,18 +81,6 @@ include_once dirname(__FILE__) . '/config.php';
                       </div>
                     </div>
 
-                  </td>
-                </tr>
-              </table>
-              <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td height="15">
-                    <!-- <form id="form1" name="form1" method="post" action="index03_1.htm">
-                      <div align="center">
-                        <input type="submit" name="button4" id="button4" value="選擇" />
-                        <input type="reset" name="清除" id="清除" value="取消" />
-                      </div>
-                    </form> -->
                   </td>
                 </tr>
               </table>
@@ -242,19 +241,19 @@ include_once dirname(__FILE__) . '/config.php';
               return data;
             }
           },
-          {
-            "sTitle": '<input type="button" name="btn-add" class="btn-add" value="新增" data-id="0" />',
-            "bSortable": false,
-            "bSearchable": false,
-            "width": "12%",
-            "mRender": function(data, type, row) {
-              // current_data[row.iId] = row;
-              let btn = '';
-              btn += '<input type="button" name="btn-edit" class="btn-edit" value="修改" data-id="' + row.id + '" />';
-              btn += '<input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="' + row.id + '" />';
-              return btn;
-            }
-          },
+          // {
+          //   "sTitle": '<input type="button" name="btn-add" class="btn-add" value="新增" data-id="0" />',
+          //   "bSortable": false,
+          //   "bSearchable": false,
+          //   "width": "12%",
+          //   "mRender": function(data, type, row) {
+          //     // current_data[row.iId] = row;
+          //     let btn = '';
+          //     btn += '<input type="button" name="btn-edit" class="btn-edit" value="修改" data-id="' + row.id + '" />';
+          //     btn += '<input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="' + row.id + '" />';
+          //     return btn;
+          //   }
+          // },
         ],
       });
       $.fn.dataTable.ext.errMode = 'throw';
@@ -287,35 +286,26 @@ include_once dirname(__FILE__) . '/config.php';
         ajax_crud('ajax/api_crud.php', 'update', tablename, 'id', id, data)
       });
 
-      //新增
-      $(".btn-add").click(function() {
-        let id = $(this).data('id') || '';
-
-        $('#router').val('create')
-        $('#id').val(id)
-        $('.form1_title').text('新增項次')
-
-        let current_modal = $('#form_edit1')
-        current_modal.find('input[type=text]').val('')
-      });
 
       //修改
       table.on('click', 'td', function() {
         //被選取效果(Jquery寫法)
         table.find('td:not(.list1)').removeClass('td_point')
         $(this).parent('tr').find('td:not(.list1)').addClass('td_point')
-        
+
         //let id = $(this).closest('tr').attr('id');
         let id = $(this).closest('tr').find('td').first().text() || 0;
+        let go = encodeURIComponent(location.href);
+
+        $('.btn-edit').data('url', 'modify.php?u=' + id + '&go=' + go + '');
+        $('.btn-rm').data('id', id);
 
         $('#router').val('update')
         $('#id').val(id)
         $('.form1_title').text('編輯內容')
         //
         $.ajax({
-          headers: {
-            'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
-          },
+          headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
           url: 'ajax/api_crud.php',
           type: "POST",
           data: {
@@ -354,13 +344,22 @@ include_once dirname(__FILE__) . '/config.php';
         });
       });
 
+      $('.btn-edit').click(function(){
+          $(".main_sbar").hide();
+          $('#form_edit1').slideDown();
+      });
+      $('.flash').click(function(){
+          $('.main_sbar').slideDown();
+          $('#form_edit1').hide();
+      });
+
       //刪除項目
-      table.on('click', '.btn-rm', function() {
+      $(".btn-rm").on('click', function() {
+        let id = $(this).data('id') || 0
         let msg = "您真的確定要刪除嗎？"
-        if (confirm(msg) != true) {
+        if (id == 0 || confirm(msg) != true) {
           return false
         }
-        let id = $(this).data('id') || 0
         let data = []
         data['status'] = 0
         ajax_crud('ajax/api_crud.php', 'delete', tablename, 'id', id, data)

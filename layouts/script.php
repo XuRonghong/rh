@@ -45,6 +45,7 @@
             }
         });
     }
+
     
     document.addEventListener("DOMContentLoaded", function() {
 
@@ -59,7 +60,8 @@
 
         //導向按鈕
         $('.btn-goto').click(function() {
-            let u = $(this).data('url')
+            let u = $(this).data('url') || ''
+            if (u=='') return false
             location.href = u
         })
 

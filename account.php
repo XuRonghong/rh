@@ -60,10 +60,26 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
                         <td width="100%">
                           <table width="100%" align="center" cellpadding="1" cellspacing="0" class="top_tab">
                             <tr>
-                              <td width="3%">&nbsp;</td>
-                              <td width="90%"><strong>帳號權限管理</strong></td>
-                              <td width="7%">
-                                <div align="right"><strong>&nbsp;<img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" />&nbsp;<img src="images/trash-empty16x16.png" width="16" height="16" border="0" />&nbsp;</strong></div>
+                              <td width="5%">
+                                <div align="left">
+
+                                  <input type="button" class="btn-goto btn-add" value="新增" data-id="0" data-url="register.php" />
+
+                                </div>
+                              </td>
+                              <td width="60%"><strong>帳號權限管理</strong></td>
+                              <td width="35%">
+                                <div align="right">
+
+                                  <input type="button" class="btn-goto pj_permiss" value="專案權限" data-url="" />
+                                  <input type="button" class="btn-goto repw" value="修改密碼" data-url="" />
+                                  <input type="button" class="btn-rm" value="刪除" data-id="" />
+
+                                  <!-- <strong>
+                                    &nbsp;<img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" />&nbsp;
+                                    <img src="images/trash-empty16x16.png" width="16" height="16" border="0" />&nbsp;
+                                  </strong> -->
+                                </div>
                               </td>
                             </tr>
                           </table>
@@ -268,32 +284,11 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
               return data;
             }
           },
-          {
-            "sTitle": '<input type="button" name="btn-add" class="btn-add" value="新增" data-id="0" />',
-            "bSortable": false,
-            "bSearchable": false,
-            "width": "18%",
-            "mRender": function(data, type, row) {
-              // current_data[row.iId] = row;
-              let btn = '';
-              let go = encodeURIComponent(location.href);
-              btn += '<input type="button" class="btn-goto pj_permiss" value="專案權限" data-url="project_permiss.php?u=' + row.id + '&go=' + go + '" />';
-              btn += '<input type="button" class="btn-goto repw" value="修改密碼" data-url="repw.php?u=' + row.id + '&go=' + go + '" />';
-              btn += '<input type="button" name="btn-rm" class="btn-rm" value="刪除" data-id="' + row.id + '" />';
-              return btn;
-            }
-          },
         ],
       });
       $.fn.dataTable.ext.errMode = 'throw';
 
 
-
-      //
-      table.on('click', '.btn-goto', function() {
-        let u = $(this).data('url')
-        location.href = u
-      })
 
       //點擊即編輯
       table.on('click', '.txt', function() {
@@ -324,8 +319,6 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
 
       //新增
       $(".btn-add").click(function() {
-        location.href = 'register.php';
-
         // let id = $(this).data('id') || '';
 
         // $('#router').val('create')
@@ -344,6 +337,11 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
 
         //let id = $(this).closest('tr').attr('id');
         let id = $(this).closest('tr').find('td').first().text() || 0;
+        let go = encodeURIComponent(location.href);
+
+        $('.pj_permiss').data('url', 'project_permiss.php?u=' + id + '&go=' + go + '');
+        $('.repw').data('url', 'repw.php?u=' + id + '&go=' + go + '');
+        $('.btn-rm').data('id', id);
 
         $('#router').val('update')
         $('#id').val(id)
@@ -401,12 +399,12 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
       });
 
       //刪除項目
-      table.on('click', '.btn-rm', function() {
+      $(".btn-rm").on('click', function() {
+        let id = $(this).data('id') || 0
         let msg = "您真的確定要刪除嗎？"
-        if (confirm(msg) != true) {
+        if (id == 0 || confirm(msg) != true) {
           return false
         }
-        let id = $(this).data('id') || 0
         let data = []
         data['status'] = 0
         ajax_crud('ajax/api_crud.php', 'delete', tablename, 'id', id, data)
@@ -417,7 +415,6 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
         let current_modal = $('#form_edit1')
         let r = current_modal.find('#router').val() || ''
         let v = current_modal.find('#id').val() || 0
-        console.log(r + ':' + v)
         if (r == '') return false;
 
         let datas = current_modal.serializeArray()
