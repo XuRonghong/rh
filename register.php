@@ -191,7 +191,7 @@ include_once dirname(__FILE__) . '/config.php';
         })
 
         document.addEventListener("DOMContentLoaded", function() {
-
+            
             $('form').on('submit', function(e) {
                 e.preventDefault();
 

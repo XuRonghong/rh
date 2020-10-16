@@ -79,8 +79,8 @@
                     </ul>
                 </div>
             </li>
-            <li><a style="background-repeat: no-repeat; background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="system_manage.php">系 統 維 護</a></li>
             <?php } ?>
+            <li><a style="background-repeat: no-repeat; background-image: url(images/r_btn_01.gif); background-position:center" class="MainMenu" href="system_manage.php">系 統 維 護</a></li>
         </ul>
     </div>
     <p>&nbsp;</p>

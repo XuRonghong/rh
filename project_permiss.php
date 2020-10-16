@@ -4,19 +4,19 @@ include_once dirname(__FILE__) . '/config.php';
 $tablename = 'projects';
 $queryStr = " AND `status` > 0 ";
 $orderStr = " ORDER BY rank ASC ";
-$sql = "SELECT * FROM {$tablename} WHERE 1 " .$queryStr.  $orderStr;
+$sql = "SELECT * FROM {$tablename} WHERE 1 " . $queryStr .  $orderStr;
 $rs = $db->prepare($sql);
 $rs->execute();
 $projects = $rs->fetchAll(PDO::FETCH_ASSOC);
 
 
-$gets = filterVar($_REQUEST);        
+$gets = filterVar($_REQUEST);
 $tablename = 'accounts';
 $queryStr = " AND `id`=? ";
-$sql = "SELECT * FROM {$tablename} WHERE 1 " .$queryStr;
+$sql = "SELECT * FROM {$tablename} WHERE 1 " . $queryStr;
 $rs = $db->prepare($sql);
-$parme = array( data_get($gets,'u'));
-$rs->execute( $parme);
+$parme = array(data_get($gets, 'u'));
+$rs->execute($parme);
 $accout = $rs->fetch(PDO::FETCH_ASSOC);
 $accout['Project'] = explode(',', $accout['Project']);
 
@@ -88,13 +88,14 @@ $accout['Project'] = explode(',', $accout['Project']);
                                 <td width="9%" class="list3"><strong>建檔日期</strong></td>
                               </tr>
                               <?php
-                              if ($projects) { 
+                              if ($projects) {
                                 foreach ($projects as $key => $project) { ?>
                                   <tr>
                                     <td class="list2">
                                       <div align="center">
-                                        <input type="checkbox" name="Project[]" class="chk_project" value="<?php echo data_get($project,'id');?>" 
-                                              <?php if(in_array(data_get($project,'id'), $accout['Project'])) { echo "checked"; } ?> />
+                                        <input type="checkbox" name="Project[]" class="chk_project" value="<?php echo data_get($project, 'id'); ?>" <?php if (in_array(data_get($project, 'id'), $accout['Project'])) {
+                                                                                                                                                    echo "checked";
+                                                                                                                                                  } ?> />
                                       </div>
                                     </td>
                                     <td class="list2"><?php echo data_get($project, 'ECode1'); ?></td>
@@ -128,11 +129,11 @@ $accout['Project'] = explode(',', $accout['Project']);
                             </table>
                           </td>
                         </tr>
-                      </table>                      
+                      </table>
 
                       <input type="hidden" name="id" value="<?php echo $_GET['u']; ?>" />
                     </form>
-                    
+
                   </td>
                 </tr>
               </table>
@@ -166,28 +167,27 @@ $accout['Project'] = explode(',', $accout['Project']);
       $("#btn-submit").click(function() {
         let current_modal = $('#form_edit1')
         let datas = current_modal.serialize()
-        let gotoUrl = '<?php echo data_get($gets,'go');?>';
+        let gotoUrl = '<?php echo data_get($gets, 'go'); ?>';
         $.ajax({
-                headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
-                url: "ajax/api_project_permiss.php",
-                type: "POST",
-                data: datas,
-                cache: false,
-                resetForm: true,
-                success: function(rtndata) {
-                    rtndata = JSON.parse(rtndata)
-                    if (rtndata.status > 0) {
-                      // alert(rtndata.message)
-                        location.href = decodeURIComponent(gotoUrl)//rtndata.url
-                    } else {
-                        console.error(JSON.stringify(rtndata))
-                    }
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    // 通常情況下textStatus和errorThown只有其中一個有值 
-                    console.error('status:' + XMLHttpRequest.status + ';rs:' + XMLHttpRequest.readyState + ';ts:' + textStatus)
-                }
-            })
+          headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
+          url: "ajax/api_project_permiss.php",
+          type: "POST",
+          data: datas,
+          cache: false,
+          resetForm: true,
+          success: function(rtndata) {
+            rtndata = JSON.parse(rtndata)
+            if (rtndata.status > 0) {
+              location.href = decodeURIComponent(gotoUrl) //rtndata.url
+            } else {
+              console.error(JSON.stringify(rtndata))
+            }
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            // 通常情況下textStatus和errorThown只有其中一個有值 
+            console.error('status:' + XMLHttpRequest.status + ';rs:' + XMLHttpRequest.readyState + ';ts:' + textStatus)
+          }
+        })
       });
     });
   </script>

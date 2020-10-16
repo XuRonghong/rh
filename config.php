@@ -35,6 +35,11 @@ define('_DIR_', __DIR__);
 define('Models', 'Models');
 define('Views', 'Views');
 define('Controllers', 'Controllers');
+define('ACCOUNT', 'rh');
+define('_PASSWORD', '630312630312'); 
+define('APP_KEY', '9d2b2314058992965afd4c749a5175b2b08f905f75dbc242c3116691ea664070');
+define('NAME', '達義資訊');
+define('_CODE', '25134856');
 
 
 $str_no = [
@@ -76,9 +81,9 @@ if (isset($Request['_token'])) {
 
 
 //record guest 
-if(strpos($_SERVER['REQUEST_URI'], 'api' )) {
+if (strpos($_SERVER['REQUEST_URI'], 'api')) {
     //
-    if( !strpos($_SERVER['REQUEST_URI'], 'crud') && !strpos($_SERVER['REQUEST_URI'], 'api_login') && !strpos($_SERVER['REQUEST_URI'], 'api_logout') ) {
+    if (!strpos($_SERVER['REQUEST_URI'], 'crud') && !strpos($_SERVER['REQUEST_URI'], 'api_login') && !strpos($_SERVER['REQUEST_URI'], 'api_logout')) {
         logInsert('log_action', data_get($_SESSION, 'admin_id', 0), "API");
     }
 } else {
@@ -87,22 +92,21 @@ if(strpos($_SERVER['REQUEST_URI'], 'api' )) {
 
 
 //沒有登入驗證成功，導回登入
-if ($_SERVER['REQUEST_URI'] != '/'.APP_NAME.'/login.php' && !strpos($_SERVER['REQUEST_URI'], '/ajax/' )) {
-    if ( !isset($_SESSION['admin_id']) || $_SESSION['admin_id'] == '') {
+if ($_SERVER['REQUEST_URI'] != '/' . APP_NAME . '/login.php' && !strpos($_SERVER['REQUEST_URI'], '/ajax/')) {
+    if (!isset($_SESSION['admin_id']) || $_SESSION['admin_id'] == '') {
         header("location: login.php");
     }
 }
 //抵擋非正確來源的request
-if ( strpos($_SERVER['REQUEST_URI'], '/ajax/api_upload.php') && !strpos($_SERVER['HTTP_REFERER'], 'unit_edit') ) {
+if (strpos($_SERVER['REQUEST_URI'], '/ajax/api_upload.php') && !strpos($_SERVER['HTTP_REFERER'], 'unit_edit')) {
     header("location: index.php");
 }
 // account permiss of system.
 $rf = $_SERVER['REQUEST_URI'];
-if( data_get($_SESSION, 'admin_auth1')!=1 && (
-    strpos($rf,'unit_edit') || 
-    strpos($rf,'account') || 
-    strpos($rf,'system_manage')) 
-) {        
+if (data_get($_SESSION, 'admin_auth1') != 1 && (strpos($rf, 'unit_edit')
+    || strpos($rf, 'account')
+    // || strpos($rf, 'system_manage')
+    )) {
     header("location: 401.php");
 }
 
@@ -110,21 +114,21 @@ if( data_get($_SESSION, 'admin_auth1')!=1 && (
 /* select options */
 //Building建物用途:
 $building_conf = [
-   '1' => '一般住宅',
-   '2' => '高層住宅',
-   '3' => '別墅透天',
-   '4' => '工業廠房',
-   '5' => '辦 公 室',
-   '6' => '辦公廠房',
-   '7' => '大 賣 場',
-   '8' => '學    校',
-   '9' => '體 育 館',
-   '10' => '活動中心',
-   '11' => '宗廟塔寺',
-   '12' => '停 車 場',
-   '13' => '庭園景觀',
-   '14' => '土木工程',
-   '15' => '其他'
+    '1' => '一般住宅',
+    '2' => '高層住宅',
+    '3' => '別墅透天',
+    '4' => '工業廠房',
+    '5' => '辦 公 室',
+    '6' => '辦公廠房',
+    '7' => '大 賣 場',
+    '8' => '學    校',
+    '9' => '體 育 館',
+    '10' => '活動中心',
+    '11' => '宗廟塔寺',
+    '12' => '停 車 場',
+    '13' => '庭園景觀',
+    '14' => '土木工程',
+    '15' => '其他'
 ];
 
 // Structure1	建造模式	char	20	Y	(DATA)
@@ -132,41 +136,41 @@ $building_conf = [
 
 // Structure2	結構型式	char	20	Y	(DATA)
 $structure2_conf = [
-   '1' => 'RC鋼筋混凝土',
-   '2' => 'SRC全鋼骨鋼筋混凝土',
-   '3' => 'SC鋼骨混凝土',
-   '4' => 'SS鋼結構',
-   '5' => 'SRC續接RC鋼骨鋼筋混凝土',
-   '6' => 'PCa預鑄結構',
-   '7' => '其他'
+    '1' => 'RC鋼筋混凝土',
+    '2' => 'SRC全鋼骨鋼筋混凝土',
+    '3' => 'SC鋼骨混凝土',
+    '4' => 'SS鋼結構',
+    '5' => 'SRC續接RC鋼骨鋼筋混凝土',
+    '6' => 'PCa預鑄結構',
+    '7' => '其他'
 ];
 
 //Structure3	建造工法	char	20	Y	(DATA)',
 $structure3_conf = [
-   '1' => '順    打',
-   '2' => '雙 順 打',
-   '3' => '逆    打',
-   '4' => '半 逆 打',
-   '5' => '其他'
+    '1' => '順    打',
+    '2' => '雙 順 打',
+    '3' => '逆    打',
+    '4' => '半 逆 打',
+    '5' => '其他'
 ];
 
 //Retaining patterns	擋土開挖	char	20	Y	(DATA)',
 $rp_conf = [
-   '1' => '連 續 壁',
-   '2' => '擋土排樁',
-   '3' => '鋼 軌 樁',
-   '4' => '鋼 板 樁',
-   '5' => '明挖工法',
-   '6' => '島式工法',
-   '7' => '其他型式'
+    '1' => '連 續 壁',
+    '2' => '擋土排樁',
+    '3' => '鋼 軌 樁',
+    '4' => '鋼 板 樁',
+    '5' => '明挖工法',
+    '6' => '島式工法',
+    '7' => '其他型式'
 ];
 
 //Facades	外牆型態	char	20	Y	(DATA)',
 $facades_conf = [
-   '1' => 'RC外牆',
-   '2' => '玻璃帷幕',
-   '3' => 'PC版預鑄',
-   '4' => '其他'
+    '1' => 'RC外牆',
+    '2' => '玻璃帷幕',
+    '3' => 'PC版預鑄',
+    '4' => '其他'
 ];
 
 

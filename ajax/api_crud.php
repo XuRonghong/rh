@@ -4,7 +4,6 @@ include_once dirname(__DIR__) . '/config.php';
 * api設計，對表動作Create、Read、Update、Delete
 */
 
-
 try {
 
 $posts = filterVar($_REQUEST);

@@ -7,7 +7,6 @@ if (isset($gets['u'])) {
     if (data_get($_SESSION, 'admin_auth1') != 1) {
         header("location: 401.php");
     }
-    
     $row = getSingleRow("SELECT * FROM `accounts` WHERE `id`=? ", array($gets['u']));
 }
 ?>
@@ -68,7 +67,7 @@ if (isset($gets['u'])) {
                                                         <td class="list2">帳號</td>
                                                         <td width="25%" class="list2">
                                                             <label>
-                                                                <input type="text" name="Account" maxLength="20" size="20" value="<?php echo $row['Account'];?>" disabled>
+                                                                <input type="text" name="Account" maxLength="20" size="20" value="<?php echo $row['Account']; ?>" disabled>
                                                                 <input type="hidden" name="id" value="<?php echo $gets['u']; ?>" />
                                                             </label>
                                                         </td>
@@ -163,7 +162,7 @@ if (isset($gets['u'])) {
 
                 var form = $('form')[0];
                 var formData = new FormData(form);
-                let gotoUrl = '<?php echo data_get($gets,'go');?>';
+                let gotoUrl = '<?php echo data_get($gets, 'go'); ?>';
                 $.ajax({
                     headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
                     url: "ajax/api_login.php",
@@ -177,8 +176,11 @@ if (isset($gets['u'])) {
                         rtndata = JSON.parse(rtndata)
                         if (rtndata.status > 0) {
                             alert(rtndata.message)
-                            // location.href = rtndata.url
-                            location.href = decodeURIComponent(gotoUrl)//rtndata.url
+                            if (rtndata.url == '_go_') {
+                                location.href = decodeURIComponent(gotoUrl)
+                            } else {
+                                location.href = rtndata.url
+                            }
                         } else {
                             alert(rtndata.message)
                             if (rtndata.code == 1) {

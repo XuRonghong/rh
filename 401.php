@@ -79,9 +79,12 @@
             </div>
             <div class="content">
                 <div class="title m-b-md">
-                沒有權限
+                Oops!&nbsp;&nbsp;&nbsp;&nbsp;沒有權限
                 </div>
                 <div class="links">
+                    <a href="#"></a>
+                    <a href="#"></a>
+                    <a href="#"></a>
                     <a href="#">您</a>
                     <a href="#"></a>
                     <a href="#"></a>

