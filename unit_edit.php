@@ -126,7 +126,6 @@ $row = $rows[0];
   </table>
   
   <?php require_once dirname(__FILE__) . '/layouts/script.php'; ?>
-  <script src="Scripts/switchmenu.js" type="text/javascript"></script>
   <script>
     $(document).ready(function() {
       //用JavaScript抓取Enter事件並按下按鈕

@@ -55,7 +55,7 @@ include_once dirname(__FILE__) . '/config.php';
                               <td width="5%">
                                 <div align="left">
 
-                                  <input type="button" class="btn-goto btn-add" value="新增" data-id="0" data-url="register.php" />
+                                  <input type="button" class="btn-goto1 btn-add" value="新增" data-id="0" data-url="" />
 
                                 </div>
                               </td>
@@ -297,7 +297,8 @@ include_once dirname(__FILE__) . '/config.php';
         let id = $(this).closest('tr').find('td').first().text() || 0;
         let go = encodeURIComponent(location.href);
 
-        $('.btn-edit').data('url', 'modify.php?u=' + id + '&go=' + go + '');
+        // $('.btn-edit').data('url', 'modify.php?u=' + id + '&go=' + go + '');
+        $('.btn-edit').data('id', id);
         $('.btn-rm').data('id', id);
 
         $('#router').val('update')
@@ -305,7 +306,9 @@ include_once dirname(__FILE__) . '/config.php';
         $('.form1_title').text('編輯內容')
         //
         $.ajax({
-          headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>" },
+          headers: {
+            'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
+          },
           url: 'ajax/api_crud.php',
           type: "POST",
           data: {
@@ -344,14 +347,24 @@ include_once dirname(__FILE__) . '/config.php';
         });
       });
 
-      $('.btn-edit').click(function(){
-          $(".main_sbar").hide();
-          $('#form_edit1').slideDown();
+      $(".btn-add").click(function() {
+        $(".main_sbar").hide();
+        $('#form_edit1').slideDown();
+
+        $('#router').val('create')
+        $('.form1_title').text('新增項次')
+        $('.btn-clear').click(); //清空輸入欄位
       });
-      $('.flash').click(function(){
-          $('.main_sbar').slideDown();
-          $('#form_edit1').hide();
+      $('.btn-edit').click(function() {
+        $(".main_sbar").hide();
+        $('#form_edit1').slideDown();
       });
+      $('.doCloseModal').click(function() {
+        $('.main_sbar').slideDown();
+        $('#form_edit1').hide();
+      });
+      $('.main_sbar').slideDown();
+      $('#form_edit1').hide();
 
       //刪除項目
       $(".btn-rm").on('click', function() {
@@ -366,25 +379,28 @@ include_once dirname(__FILE__) . '/config.php';
       });
 
       //表單送出
-      $("#btn-submit").click(function() {
-        let current_modal = $('#form_edit1')
-        let r = current_modal.find('#router').val() || ''
-        let v = current_modal.find('#id').val() || 0
-        if (r == '') return false;
+      $('form').on('submit', function(e) {
+        e.preventDefault();
 
-        let datas = current_modal.serializeArray()
-        let newdata = {}
-        datas.forEach(function(data, key) {
-          newdata[data['name']] = data['value'];
-        });
+        var form = $('form')[0];
+        var formData = new FormData(form);
 
-        ajax_crud('ajax/api_crud.php', r, tablename, 'id', v, newdata)
+        // let current_modal = $('#form_edit1')
+        // let r = current_modal.find('#router').val() || ''
+        // let v = current_modal.find('#id').val() || 0
+        // if (r == '') return false;
+
+        // let datas = current_modal.serializeArray()
+        // let newdata = {}
+        // datas.forEach(function(data, key) {
+        //   newdata[data['name']] = data['value'];
+        // });
+
+        ajax_crud('ajax/api_crud.php', r, tablename, 'id', v, formData)
       });
 
     });
   </script>
-
-
 </body>
 <!-- InstanceEnd -->
 

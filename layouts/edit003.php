@@ -10,14 +10,31 @@
                                     <td colspan="9" bgcolor="#FFFFFF" class="form1_td">
                                         <table width="100%" height="19" border="0" cellpadding="0" cellspacing="0">
                                             <tr>
-                                                <td width="3%"><div class="flash">
-                                                    <img src="images/document_alt_fill_16x16.png" width="24" height="16" border="0" /></div>
+                                                <td width="3%">
+                                                    <div class="doCloseModal">
+                                                        <img src="images/Previous_01.gif" width="24" height="16" border="0" />
+                                                    </div>
                                                 </td>
                                                 <td class="form1_title" width="90%">編輯項次</td>
                                                 <td width="7%">&nbsp;</td>
                                             </tr>
                                         </table>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td class="list2">&nbsp;</td>
+                                    <td class="list2">單位</td>
+                                    <td class="list2">
+                                        <label>
+                                            <input type="text" name="textfield11" id="textfield11" />
+                                        </label>
+                                    </td>
+                                    <td class="list2">項目說明</td>
+                                    <td colspan="1" class="list2"><input name="textfield7" type="text" id="textfield7" value="" size="" /></td>
+                                    <td class="list2">項目別名</td>
+                                    <td colspan="1" class="list2"><input name="textfield" type="text" id="textfield" size="" /></td>
+                                    <td class="list2">項目說明</td>
+                                    <td colspan="1" class="list2"><input name="textfield7" type="text" id="textfield7" value="" size="" /></td>
                                 </tr>
                                 <tr>
                                     <td class="list2"><strong>項次</strong></td>
@@ -148,8 +165,8 @@
                                 <tr>
                                     <td colspan="8" style="background-color: #FFFFFF; text-align: center;">
                                         <label>
-                                            <input type="button" name="btn-submit" id="btn-submit" value="確定" />
-                                            <!-- <input type="button" name="btn-cancel" id="btn-cancel" value="取消" /> -->
+                                            <input type="submit" name="btn-submit" class="btn btn-submit" value="確定" />
+                                            <input type="reset" name="btn-clear" class="btn btn-clear" value="清除" />
 
                                             <input type="hidden" name="router" id="router" value="create" />
                                             <input type="hidden" name="id" id="id" value="" />
