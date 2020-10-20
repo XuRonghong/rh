@@ -85,9 +85,6 @@
                             <label>
                                 <input type="button" name="btn-submit" id="btn-submit" value="確定" />
                                 <!-- <input type="button" name="btn-cancel" id="btn-cancel" value="取消" /> -->
-
-                                <input type="hidden" name="router" id="router" value="create" />
-                                <input type="hidden" name="id" id="id" value="" />
                             </label>
                         </td>
                     </tr>

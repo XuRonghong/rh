@@ -39,5 +39,12 @@
 	font-family: Microsoft JhengHei;	/*微軟正黑體語法*/
 	color: black;
 }
-
+#data_table td {
+	/* or whatever height you need to make them all consistent */
+	/* min-height: 10px;  */
+	height: 25px;
+	padding: 3px;
+	text-align: center;
+	vertical-align: middle;
+}
 /**/

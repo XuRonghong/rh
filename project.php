@@ -1,7 +1,13 @@
 <?php
 include_once dirname(__FILE__) . '/config.php';
 
-
+$tablename = 'projects';
+$queryStr = " AND status=1 ";
+$orderStr = " ORDER BY rank ASC ";
+$rs = $db->prepare("SELECT * FROM {$tablename} WHERE 1 " . $queryStr . $orderStr);
+$rs->execute();
+$rows = $rs->fetchAll(PDO::FETCH_ASSOC);
+$row = $rows[0];
 ?>
 <!DOCTYPE html>
 <html lang="tw" dir="ltr">
@@ -27,14 +33,33 @@ include_once dirname(__FILE__) . '/config.php';
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
   <style type="text/css">
+    .card-body {
+      padding: 5px;
+    }
+
+    td.list {
+      width: 2%;
+    }
+
+    td.list2 {
+      width: 7%;
+    }
+
+    td.list4 {
+      width: 7%;
+    }
+
+    .td_title {
+      text-align: right;
+    }
   </style>
 </head>
 
 <body>
-  <table width="1200" height="" border="0" cellpadding="0" cellspacing="0">
+  <table width="1260" height="" border="0" cellpadding="0" cellspacing="0">
     <tr>
       <td valign="top">
-        <table width="100%" height="600" border="0" cellpadding="0" cellspacing="0">
+        <table width="100%" height="640" border="0" cellpadding="0" cellspacing="0">
           <tr>
             <?php require_once dirname(__FILE__) . '/layouts/top.php'; ?>
           </tr>
@@ -42,9 +67,9 @@ include_once dirname(__FILE__) . '/config.php';
           <tr>
             <?php require_once dirname(__FILE__) . '/layouts/menu.php'; ?>
 
-            <td width="1118" valign="top" class="top_colr">
+            <td width="100%" valign="top" class="top_colr">
               <!-- InstanceBeginEditable name="EditRegion1" -->
-              <table width="100%" height="348" align="center" cellpadding="0" cellspacing="1" class="main_sbar">
+              <table width="100%" height="480" align="center" cellpadding="0" cellspacing="1" class="main_sbar">
                 <tr>
                   <td align="center">
                     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="top_table1">
@@ -115,7 +140,7 @@ include_once dirname(__FILE__) . '/config.php';
       tablename = 'projects';
 
       // $('#dataTable').DataTable();
-      let table = $('#data_table').dataTable({
+      var table = $('#data_table').dataTable({
         "bServerSide": true,
         // "stateSave": true,
         "scrollX": true,
@@ -189,19 +214,19 @@ include_once dirname(__FILE__) . '/config.php';
               return data;
             }
           },
-          {
-            "sTitle": "Rank",
-            "mData": "rank",
-            "sName": "rank",
-            "bSearchable": false,
-            "width": "5%",
-            "mRender": function(data, type, row) {
-              let btn = '';
-              btn += '<div class="txt txtRank" >' + data + '</div>';
-              btn += '<input class="ipt iptRank" name="rank" size="1" type="text" value="' + data + '"></input>';
-              return btn;
-            }
-          },
+          // {
+          //   "sTitle": "Rank",
+          //   "mData": "rank",
+          //   "sName": "rank",
+          //   "bSearchable": false,
+          //   "width": "5%",
+          //   "mRender": function(data, type, row) {
+          //     let btn = '';
+          //     btn += '<div class="txt txtRank" >' + data + '</div>';
+          //     btn += '<input class="ipt iptRank" name="rank" size="1" type="text" value="' + data + '"></input>';
+          //     return btn;
+          //   }
+          // },
           {
             "title": "工程編號",
             "data": "ECode1",
@@ -222,7 +247,7 @@ include_once dirname(__FILE__) . '/config.php';
             }
           },
           {
-            "title": "工程區域",
+            "title": "縣市",
             "data": "area",
             "bSortable": false,
             "bSearchable": true,
@@ -231,13 +256,67 @@ include_once dirname(__FILE__) . '/config.php';
             }
           },
           {
-            "sTitle": "建立時間",
+            "title": "區域地號",
+            "data": "Location",
+            "bSortable": false,
+            "bSearchable": true,
+            "render": function(data, type, row, meta) {
+              return data;
+            }
+          },
+          {
+            "title": "建物用途",
+            "data": "Building_use",
+            "bSortable": false,
+            "bSearchable": true,
+            "render": function(data, type, row, meta) {
+              return data;
+            }
+          },
+          {
+            "title": "結構形式",
+            "data": "Structure2",
+            "bSortable": false,
+            "bSearchable": true,
+            "render": function(data, type, row, meta) {
+              return data;
+            }
+          },
+          {
+            "title": "基地面積",
+            "data": "Base_area",
+            "bSortable": true,
+            "bSearchable": false,
+            "render": function(data, type, row, meta) {
+              return data;
+            }
+          },
+          {
+            "title": "樓板面積",
+            "data": "total_floor_area",
+            "bSortable": true,
+            "bSearchable": false,
+            "render": function(data, type, row, meta) {
+              return data;
+            }
+          },
+          {
+            "sTitle": "建檔日期",
             "mData": "created_at",
-            "width": "15%",
+            // "width": "15%",
+            "bSortable": true,
+            "bSearchable": true,
+            "mRender": function(data = 0, type, row, meta) {
+              return data ? data.substr(0, 4) + '/' + data.substr(5, 2) + '/' + data.substr(8, 2) : '';
+              // return data;
+            }
+          },
+          {
+            "sTitle": "鎖定",
+            "mData": "Lock",
             "bSortable": false,
             "bSearchable": false,
-            "mRender": function(data = 0, type, row, meta) {
-              // return data ? data.substr(0, 4) + '/' + data.substr(5, 2) + '/' + data.substr(8, 2) : '';
+            "render": function(data, type, row, meta) {
               return data;
             }
           },
@@ -287,6 +366,7 @@ include_once dirname(__FILE__) . '/config.php';
       });
 
 
+      $('.btn-edit').prop('disabled', true)
       //修改
       table.on('click', 'td', function() {
         //被選取效果(Jquery寫法)
@@ -300,9 +380,11 @@ include_once dirname(__FILE__) . '/config.php';
         // $('.btn-edit').data('url', 'modify.php?u=' + id + '&go=' + go + '');
         $('.btn-edit').data('id', id);
         $('.btn-rm').data('id', id);
+        $('.btn-edit').prop('disabled', false)
 
         $('#router').val('update')
         $('#id').val(id)
+        $('#table').val(tablename)
         $('.form1_title').text('編輯內容')
         //
         $.ajax({
@@ -324,17 +406,22 @@ include_once dirname(__FILE__) . '/config.php';
             if (rtndata.status > 0) {
               var datas = rtndata.data
               for (key in datas) {
-                $('#rank').val(datas[key].rank)
-                $('#Code1').val(datas[key].Code1)
-                $('#Name').val(datas[key].Name)
 
-                if (datas[key].active == 1) {
-                  $('.active[value="1"]').prop('checked', true)
-                } else {
-                  $('.active[value="0"]').prop('checked', true)
+                for (k in datas[key]) {
+                  $("[name~='" + k + "']").val(datas[key][k])
                 }
 
-                $('.optStatus').find('option[value="' + datas[key].status + '"]').prop('selected', true)
+                // $('.optStatus').find('option[value="' + datas[key].status + '"]').prop('selected', true)
+                if (datas[key].Photo1_5) {
+                  $('#blah').attr('src', 'storage/' + tablename + '/img/' + datas[key].Photo1_5);
+                } else {
+                  $('#blah').attr('src', 'images/246x0w.png');
+                }
+                if (datas[key].Pdf1_3) {
+                  $('#blah2').attr('src', 'storage/' + tablename + '/file/' + datas[key].Pdf1_3);
+                } else {
+                  $('#blah2').attr('src', 'images/246x0w.png');
+                }
               }
             } else {
               console.log(JSON.stringify(rtndata))
@@ -354,6 +441,7 @@ include_once dirname(__FILE__) . '/config.php';
         $('#router').val('create')
         $('.form1_title').text('新增項次')
         $('.btn-clear').click(); //清空輸入欄位
+        $('#table').val(tablename)
       });
       $('.btn-edit').click(function() {
         $(".main_sbar").hide();
@@ -362,6 +450,8 @@ include_once dirname(__FILE__) . '/config.php';
       $('.doCloseModal').click(function() {
         $('.main_sbar').slideDown();
         $('#form_edit1').hide();
+        table.DataTable().ajax.reload();
+        $('.btn-edit').prop('disabled', true)
       });
       $('.main_sbar').slideDown();
       $('#form_edit1').hide();
@@ -384,21 +474,41 @@ include_once dirname(__FILE__) . '/config.php';
 
         var form = $('form')[0];
         var formData = new FormData(form);
-
-        // let current_modal = $('#form_edit1')
-        // let r = current_modal.find('#router').val() || ''
-        // let v = current_modal.find('#id').val() || 0
-        // if (r == '') return false;
-
-        // let datas = current_modal.serializeArray()
-        // let newdata = {}
-        // datas.forEach(function(data, key) {
-        //   newdata[data['name']] = data['value'];
-        // });
-
-        ajax_crud('ajax/api_crud.php', r, tablename, 'id', v, formData)
+        $.ajax({
+          headers: {
+            'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
+          },
+          url: "ajax/api_project.php",
+          type: "POST",
+          data: formData,
+          contentType: false,
+          processData: false,
+          cache: false,
+          resetForm: true,
+          success: function(rtndata) {
+            rtndata = JSON.parse(rtndata)
+            if (rtndata.status > 0) {
+              $('.main_sbar').slideDown();
+              $('#form_edit1').hide();
+              table.DataTable().ajax.reload();
+              $('.btn-edit').prop('disabled', true)
+            } else {
+              alert(rtndata.message)
+            }
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            // 通常情況下textStatus和errorThown只有其中一個有值 
+            console.error('status:' + XMLHttpRequest.status + ';rs:' + XMLHttpRequest.readyState + ';ts:' + textStatus)
+          }
+        });
       });
 
+
+      //用JavaScript抓取Enter事件並按下按鈕
+      $("#form_edit1").keypress(function(e) {
+        let key = window.event ? e.keyCode : e.which
+        if (key == 13) $('.btn-submit').click()
+      });
     });
   </script>
 </body>

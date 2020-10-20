@@ -1,18 +1,18 @@
 <table width="100%" border="0" align="center" cellpadding="1" cellspacing="0" bgcolor="#003333">
     <tr>
         <td width="100%">
-            <form id="form_edit1">
+            <form id="form_edit1" enctype="multipart/form-data" method="post">
                 <table width="100%" border="0" align="center" cellpadding="1" cellspacing="0" bgcolor="#003333">
                     <tr>
                         <td width="100%">
                             <table width="100%" cellpadding="2" cellspacing="0">
                                 <tr>
-                                    <td colspan="9" bgcolor="#FFFFFF" class="form1_td">
+                                    <td colspan="8" bgcolor="#FFFFFF" class="form1_td">
                                         <table width="100%" height="19" border="0" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td width="3%">
                                                     <div class="doCloseModal">
-                                                        <img src="images/Previous_01.gif" width="24" height="16" border="0" />
+                                                        <img src="images/Previous_01.gif" width="24" height="16" border="0">
                                                     </div>
                                                 </td>
                                                 <td class="form1_title" width="90%">編輯項次</td>
@@ -21,156 +21,142 @@
                                         </table>
                                     </td>
                                 </tr>
+
                                 <tr>
-                                    <td class="list2">&nbsp;</td>
-                                    <td class="list2">單位</td>
+                                    <td class="list" rowspan="2"><strong>建案名稱</strong></td>
+                                    <td class="list4 td_title">工程編號</td>
+                                    <td class="list4"><input type="text" name="ECode1" class="txt"></td>
+                                    <td class="list4 td_title">工程名稱</td>
+                                    <td class="list4"><input type="text" name="Name" class="txt"></td>
+                                    <td class="list4 td_title">工程別號</td>
+                                    <td class="list4"><input type="text" name="ECode2" class="txt"></td>
+                                </tr>
+                                <tr>
+                                    <td class="list2 td_title">縣市</td>
                                     <td class="list2">
-                                        <label>
-                                            <input type="text" name="textfield11" id="textfield11" />
-                                        </label>
+                                        <select name="area" class="opt optArea">
+                                            <option value="">請選擇</option>
+                                            <?php foreach ($area_conf as $val) { ?>
+                                                <option value="<?php echo $val; ?>"><?php echo $val; ?></option>
+                                            <?php } ?>
+                                        </select>
                                     </td>
-                                    <td class="list2">項目說明</td>
-                                    <td colspan="1" class="list2"><input name="textfield7" type="text" id="textfield7" value="" size="" /></td>
-                                    <td class="list2">項目別名</td>
-                                    <td colspan="1" class="list2"><input name="textfield" type="text" id="textfield" size="" /></td>
-                                    <td class="list2">項目說明</td>
-                                    <td colspan="1" class="list2"><input name="textfield7" type="text" id="textfield7" value="" size="" /></td>
+                                    <td class="list2 td_title">區域地號</td>
+                                    <td class="list2"><input type="text" name="Location" class="txt" required></td>
+                                    <td class="list2 td_title">備註</td>
+                                    <td class="list2"><input type="text" name="Note" class="txt"></td>
                                 </tr>
                                 <tr>
-                                    <td class="list2"><strong>項次</strong></td>
-                                    <td class="list2">編號首項</td>
-                                    <td class="list2"><select name="select" id="select">
-                                            <option>請選擇</option>
-                                            <option>標題1</option>
-                                            <option>標題2</option>
-                                            <option>壹</option>
-                                            <option>貳</option>
-                                            <option>參</option>
-                                            <option>肆</option>
-                                            <option>伍</option>
-                                            <option>陸</option>
-                                            <option>柒</option>
-                                            <option>捌</option>
-                                            <option>玖</option>
-                                            <option>拾</option>
-                                        </select></td>
-                                    <td class="list2">編號中項</td>
-                                    <td class="list2"><select name="select2" id="select2">
-                                            <option>請選擇</option>
-                                            <option>一</option>
-                                            <option>二</option>
-                                            <option>三</option>
-                                            <option>四</option>
-                                            <option>五</option>
-                                            <option>六</option>
-                                            <option>七</option>
-                                            <option>八</option>
-                                            <option>九</option>
-                                            <option>十</option>
-                                        </select></td>
-                                    <td class="list2">編號細項</td>
-                                    <td class="list2"><select name="select3" id="select3">
-                                            <option>請選擇</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                            <option>13</option>
-                                            <option>14</option>
-                                            <option>15</option>
-                                            <option>16</option>
-                                            <option>17</option>
-                                            <option>18</option>
-                                            <option>19</option>
-                                            <option>20</option>
-                                            <option>21</option>
-                                            <option>22</option>
-                                            <option>23</option>
-                                            <option>24</option>
-                                            <option>25</option>
-                                            <option>26</option>
-                                            <option>27</option>
-                                            <option>28</option>
-                                            <option>29</option>
-                                            <option>30</option>
-                                        </select></td>
-                                    <td class="list2">審核</td>
+                                    <td class="list"><strong>承攬關係</strong></td>
+                                    <td class="list2 td_title">業主</td>
+                                    <td class="list2"><input type="text" name="Owners" class="txt" /></td>
+                                    <td class="list2 td_title">建築師</td>
+                                    <td class="list2"><input type="text" name="architect" class="txt" /></td>
+                                    <td class="list2 td_title">承攬公司</td>
+                                    <td class="list2"><input type="text" name="Company" class="txt" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="list"><strong>工程期限</strong></td>
+                                    <td class="list2 td_title">放樣勘驗</td>
+                                    <td class="list2"><input type="date" name="Start_date" class="txt" /></td>
+                                    <td class="list2 td_title">使照取得</td>
+                                    <td class="list2"><input type="date" name="Completion_date" class="txt" /></td>
+                                    <td class="list2 td_title">合約工期</td>
+                                    <td class="list2"><input type="date" name="Contract_date" class="txt" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="list" rowspan="5"><strong>建案內容</strong></td>
+                                    <td class="list4 td_title">建物用途</td>
+                                    <td class="list4">
+                                        <select name="Building_use" class="opt">
+                                            <option value="">請選擇</option>
+                                            <?php foreach ($building_conf as $val) { ?>
+                                                <option value="<?php echo $val; ?>"><?php echo $val; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </td>
+                                    <td class="list4 td_title">結構形式</td>
+                                    <td class="list4">
+                                        <select name="Structure2" class="opt">
+                                            <option value="">請選擇</option>
+                                            <?php foreach ($structure2_conf as $val) { ?>
+                                                <option value="<?php echo $val; ?>"><?php echo $val; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </td>
+                                    <td class="list4 td_title">建造工法</td>
+                                    <td class="list4">
+                                        <select name="Structure3" class="opt">
+                                            <option value="">請選擇</option>
+                                            <?php foreach ($structure3_conf as $val) { ?>
+                                                <option value="<?php echo $val; ?>"><?php echo $val; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="list4 td_title">擋土開挖</td>
+                                    <td class="list4">
+                                        <select name="Retaining_patterns" class="opt">
+                                            <option value="">請選擇</option>
+                                            <?php foreach ($rp_conf as $val) { ?>
+                                                <option value="<?php echo $val; ?>"><?php echo $val; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </td>
+                                    <td class="list4 td_title">外牆型態</td>
+                                    <td class="list4">
+                                        <select name="Facades" class="opt">
+                                            <option value="">請選擇</option>
+                                            <?php foreach ($facades_conf as $val) { ?>
+                                                <option value="<?php echo $val; ?>"><?php echo $val; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </td>
+                                    <td class="list4"></td>
+                                    <td class="list4"></td>
+                                </tr>
+                                <tr>
+                                    <td class="list4 td_title">地下樓層</td>
+                                    <td class="list4"><input type="text" name="Underground1" class="txt" /></td>
+                                    <td class="list4 td_title">地上層數</td>
+                                    <td class="list4"><input type="text" name="Derground1" class="txt" /></td>
+                                    <td class="list4 td_title">屋突層數</td>
+                                    <td class="list4"><input type="text" name="Roof" class="txt" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="list4 td_title">基地面積</td>
+                                    <td class="list4"><input type="text" name="Base_area" class="txt" /></td>
+                                    <td class="list4 td_title">樓板面積</td>
+                                    <td class="list4"><input type="text" name="total_floor_area" class="txt" /></td>
+                                    <td class="list4 td_title">銷售戶數</td>
+                                    <td class="list4"><input type="text" name="Households" class="txt" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="list2 td_title">影像資料</td>
                                     <td class="list2">
-                                        <input name="textfield10" type="text" id="textfield10" size="14" />
+                                        <input name="file" type="file" id="imgInp" class="iptFile" accept="image/gif, image/jpeg, image/png" />
+                                        <img id="blah" src="storage/<?php echo $tablename . '/img/' . data_get($row, 'Photo1_5', '../../images/246x0w.png'); ?>" alt="project image" style="width: 100px;" />
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td class="list4">&nbsp;</td>
-                                    <td class="list4">料號編碼</td>
-                                    <td colspan="3" class="list4"><label></label>
-                                        <form action="" method="post" name="form1" target="" id="form2">
-                                            <input type="text" name="textfield2" id="textfield2" />
-                                            <a href="#"><img src="images/search.png" width="62" height="22" border="0" align="middle" /></a>
-                                        </form>
-                                    </td>
-                                    <td class="list4">項目說明</td>
-                                    <td colspan="3" class="list4"><input name="textfield7" type="text" id="textfield7" value="" size="57" /></td>
-                                </tr>
-                                <tr>
-                                    <td class="list2">&nbsp;</td>
-                                    <td class="list2">單位</td>
+                                    <td class="list2 td_title">文件資料</td>
                                     <td class="list2">
-                                        <label>
-                                            <input type="text" name="textfield11" id="textfield11" />
-                                        </label>
+                                        <input name="file2" type="file" id="fileInp" class="iptFile" accept="application/msexcel,application/msword,application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                                        <img id="blah2" src="storage/<?php echo $tablename . '/file/' . data_get($row, 'Pdf1_3', '../../images/246x0w.png'); ?>" alt="project file" style="width: 100px;" />
                                     </td>
-                                    <td class="list2">建案單價</td>
-                                    <td class="list2"><input name="textfield6" type="text" id="textfield6" /></td>
-                                    <td class="list2">項目別名</td>
-                                    <td colspan="3" class="list2"><input name="textfield" type="text" id="textfield" size="57" /></td>
+                                    <td class="list2 td_title">檔案鎖定</td>
+                                    <td class="list2"><input type="text" name="Lock" class="txt" /></td>
                                 </tr>
                                 <tr>
-                                    <td class="list2"><strong>變更</strong></td>
-                                    <td class="list2">比率</td>
-                                    <td class="list2">
-                                        <label>
-                                            <input name="textfield3" type="text" id="textfield3" />
-                                        </label>
-                                    </td>
-                                    <td class="list2">數量</td>
-                                    <td class="list2"><input name="textfield6" type="text" id="textfield6" /></td>
-                                    <td class="list2">單價</td>
-                                    <td class="list2"><input name="textfield4" type="text" id="textfield4" /></td>
-                                    <td class="list2">差異說明</td>
-                                    <td class="list2"><input name="textfield8" type="text" id="textfield8" size="14" /></td>
-                                </tr>
-                                <tr>
-                                    <td class="list6"><strong>審核</strong></td>
-                                    <td class="list6">比率</td>
-                                    <td class="list6"><input name="textfield5" type="text" id="textfield5" /></td>
-                                    <td class="list6">數量</td>
-                                    <td class="list6"><input name="textfield6" type="text" id="textfield6" /></td>
-                                    <td class="list6">單價</td>
-                                    <td class="list6"><input name="textfield9" type="text" id="textfield9" /></td>
-                                    <td class="list6">差異金額</td>
-                                    <td class="list6">
-                                        <input name="textfield12" type="text" id="textfield12" size="7" />
-                                        ％
-                                        <input name="textfield13" type="text" id="textfield13" size="3" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="8" style="background-color: #FFFFFF; text-align: center;">
-                                        <label>
-                                            <input type="submit" name="btn-submit" class="btn btn-submit" value="確定" />
-                                            <input type="reset" name="btn-clear" class="btn btn-clear" value="清除" />
+                                    <td class="list5" colspan="8">
+                                        <div align="center">
+                                            <input name="button1" type="submit" class="btn-submit" value="儲存" />
+                                            <input name="button2" type="reset" class="btn-clear" value="清空" />
 
                                             <input type="hidden" name="router" id="router" value="create" />
-                                            <input type="hidden" name="id" id="id" value="" />
-                                        </label>
+                                            <input type="hidden" name="table" id="table" value="<?php echo $tablename;?>" />
+                                            <input type="hidden" name="key" value="id" />
+                                            <input type="hidden" name="value" id="id" value="" />
+                                        </div>
                                     </td>
                                 </tr>
                             </table>

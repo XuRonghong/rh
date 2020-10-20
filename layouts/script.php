@@ -94,16 +94,19 @@
 
         //上傳圖片即顯示
         $("#imgInp").change(function() {
-            readURL(this);
+            readURL(this, '#blah');
+        });
+        $("#imgInp2").change(function() {
+            readURL(this, '#blah2');
         });
     })
 
 
-    function readURL(input) {
+    function readURL(input, target) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function(e) {
-                $('#blah').attr('src', e.target.result);
+                $(target).attr('src', e.target.result);
             }
             reader.readAsDataURL(input.files[0]); // convert to base64 string
         }
