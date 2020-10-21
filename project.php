@@ -19,6 +19,8 @@ $row = $rows[0];
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+
+  <?php require_once dirname(__FILE__) . '/layouts/style.php'; ?>
   <link href="css/menu.css" rel="stylesheet" type="text/css" />
   <link href="css/tree.css" rel="stylesheet" type="text/css" />
   <link href="css/first.css" rel="stylesheet" type="text/css" />
@@ -88,7 +90,8 @@ $row = $rows[0];
                               <td width="35%">
                                 <div align="right">
 
-                                  <input type="button" class="btn-goto1 btn-edit" value="修改" data-url="" />
+                                  <input type="button" class="btn-show" value="內容" data-url="" />
+                                  <input type="button" class="btn-edit" value="修改" data-url="" />
                                   <input type="button" class="btn-rm" value="刪除" data-id="" />
 
                                 </div>
@@ -208,7 +211,7 @@ $row = $rows[0];
             "title": "ID",
             "data": "id",
             "width": "5%",
-            "bSortable": false,
+            "bSortable": true,
             "bSearchable": false,
             "render": function(data, type, row, meta) {
               return data;
@@ -366,7 +369,7 @@ $row = $rows[0];
       });
 
 
-      $('.btn-edit').prop('disabled', true)
+      $('.btn-edit, .btn-show, .btn-rm').prop('disabled', true)
       //修改
       table.on('click', 'td', function() {
         //被選取效果(Jquery寫法)
@@ -378,9 +381,8 @@ $row = $rows[0];
         let go = encodeURIComponent(location.href);
 
         // $('.btn-edit').data('url', 'modify.php?u=' + id + '&go=' + go + '');
-        $('.btn-edit').data('id', id);
-        $('.btn-rm').data('id', id);
-        $('.btn-edit').prop('disabled', false)
+        $('.btn-edit, .btn-show, .btn-rm').data('id', id);
+        $('.btn-edit, .btn-show, .btn-rm').prop('disabled', false)
 
         $('#router').val('update')
         $('#id').val(id)
@@ -388,9 +390,7 @@ $row = $rows[0];
         $('.form1_title').text('編輯內容')
         //
         $.ajax({
-          headers: {
-            'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
-          },
+          headers: {'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"},
           url: 'ajax/api_crud.php',
           type: "POST",
           data: {
@@ -406,11 +406,9 @@ $row = $rows[0];
             if (rtndata.status > 0) {
               var datas = rtndata.data
               for (key in datas) {
-
-                for (k in datas[key]) {
-                  $("[name~='" + k + "']").val(datas[key][k])
+                for (col in datas[key]) {
+                  $("[name~='" + col + "']").val(datas[key][col])
                 }
-
                 // $('.optStatus').find('option[value="' + datas[key].status + '"]').prop('selected', true)
                 if (datas[key].Photo1_5) {
                   $('#blah').attr('src', 'storage/' + tablename + '/img/' + datas[key].Photo1_5);
@@ -418,9 +416,9 @@ $row = $rows[0];
                   $('#blah').attr('src', 'images/246x0w.png');
                 }
                 if (datas[key].Pdf1_3) {
-                  $('#blah2').attr('src', 'storage/' + tablename + '/file/' + datas[key].Pdf1_3);
+                  $('#blah2').text(datas[key].Pdf1_3).prop('href', 'storage/' + tablename + '/file/' + datas[key].Pdf1_3);
                 } else {
-                  $('#blah2').attr('src', 'images/246x0w.png');
+                  $('#blah2').hide()
                 }
               }
             } else {
@@ -432,6 +430,8 @@ $row = $rows[0];
             console.error('status:' + XMLHttpRequest.status + ';rs:' + XMLHttpRequest.readyState + ';ts:' + textStatus)
           }
         });
+      }).on('dblclick', 'td', function() {
+        $('.btn-show').click()
       });
 
       $(".btn-add").click(function() {
@@ -442,16 +442,26 @@ $row = $rows[0];
         $('.form1_title').text('新增項次')
         $('.btn-clear').click(); //清空輸入欄位
         $('#table').val(tablename)
+        $('#blah').attr('src', 'images/246x0w.png');
       });
       $('.btn-edit').click(function() {
         $(".main_sbar").hide();
         $('#form_edit1').slideDown();
+        $('#form_edit1 input,select').prop('disabled', false);
+        $('.btn-submit, .btn-clear, .btn-cancel').show()
+      });
+      $('.btn-show').click(function() {
+        $(".main_sbar").hide();
+        $('#form_edit1').slideDown();
+        $('.form1_title').text('顯示內容')
+        $('#form_edit1 input,select').prop('disabled', true);
+        $('.btn-submit, .btn-clear, .btn-cancel').hide()
       });
       $('.doCloseModal').click(function() {
         $('.main_sbar').slideDown();
         $('#form_edit1').hide();
         table.DataTable().ajax.reload();
-        $('.btn-edit').prop('disabled', true)
+        $('.btn-edit, .btn-show').prop('disabled', true)
       });
       $('.main_sbar').slideDown();
       $('#form_edit1').hide();
@@ -460,12 +470,26 @@ $row = $rows[0];
       $(".btn-rm").on('click', function() {
         let id = $(this).data('id') || 0
         let msg = "您真的確定要刪除嗎？"
-        if (id == 0 || confirm(msg) != true) {
+        if (id == 0 /*|| confirm(msg) != true*/ ) {
           return false
         }
         let data = []
         data['status'] = 0
-        ajax_crud('ajax/api_crud.php', 'delete', tablename, 'id', id, data)
+        swal({
+          title: msg,
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "確定删除",
+          cancelButtonText: "取消",
+          closeOnConfirm: false,
+          // closeOnCancel: false,
+          // imageUrl: "images/thumbs-up.jpg",  //自定義圖
+          // html: true, //自定义<span style="color:#F8BB86">html<span>信息。
+          // animation: "slide-from-top",
+        }, function() {
+          ajax_crud('ajax/api_crud.php', 'delete', tablename, 'id', id, data)
+        });
       });
 
       //表單送出
@@ -475,9 +499,7 @@ $row = $rows[0];
         var form = $('form')[0];
         var formData = new FormData(form);
         $.ajax({
-          headers: {
-            'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"
-          },
+          headers: { 'X-CSRF-TOKEN': "<?php echo csrf_token() ?>"},
           url: "ajax/api_project.php",
           type: "POST",
           data: formData,
@@ -491,9 +513,21 @@ $row = $rows[0];
               $('.main_sbar').slideDown();
               $('#form_edit1').hide();
               table.DataTable().ajax.reload();
-              $('.btn-edit').prop('disabled', true)
+              $('.btn-edit, .btn-show, .btn-rm').prop('disabled', true)
+              swal({
+                title: ''+rtndata.message,
+                timer: 1000,
+                showConfirmButton: false,
+                type: "success",
+                html: true, //自定义<span style="color:#F8BB86">html<span>信息。
+              });
             } else {
-              alert(rtndata.message)
+              swal({
+                title: rtndata.message,
+                timer: 1000,
+                showConfirmButton: false,
+                type: "error",
+              });
             }
           },
           error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -503,12 +537,18 @@ $row = $rows[0];
         });
       });
 
-
       //用JavaScript抓取Enter事件並按下按鈕
       $("#form_edit1").keypress(function(e) {
         let key = window.event ? e.keyCode : e.which
         if (key == 13) $('.btn-submit').click()
       });
+      document.onkeydown = function(e) {
+        let key = e.key || window.event
+        if (key === "Escape" || key === "Esc" || key.keyCode === 27) {
+          table.find('td').removeClass('td_point')
+          $('.btn-edit, .btn-show, .btn-rm').prop('disabled', true)
+        }
+      };
     });
   </script>
 </body>

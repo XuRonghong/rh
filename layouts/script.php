@@ -1,6 +1,9 @@
 <script src="Scripts/jquery-3.5.1.min.js"></script>
 <script src="Scripts/script.js" type="text/javascript"></script>
 
+<script src="Scripts/sweetalert.min.js"></script>
+<script src="Scripts/toastr.min.js"></script>
+
 <script src="Scripts/switchmenu.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -35,9 +38,8 @@
                     }
                     location.href = url
                 }
-                // setTimeout(function () { location.href = data.redirectUrl }, 500)
                 // toastr.error(data.message, "{{trans('web_alert.notice')}}").css("width","360px")
-                // Swal.fire("{{trans('web_alert.error')}}", JSON.stringify(data.errors), "error");
+                // swal("删除！", "你的虚拟文件已经被删除。", "success");
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 // 通常情況下textStatus和errorThown只有其中一個有值 

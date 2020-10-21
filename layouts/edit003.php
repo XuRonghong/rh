@@ -24,10 +24,10 @@
 
                                 <tr>
                                     <td class="list" rowspan="2"><strong>建案名稱</strong></td>
-                                    <td class="list4 td_title">工程編號</td>
-                                    <td class="list4"><input type="text" name="ECode1" class="txt"></td>
-                                    <td class="list4 td_title">工程名稱</td>
-                                    <td class="list4"><input type="text" name="Name" class="txt"></td>
+                                    <td class="list4 td_title">工程編號*</td>
+                                    <td class="list4"><input type="text" name="ECode1" class="txt" required></td>
+                                    <td class="list4 td_title">工程名稱*</td>
+                                    <td class="list4"><input type="text" name="Name" class="txt" required></td>
                                     <td class="list4 td_title">工程別號</td>
                                     <td class="list4"><input type="text" name="ECode2" class="txt"></td>
                                 </tr>
@@ -42,7 +42,7 @@
                                         </select>
                                     </td>
                                     <td class="list2 td_title">區域地號</td>
-                                    <td class="list2"><input type="text" name="Location" class="txt" required></td>
+                                    <td class="list2"><input type="text" name="Location" class="txt" ></td>
                                     <td class="list2 td_title">備註</td>
                                     <td class="list2"><input type="text" name="Note" class="txt"></td>
                                 </tr>
@@ -135,13 +135,13 @@
                                 <tr>
                                     <td class="list2 td_title">影像資料</td>
                                     <td class="list2">
+                                        <img id="blah" src="storage/<?php echo $tablename . '/img/' . data_get($row, 'Photo1_5', '../../../images/246x0w.png'); ?>" alt="project image" style="width: 100px;" />
                                         <input name="file" type="file" id="imgInp" class="iptFile" accept="image/gif, image/jpeg, image/png" />
-                                        <img id="blah" src="storage/<?php echo $tablename . '/img/' . data_get($row, 'Photo1_5', '../../images/246x0w.png'); ?>" alt="project image" style="width: 100px;" />
                                     </td>
                                     <td class="list2 td_title">文件資料</td>
                                     <td class="list2">
+                                        <a id="blah2" alt="project file" Target="_blank" ></a>
                                         <input name="file2" type="file" id="fileInp" class="iptFile" accept="application/msexcel,application/msword,application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
-                                        <img id="blah2" src="storage/<?php echo $tablename . '/file/' . data_get($row, 'Pdf1_3', '../../images/246x0w.png'); ?>" alt="project file" style="width: 100px;" />
                                     </td>
                                     <td class="list2 td_title">檔案鎖定</td>
                                     <td class="list2"><input type="text" name="Lock" class="txt" /></td>

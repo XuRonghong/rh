@@ -32,6 +32,7 @@ $tablename = $posts['table'];
         
         $datas = $posts;
         $datas['created_at'] = date('Y-m-d H:i:s');
+        $datas['status'] = 1;
         array_except($datas, ['router', 'table', 'key', 'value', 'id']);  //不寫入資料庫欄位
         $rs = dataInsert($tablename, $datas);
     
