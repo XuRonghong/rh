@@ -31,7 +31,7 @@ $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
   <!-- Custom styles for this template -->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <!-- Custom styles for this page -->
-  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="vendor/datatables/DataTables-1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
   <style type="text/css">
   </style>

@@ -2,7 +2,7 @@
 
 $dbms='mysql';     //数据库类型
 $host='localhost'; //数据库主机名
-$dbName='outlet';    //使用的数据库
+$dbName='rh';    //使用的数据库
 $user='outlet';      //数据库连接用户名
 $pass='11sW0auz96H1daJj';          //对应的密码
 $dsn="$dbms:host=$host;dbname=$dbName;charset=utf8";
