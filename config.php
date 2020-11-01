@@ -35,12 +35,6 @@ define('_DIR_', __DIR__);
 define('Models', 'Models');
 define('Views', 'Views');
 define('Controllers', 'Controllers');
-define('ACCOUNT', 'rh');
-// define('_PASSWORD', '630312630312'); 
-define('_PASSWORD', '123'); 
-define('APP_KEY', '9d2b2314058992965afd4c749a5175b2b08f905f75dbc242c3116691ea664070');
-define('NAME', '達義資訊');
-define('_CODE', '25134856');
 
 
 $str_no = [
